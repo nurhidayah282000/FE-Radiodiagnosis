@@ -1,36 +1,61 @@
-import React from "react";
+import axios from "axios";
+import { React, useState, useEffect } from "react";
 import HeaderDataUser from "../../../component/Header/HeaderDataUser";
 import SidebarDokter from "../../../component/Sidebar/SidebarDokter";
+import { baseURL } from "../../../routes/Config";
 import Kontak from "./Kontak";
 import UbahPassword from "./UbahPassword";
 import ViewProfil from "./ViewProfil";
 
 const ProfilDokter = () => {
+  const [data, setData] = useState();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      await axios
+        .get(`${baseURL}/users/profile`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          setData(response.data.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    };
+
+    fetchData();
+  }, []);
+
+  const token = sessionStorage.getItem("token");
+
   return (
     <div>
-      <body class="g-sidenav-show bg-gray-100">
-        <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <body className="g-sidenav-show bg-gray-100">
+        <div className="min-height-300 bg-primary position-absolute w-100"></div>
         <aside
-          class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-0 my-0 fixed-start ms-0"
+          className="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-0 my-0 fixed-start ms-0"
           id="sidenav-main"
         >
-        <SidebarDokter/>
+          <SidebarDokter />
         </aside>
-        <main class="main-content position-relative border-radius-lg">
+        <main className="main-content position-relative border-radius-lg">
           <HeaderDataUser />
-          <div class="container-fluid py-2">
-            <div class="row p-0">
-              <div class="col-12">
-                <div class="card mb-4">
-                  <div class="card-header pb-2 p-4 ">
+          <div className="container-fluid py-2">
+            <div className="row p-0">
+              <div className="col-12">
+                <div className="card mb-4">
+                  <div className="card-header pb-2 p-4 ">
                     <ul
-                      class="nav nav-pills mb-3"
+                      className="nav nav-pills mb-3"
                       id="pills-tab"
                       role="tablist"
                     >
-                      <li class="nav-item" role="presentation">
+                      <li className="nav-item" role="presentation">
                         <button
-                          class="nav-link active"
+                          className="nav-link active"
                           id="pills-biodata-tab"
                           data-bs-toggle="pill"
                           data-bs-target="#pills-biodata"
@@ -42,9 +67,9 @@ const ProfilDokter = () => {
                           Data Diri
                         </button>
                       </li>
-                      <li class="nav-item" role="presentation">
+                      <li className="nav-item" role="presentation">
                         <button
-                          class="nav-link"
+                          className="nav-link"
                           id="pills-password-tab"
                           data-bs-toggle="pill"
                           data-bs-target="#pills-password"
@@ -56,9 +81,9 @@ const ProfilDokter = () => {
                           Ubah Password
                         </button>
                       </li>
-                      <li class="nav-item" role="presentation">
+                      <li className="nav-item" role="presentation">
                         <button
-                          class="nav-link"
+                          className="nav-link"
                           id="pills-contact-tab"
                           data-bs-toggle="pill"
                           data-bs-target="#pills-contact"
@@ -71,30 +96,42 @@ const ProfilDokter = () => {
                         </button>
                       </li>
                     </ul>
-                    <div class="tab-content" id="pills-tabContent">
+                    <div className="tab-content" id="pills-tabContent">
                       <div
-                        class="tab-pane fade show active"
+                        className="tab-pane fade show active"
                         id="pills-biodata"
                         role="tabpanel"
                         aria-labelledby="pills-biodata-tab"
                       >
-                        <ViewProfil />
+                        {data ? (
+                          <ViewProfil auth={data} token={token} />
+                        ) : (
+                          <p>Loading data ...</p>
+                        )}
                       </div>
                       <div
-                        class="tab-pane fade"
+                        className="tab-pane fade"
                         id="pills-password"
                         role="tabpanel"
                         aria-labelledby="pills-password-tab"
                       >
-                        <UbahPassword />
+                        {data ? (
+                          <UbahPassword auth={data} token={token} />
+                        ) : (
+                          <p>Loading data ...</p>
+                        )}
                       </div>
                       <div
-                        class="tab-pane fade "
+                        className="tab-pane fade "
                         id="pills-contact"
                         role="tabpanel"
                         aria-labelledby="pills-contact-tab"
                       >
-                        <Kontak />
+                        {data ? (
+                          <Kontak auth={data} token={token} />
+                        ) : (
+                          <p>Loading data ...</p>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -108,4 +145,4 @@ const ProfilDokter = () => {
   );
 };
 
-export default ProfilDokter
+export default ProfilDokter;

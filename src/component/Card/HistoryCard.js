@@ -1,6 +1,7 @@
+import moment from "moment";
 import React from "react";
 
-const HistoryCard = () => {
+const HistoryCard = ({data}) => {
   return (
     <div>
       <div
@@ -22,7 +23,7 @@ const HistoryCard = () => {
                   </div>
                   <div class="col-4">
                     <p class="text-xs text-primary font-weight-bold">
-                      23/04/2018
+                    {moment(data.panoramik_upload_date).format('DD/MM/YYYY')}
                     </p>
                   </div>
                 </div>
@@ -34,7 +35,7 @@ const HistoryCard = () => {
                   </div>
                   <div class="col-4">
                     <p class="text-xs text-primary font-weight-bold">
-                      Drg. Ramadhan
+                      {data.doctor_name ?? "-"}
                     </p>
                   </div>
                 </div>
