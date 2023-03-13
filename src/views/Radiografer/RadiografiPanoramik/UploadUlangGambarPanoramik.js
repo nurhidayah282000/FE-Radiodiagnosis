@@ -32,7 +32,7 @@ const UploadUlangGambarPanoramik = () => {
                       </div>
                     </div>
                     <div class="row mt-3">
-                      <div class="col-2">
+                      <div class="col-3">
                         <p class="text-xs text-secondary mb-0">Kode Pasien</p>
                         <p class="text-xs font-weight-bolder mb-0">001</p>
                       </div>
@@ -40,6 +40,12 @@ const UploadUlangGambarPanoramik = () => {
                         <p class="text-xs text-secondary mb-0">Nama Pasien</p>
                         <p class="text-xs font-weight-bolder mb-0">
                           Nurhidayah
+                        </p>
+                      </div>
+                      <div class="col-3">
+                        <p class="text-xs text-secondary mb-0">Radiografer</p>
+                        <p class="text-xs font-weight-bolder mb-0">
+                          Drg. Ramadhan
                         </p>
                       </div>
                     </div>

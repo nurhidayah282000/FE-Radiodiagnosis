@@ -1,4 +1,5 @@
 import React from "react";
+import VerifiedNo from "./VerifiedNo";
 
 const VerifiedYes = () => {
   return (
@@ -83,6 +84,7 @@ const VerifiedYes = () => {
                     >
                       Tidak
                     </label>
+                    {/* <VerifiedNo /> */}
                   </div>
                 </div>
                 <hr

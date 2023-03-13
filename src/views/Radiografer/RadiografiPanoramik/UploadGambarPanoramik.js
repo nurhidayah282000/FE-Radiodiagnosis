@@ -35,22 +35,45 @@ const UploadGambarPanoramik = () => {
                     <div class="row mt-3">
                       <div class="col-2">
                         <p class="text-xs text-secondary mb-2">Kode RM</p>
-                        <select
-                          class="form-select form-select-sm"
-                          aria-label=".form-select-sm example"
-                          style={{ width: "70%" }}
-                        >
-                          <option selected>Kode RM</option>
-                          <option value="1">001</option>
-                          <option value="2">002</option>
-                          <option value="3">003</option>
-                        </select>
+                        <form class="d-flex">
+                          <input
+                            style={{ height: "0%", width: "100%" }}
+                            class="form-control me-2 text-sm"
+                            type="search"
+                            placeholder="Search"
+                            aria-label="Search"
+                          />
+                          <button
+                            class="btn btn-outline-secondary btn-sm pe-3 ps-3"
+                            type="submit"
+                          >
+                            <i class="fas fa-search" aria-hidden="true"></i>
+                          </button>
+                        </form>
                       </div>
                       <div class="col-3">
                         <p class="text-xs text-secondary mb-2">Nama Pasien</p>
-                        <p class="text-xs font-weight-bolder mb-0">
-                          Nurhidayah
-                        </p>
+                        <form>
+                          <p
+                            style={{ width: "100%" }}
+                            class="form-control me-2 text-sm"
+                          >
+                            Nurhidayah
+                          </p>
+                        </form>
+                      </div>
+                      <div class="col-3 me-0">
+                        <p class="text-xs text-secondary mb-2">Radiografer</p>
+                        <select
+                          class="form-select form-select-sm "
+                          aria-label=".form-select-sm example"
+                          style={{ width: "70%", height: "50%" }}
+                        >
+                          <option selected>Pilih Radiografer</option>
+                          <option value="1">Drg. Nuhi</option>
+                          <option value="2">Drg. Naufal</option>
+                          <option value="3">Drg. Asmi</option>
+                        </select>
                       </div>
                     </div>
                   </div>

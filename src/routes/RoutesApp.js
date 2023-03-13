@@ -1,76 +1,111 @@
-import React from 'react'
-import { BrowserRouter as Router,Routes, Route } from "react-router-dom";
-import LoginAdmin from '../auth/LoginAdmin';
-import LoginUser from '../auth/LoginUser';
-import RegisterAdmin from '../auth/RegisterAdmin';
-import AddDataUser from '../views/Admin/AddDataUser';
-import DataUser from '../views/Admin/DataUser';
-import { EditDataUser } from '../views/Admin/EditDataUser';
-import { ViewDataUser } from '../views/Admin/ViewDataUser';
-import AddCatatanPasien from '../views/Dokter/CatatanPasien/AddCatatanPasien';
-import CatatanPasien from '../views/Dokter/CatatanPasien/CatatanPasien';
-import DetailCatatanPasien from '../views/Dokter/CatatanPasien/DetailCatatanPasien';
-import ViewCatatanPaisen from '../views/Dokter/CatatanPasien/DetailCatatanPasien';
-import EditCatatanPasien from '../views/Dokter/CatatanPasien/EditCatatanPasien';
-import ViewCatatanPasien from '../views/Dokter/CatatanPasien/ViewCatatanPasien';
-import DataPasienDokter from '../views/Dokter/DataPasien/DataPasienDokter';
-import ViewDataPasienDokter from '../views/Dokter/DataPasien/ViewDataPasienDokter';
-import ProfilDokter from '../views/Dokter/Profil/ProfilDokter';
-import RadiografiPanoramikDokter from '../views/Dokter/RadiografiPanoramik/RadiografiPanoramikDokter';
-import ViewGambarPanoramikDokter from '../views/Dokter/RadiografiPanoramik/ViewGambarPanoramikDokter';
-import AddDataPasien from '../views/Radiografer/DataPasien/AddDataPasien';
-import DataPasien from '../views/Radiografer/DataPasien/DataPasien';
-import EditDataPasien from '../views/Radiografer/DataPasien/EditDataPasien';
-import ViewDataPasien from '../views/Radiografer/DataPasien/ViewDataPasien';
-import History from '../views/Radiografer/History/History';
-import ViewHistory from '../views/Radiografer/History/ViewHistory';
-import Profil from '../views/Radiografer/Profil/Profil';
-import ViewProfil from '../views/Radiografer/Profil/ViewProfil';
-import RadiografiPanoramik from '../views/Radiografer/RadiografiPanoramik/RadiografiPanoramik';
-import UploadGambarPanoramik from '../views/Radiografer/RadiografiPanoramik/UploadGambarPanoramik';
-import UploadUlangGambarPanoramik from '../views/Radiografer/RadiografiPanoramik/UploadUlangGambarPanoramik';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import LoginAdmin from "../auth/LoginAdmin";
+import LoginUser from "../auth/LoginUser";
+import RegisterAdmin from "../auth/RegisterAdmin";
+import AddDataUser from "../views/Admin/AddDataUser";
+import DataUser from "../views/Admin/DataUser";
+import { EditDataUser } from "../views/Admin/EditDataUser";
+import { ViewDataUser } from "../views/Admin/ViewDataUser";
+import CatatanPasien from "../views/Dokter/CatatanPasien/CatatanPasien";
+import DetailCatatanPasien from "../views/Dokter/CatatanPasien/DetailCatatanPasien";
+import ViewCatatanPaisen from "../views/Dokter/CatatanPasien/DetailCatatanPasien";
+import EditCatatanPasien from "../views/Dokter/CatatanPasien/EditCatatanPasien";
+import ViewCatatanPasien from "../views/Dokter/CatatanPasien/ViewCatatanPasien";
+import DataPasienDokter from "../views/Dokter/DataPasien/DataPasienDokter";
+import ViewDataPasienDokter from "../views/Dokter/DataPasien/ViewDataPasienDokter";
+import ProfilDokter from "../views/Dokter/Profil/ProfilDokter";
+import RadiografiPanoramikDokter from "../views/Dokter/RadiografiPanoramik/RadiografiPanoramikDokter";
+import ViewGambarPanoramikDokter from "../views/Dokter/RadiografiPanoramik/ViewGambarPanoramikDokter";
+import AddDataPasien from "../views/Radiografer/DataPasien/AddDataPasien";
+import DataPasien from "../views/Radiografer/DataPasien/DataPasien";
+import EditDataPasien from "../views/Radiografer/DataPasien/EditDataPasien";
+import ViewDataPasien from "../views/Radiografer/DataPasien/ViewDataPasien";
+import History from "../views/Radiografer/History/History";
+import ViewHistory from "../views/Radiografer/History/ViewHistory";
+import Profil from "../views/Radiografer/Profil/Profil";
+import RadiografiPanoramik from "../views/Radiografer/RadiografiPanoramik/RadiografiPanoramik";
+import UploadGambarPanoramik from "../views/Radiografer/RadiografiPanoramik/UploadGambarPanoramik";
+import UploadUlangGambarPanoramik from "../views/Radiografer/RadiografiPanoramik/UploadUlangGambarPanoramik";
 
-import ViewGambarPanoramik from '../views/Radiografer/RadiografiPanoramik/ViewGambarPanoramik';
+import ViewGambarPanoramik from "../views/Radiografer/RadiografiPanoramik/ViewGambarPanoramik";
 
 const RoutesApp = () => {
   return (
     <div>
-       <Router>
+      <Router>
         <Routes>
-          <Route path="/" element={<LoginAdmin/>} />
-          <Route path="/register-admin" element={<RegisterAdmin/>} />
-          <Route path="/data-user" element={<DataUser/>} />
-          <Route path="/add-data-user" element={<AddDataUser/>} />
-          <Route path="/edit-data-user" element={<EditDataUser/>} />
-          <Route path="/view-data-user" element={<ViewDataUser/>} />
-          <Route path="/login-user" element={<LoginUser/>} />
-          <Route path="/radiografer-data-pasien" element={<DataPasien/>} />
-          <Route path="/radiografer-add-data-pasien" element={<AddDataPasien/>} />
-          <Route path="/radiografer-view-data-pasien" element={<ViewDataPasien/>} />
-          <Route path="/radiografer-edit-data-pasien" element={<EditDataPasien/>} />
-          <Route path="/radiografer-radiografi-panoramik" element={<RadiografiPanoramik/>} />
-          <Route path="/radiografer-upload-gambar-panoramik" element={<UploadGambarPanoramik/>} />
-          <Route path="/radiografer-upload-ulang-gambar-panoramik" element={<UploadUlangGambarPanoramik/>} />
-          <Route path="/radiografer-view-gambar-panoramik" element={<ViewGambarPanoramik/>} />
-          <Route path="/radiografer-history" element={<History/>} />
-          <Route path="/radiografer-view-history" element={<ViewHistory/>} />
-          <Route path="/radiografer-profil" element={<Profil/>} />
-          <Route path="/dokter-data-pasien" element={<DataPasienDokter/>} />
-          <Route path="/dokter-view-data-pasien" element={<ViewDataPasienDokter/>} />
-          <Route path="/dokter-radiografi-panoramik" element={<RadiografiPanoramikDokter/>} />
-          <Route path="/dokter-view-gambar-panoramik" element={<ViewGambarPanoramikDokter/>} />
-          <Route path="/dokter-profil" element={<ProfilDokter/>} />
-          <Route path="/dokter-catatan-pasien" element={<CatatanPasien/>} />
-          <Route path="/dokter-add-catatan-pasien" element={<AddCatatanPasien/>} />
-          <Route path="/dokter-detail-catatan-pasien" element={<DetailCatatanPasien/>} />
-          <Route path="/dokter-view-catatan-pasien" element={<ViewCatatanPasien/>} />
-          <Route path="/dokter-edit-catatan-pasien" element={<EditCatatanPasien/>} />
-          
+          <Route path="/" element={<LoginAdmin />} />
+          <Route path="/register-admin" element={<RegisterAdmin />} />
+          <Route path="/data-user" element={<DataUser />} />
+          <Route path="/add-data-user" element={<AddDataUser />} />
+          <Route path="/edit-data-user" element={<EditDataUser />} />
+          <Route path="/view-data-user" element={<ViewDataUser />} />
+          <Route path="/login-user" element={<LoginUser />} />
+          <Route path="/radiografer-data-pasien" element={<DataPasien />} />
+          <Route
+            path="/radiografer-add-data-pasien"
+            element={<AddDataPasien />}
+          />
+          <Route
+            path="/radiografer-view-data-pasien"
+            element={<ViewDataPasien />}
+          />
+          <Route
+            path="/radiografer-edit-data-pasien"
+            element={<EditDataPasien />}
+          />
+          <Route
+            path="/radiografer-radiografi-panoramik"
+            element={<RadiografiPanoramik />}
+          />
+          <Route
+            path="/radiografer-upload-gambar-panoramik"
+            element={<UploadGambarPanoramik />}
+          />
+          <Route
+            path="/radiografer-upload-ulang-gambar-panoramik"
+            element={<UploadUlangGambarPanoramik />}
+          />
+          <Route
+            path="/radiografer-view-gambar-panoramik"
+            element={<ViewGambarPanoramik />}
+          />
+          <Route path="/radiografer-history" element={<History />} />
+          <Route path="/radiografer-view-history" element={<ViewHistory />} />
+          <Route path="/radiografer-profil" element={<Profil />} />
+          <Route path="/dokter-data-pasien" element={<DataPasienDokter />} />
+          <Route
+            path="/dokter-view-data-pasien"
+            element={<ViewDataPasienDokter />}
+          />
+          <Route
+            path="/dokter-radiografi-panoramik"
+            element={<RadiografiPanoramikDokter />}
+          />
+          <Route
+            path="/dokter-view-gambar-panoramik"
+            element={<ViewGambarPanoramikDokter />}
+          />
+          <Route path="/dokter-profil" element={<ProfilDokter />} />
+          <Route path="/dokter-catatan-pasien" element={<CatatanPasien />} />
+
+          <Route
+            path="/dokter-detail-catatan-pasien"
+            element={<DetailCatatanPasien />}
+          />
+          <Route
+            path="/dokter-view-catatan-pasien"
+            element={<ViewCatatanPasien />}
+          />
+          <Route
+            path="/dokter-edit-catatan-pasien"
+            element={<EditCatatanPasien />}
+          />
         </Routes>
       </Router>
     </div>
-  )
-}
+  );
+};
 
-export default RoutesApp
-
+export default RoutesApp;

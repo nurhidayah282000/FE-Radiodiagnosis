@@ -25,14 +25,14 @@ const CatatanPasien = () => {
                       <div class="col-6 d-flex align-items-center">
                         <h6 class="mb-0 font-weight-bolder">Catatan Pasien</h6>
                       </div>
-                      <div class="col-6 text-end">
+                      {/* <div class="col-6 text-end">
                         <a
                           class="btn bg-gradient-primary btn-sm mb-0"
                           href="/dokter-add-catatan-pasien"
                         >
                           <i class="fas fa-plus"></i>&nbsp;&nbsp;Tambah Catatan
                         </a>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <div class="card-body px-0 pt-0 pb-2">

@@ -1,5 +1,7 @@
 import React from "react";
 import HeaderDataUser from "../../../component/Header/HeaderDataUser";
+import InterpretasiManual from "../../../component/Modal/InterpretasiManual";
+import VerifiedNo from "../../../component/Modal/VerifiedNo";
 import VerifiedYes from "../../../component/Modal/VerifiedYes";
 import SidebarDokter from "../../../component/Sidebar/SidebarDokter";
 
@@ -840,8 +842,8 @@ const ViewGambarPanoramikDokter = () => {
                                             >
                                               Verifikasi Diagnosa
                                             </a>
-                                            <VerifiedYes />
                                           </div>
+                                          <VerifiedNo/>
                                         </div>
                                         <div class="row">
                                           <div class="col-2">
@@ -889,15 +891,17 @@ const ViewGambarPanoramikDokter = () => {
                                         </div>
                                         <div class="d-grid">
                                           <a
-                                            href="/add-catatan-pasien"
+                                            // href="/dokter-add-catatan-pasien"
                                             class="d-grid"
                                           >
                                             <button
                                               class="btn btn-sm btn-primary mt-2 mb-2"
                                               type="button"
+                                              data-bs-toggle="modal"
+                                              data-bs-target="#exampleModal3"
                                             >
                                               Interpretasi Manual
-                                            </button>
+                                            </button><InterpretasiManual/>
                                           </a>
                                         </div>
                                       </div>
