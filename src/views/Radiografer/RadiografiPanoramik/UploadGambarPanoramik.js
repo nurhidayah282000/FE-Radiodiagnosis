@@ -57,8 +57,8 @@ const UploadGambarPanoramik = () => {
         },
       })
       .then((response) => {
-        setSelectedFile(null)
-        window.location.href="/radiografer-radiografi-panoramik"
+        setSelectedFile(null);
+        window.location.href = "/radiografer-radiografi-panoramik";
       })
       .catch((error) => {
         console.log(error);
@@ -100,10 +100,39 @@ const UploadGambarPanoramik = () => {
                       <div className="row mt-3">
                         <div className="col-2">
                           <p className="text-xs text-secondary mb-2">Kode RM</p>
+                          <form class="d-flex">
+                            <input
+                              style={{ height: "0%", width: "100%" }}
+                              class="form-control me-2 text-sm"
+                              type="search"
+                              placeholder="Search"
+                              aria-label="Search"
+                            />
+                            <button
+                              class="btn btn-outline-secondary btn-sm pe-3 ps-3"
+                              type="submit"
+                            >
+                              <i class="fas fa-search" aria-hidden="true"></i>
+                            </button>
+                          </form>
+                        </div>
+                        <div class="col-3">
+                          <p class="text-xs text-secondary mb-2">Nama Pasien</p>
+                          <form>
+                            <p
+                              style={{ width: "100%" }}
+                              class="form-control me-2 text-sm"
+                            >
+                              Nurhidayah
+                            </p>
+                          </form>
+                        </div>
+                        <div class="col-3 me-0">
+                          <p class="text-xs text-secondary mb-2">Radiografer</p>
                           <select
                             className="form-select form-select-sm"
                             aria-label=".form-select-sm example"
-                            style={{ width: "70%" }}
+                            style={{ width: "70%", height: "50%" }}
                             name="patientId"
                             onChange={(e) => setPatientId(e.target.value)}
                             required

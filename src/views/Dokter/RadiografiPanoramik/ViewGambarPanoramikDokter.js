@@ -925,7 +925,7 @@ const ViewGambarPanoramikDokter = () => {
                                               Verifikasi Diagnosa
                                             </a>
                                           </div>
-                                          <VerifiedNo/>
+                                          <VerifiedNo />
                                         </div>
                                         <div className="row">
                                           <div className="col-2">
@@ -976,19 +976,15 @@ const ViewGambarPanoramikDokter = () => {
                                           </div>
                                         </div>
                                         <div className="d-grid">
-                                          <a
-                                            // href="/dokter-add-catatan-pasien"
-                                            class="d-grid"
+                                          <button
+                                            className="btn btn-sm btn-primary mt-2 mb-2"
+                                            type="button"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#exampleModal3"
                                           >
-                                            <button
-                                              className="btn btn-sm btn-primary mt-2 mb-2"
-                                              type="button"
-                                              data-bs-toggle="modal"
-                                              data-bs-target="#exampleModal3"
-                                            >
-                                              Interpretasi Manual
-                                            </button><InterpretasiManual/>
-                                          </a>
+                                            Interpretasi Manual
+                                          </button>
+                                          <InterpretasiManual />
                                         </div>
                                       </div>
                                     </div>

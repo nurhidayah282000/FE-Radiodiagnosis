@@ -9,7 +9,6 @@ import { EditDataUser } from "../views/Admin/EditDataUser";
 import { ViewDataUser } from "../views/Admin/ViewDataUser";
 import CatatanPasien from "../views/Dokter/CatatanPasien/CatatanPasien";
 import DetailCatatanPasien from "../views/Dokter/CatatanPasien/DetailCatatanPasien";
-import ViewCatatanPaisen from "../views/Dokter/CatatanPasien/DetailCatatanPasien";
 import EditCatatanPasien from "../views/Dokter/CatatanPasien/EditCatatanPasien";
 import ViewCatatanPasien from "../views/Dokter/CatatanPasien/ViewCatatanPasien";
 import DataPasienDokter from "../views/Dokter/DataPasien/DataPasienDokter";
@@ -59,7 +58,6 @@ const RoutesApp = () => {
           <Route path="/dokter-view-gambar-panoramik/:id" element={<ViewGambarPanoramikDokter/>} />
           <Route path="/dokter-profil" element={<ProfilDokter/>} />
           <Route path="/dokter-catatan-pasien" element={<CatatanPasien/>} />
-          <Route path="/dokter-add-catatan-pasien" element={<AddCatatanPasien/>} />
           <Route path="/dokter-detail-catatan-pasien/:id" element={<DetailCatatanPasien/>} />
           <Route path="/dokter-view-catatan-pasien/:id" element={<ViewCatatanPasien/>} />
           <Route path="/dokter-edit-catatan-pasien" element={<EditCatatanPasien/>} />

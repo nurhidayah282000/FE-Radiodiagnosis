@@ -80,7 +80,7 @@ const UploadUlangGambarPanoramik = () => {
                       </div>
                     </div>
                     <div className="row mt-3">
-                      <div className="col-2">
+                      <div className="col-3">
                         <p className="text-xs text-secondary mb-0">
                           Kode Pasien
                         </p>

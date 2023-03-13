@@ -49,7 +49,7 @@ const CatatanPasien = () => {
                           Catatan Pasien
                         </h6>
                       </div>
-                      <div className="col-6 text-end">
+                      {/* <div className="col-6 text-end">
                         <a
                           className="btn bg-gradient-primary btn-sm mb-0"
                           href="/dokter-add-catatan-pasien"
@@ -57,7 +57,7 @@ const CatatanPasien = () => {
                           <i className="fas fa-plus"></i>&nbsp;&nbsp;Tambah
                           Catatan
                         </a>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                   <div className="card-body px-0 pt-0 pb-2">
