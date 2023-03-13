@@ -1,9 +1,63 @@
-import React from "react";
+import axios from "axios";
+import { React, useState, useEffect } from "react";
 import HeaderAdmin from "../../component/Header/HeaderAdmin";
 import DeleteModal from "../../component/Modal/DeleteModal";
 import SidebarAdmin from "../../component/Sidebar/SidebarAdmin";
+import { baseURL } from "../../routes/Config";
+import { Link } from "react-router-dom";
 
 const DataUser = () => {
+  const [data, setData] = useState([]);
+
+  let doctor = 0;
+  let radiographer = 0;
+  const token = sessionStorage.getItem("token");
+  // get data user use axios
+  useEffect(() => {
+    axios
+      .get(`${baseURL}/users/all`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setData(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  }, []);
+
+  // COUNT DOCTOR AND RADIOGRAPHER
+
+  data.map((profession) => {
+    if (profession.role === "doctor") {
+      doctor += 1;
+    } else if (profession.role === "radiographer") {
+      radiographer += 1;
+    }
+  });
+
+  // END COUNT
+
+  const handleDelete = async (e, userId) => {
+    e.preventDefault();
+    await axios
+      .delete(`${baseURL}/users/delete/${userId}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        window.location.reload();
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  };
+
   return (
     <div>
       <body class="g-sidenav-show bg-gray-100">
@@ -28,7 +82,7 @@ const DataUser = () => {
                             User
                           </p>
                           <h2 class="font-weight-bolder d-flex justify-content-left">
-                            10
+                            {doctor}
                           </h2>
                           <p class="text-sm mb-0  font-weight-bold d-flex justify-content-left">
                             Jumlah Dokter Gigi
@@ -57,7 +111,7 @@ const DataUser = () => {
                             User
                           </p>
                           <h2 class="font-weight-bolder d-flex justify-content-left">
-                            20
+                            {radiographer}
                           </h2>
                           <p class="text-sm mb-0  font-weight-bold d-flex justify-content-left">
                             Jumlah Radiografer
@@ -135,342 +189,65 @@ const DataUser = () => {
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <td class="ps-0 align-middle text-center ">
-                              <span class="text-xs text-secondary mb-0">
-                                001
-                              </span>
-                            </td>
-                            <td class="align-middle text-start text-sm ps-2 pe-0">
-                              <span class="text-xs text-secondary mb-0 ">
-                                Ramadhan Hardani Putra, drg., M.Kes
-                              </span>
-                            </td>
-                            <td class="align-middle text-start text-sm ps-0">
-                              <span class="text-xs text-secondary mb-0">
-                                731604680766969
-                              </span>
-                            </td>
-                            <td class="align-middle text-start ps-0">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                ramadhan@gmail.com
-                              </span>
-                            </td>
-                            <td class="align-middle text-start ps-0">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                Radiografer
-                              </span>
-                            </td>
-                            <td class="align-middle text-center text-sm pe-0">
-                              <span class="text-xs text-secondary mb-0 ">
-                                <div>
-                                  <a
-                                    class="btn btn-outline-primary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-primary"
-                                    href="/edit-data-user"
-                                  >
-                                    <i class="fa fa-pencil text-primary"></i>
-                                  </a>
-                                  &nbsp;
-                                  <button
-                                    type="button"
-                                    class="btn btn-outline-danger btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-danger"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
-                                  >
-                                    <i class="fa fa-trash text-danger"></i>
-                                  </button>
-                                  &nbsp;
-                                  <a
-                                    class="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-secondary"
-                                    href="/view-data-user"
-                                  >
-                                    <i class="fa fa-eye text-secondary"></i>
-                                  </a>
-                                  <DeleteModal />
-                                </div>
-                              </span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="ps-0 align-middle text-center ">
-                              <span class="text-xs text-secondary mb-0">
-                                002
-                              </span>
-                            </td>
-                            <td class="align-middle text-start text-sm ps-2 pe-0">
-                              <span class="text-xs text-secondary mb-0 ">
-                                Ramadhan Hardani Putra, drg., M.Kes
-                              </span>
-                            </td>
-                            <td class="align-middle text-start text-sm ps-0">
-                              <span class="text-xs text-secondary mb-0">
-                                731604680766969
-                              </span>
-                            </td>
-                            <td class="align-middle text-start ps-0">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                ramadhan@gmail.com
-                              </span>
-                            </td>
-                            <td class="align-middle text-start ps-0">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                Dokter Gigi
-                              </span>
-                            </td>
-                            <td class="align-middle text-center text-sm pe-0">
-                              <span class="text-xs text-secondary mb-0 ">
-                                <div>
-                                  <a
-                                    class="btn btn-outline-primary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-primary"
-                                    href="/edit-data-user"
-                                  >
-                                    <i class="fa fa-pencil text-primary"></i>
-                                  </a>
-                                  &nbsp;
-                                  <button
-                                    type="button"
-                                    class="btn btn-outline-danger btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-danger"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
-                                  >
-                                    <i class="fa fa-trash text-danger"></i>
-                                  </button>
-                                  &nbsp;
-                                  <a
-                                    class="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-secondary"
-                                    href="/view-data-user"
-                                  >
-                                    <i class="fa fa-eye text-secondary"></i>
-                                  </a>
-                                  <DeleteModal />
-                                </div>
-                              </span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="ps-0 align-middle text-center ">
-                              <span class="text-xs text-secondary mb-0">
-                                003
-                              </span>
-                            </td>
-                            <td class="align-middle text-start text-sm ps-2 pe-0">
-                              <span class="text-xs text-secondary mb-0 ">
-                                Ramadhan Hardani Putra, drg., M.Kes
-                              </span>
-                            </td>
-                            <td class="align-middle text-start text-sm ps-0">
-                              <span class="text-xs text-secondary mb-0">
-                                731604680766969
-                              </span>
-                            </td>
-                            <td class="align-middle text-start ps-0">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                ramadhan@gmail.com
-                              </span>
-                            </td>
-                            <td class="align-middle text-start ps-0">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                Radiografer
-                              </span>
-                            </td>
-                            <td class="align-middle text-center text-sm pe-0">
-                              <span class="text-xs text-secondary mb-0 ">
-                                <div>
-                                  <a
-                                    class="btn btn-outline-primary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-primary"
-                                    href="/edit-data-user"
-                                  >
-                                    <i class="fa fa-pencil text-primary"></i>
-                                  </a>
-                                  &nbsp;
-                                  <button
-                                    type="button"
-                                    class="btn btn-outline-danger btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-danger"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
-                                  >
-                                    <i class="fa fa-trash text-danger"></i>
-                                  </button>
-                                  &nbsp;
-                                  <a
-                                    class="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-secondary"
-                                    href="/view-data-user"
-                                  >
-                                    <i class="fa fa-eye text-secondary"></i>
-                                  </a>
-                                  <DeleteModal />
-                                </div>
-                              </span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="ps-0 align-middle text-center ">
-                              <span class="text-xs text-secondary mb-0">
-                                004
-                              </span>
-                            </td>
-                            <td class="align-middle text-start text-sm ps-2 pe-0">
-                              <span class="text-xs text-secondary mb-0 ">
-                                Ramadhan Hardani Putra, drg., M.Kes
-                              </span>
-                            </td>
-                            <td class="align-middle text-start text-sm ps-0">
-                              <span class="text-xs text-secondary mb-0">
-                                731604680766969
-                              </span>
-                            </td>
-                            <td class="align-middle text-start ps-0">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                ramadhan@gmail.com
-                              </span>
-                            </td>
-                            <td class="align-middle text-start ps-0">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                Radiografer
-                              </span>
-                            </td>
-                            <td class="align-middle text-center text-sm pe-0">
-                              <span class="text-xs text-secondary mb-0 ">
-                                <div>
-                                  <a
-                                    class="btn btn-outline-primary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-primary"
-                                    href="/edit-data-user"
-                                  >
-                                    <i class="fa fa-pencil text-primary"></i>
-                                  </a>
-                                  &nbsp;
-                                  <button
-                                    type="button"
-                                    class="btn btn-outline-danger btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-danger"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
-                                  >
-                                    <i class="fa fa-trash text-danger"></i>
-                                  </button>
-                                  &nbsp;
-                                  <a
-                                    class="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-secondary"
-                                    href="/view-data-user"
-                                  >
-                                    <i class="fa fa-eye text-secondary"></i>
-                                  </a>
-                                  <DeleteModal />
-                                </div>
-                              </span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="ps-0 align-middle text-center ">
-                              <span class="text-xs text-secondary mb-0">
-                                005
-                              </span>
-                            </td>
-                            <td class="align-middle text-start text-sm ps-2 pe-0">
-                              <span class="text-xs text-secondary mb-0 ">
-                                Ramadhan Hardani Putra, drg., M.Kes
-                              </span>
-                            </td>
-                            <td class="align-middle text-start text-sm ps-0">
-                              <span class="text-xs text-secondary mb-0">
-                                731604680766969
-                              </span>
-                            </td>
-                            <td class="align-middle text-start ps-0">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                ramadhan@gmail.com
-                              </span>
-                            </td>
-                            <td class="align-middle text-start ps-0">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                Radiografer
-                              </span>
-                            </td>
-                            <td class="align-middle text-center text-sm pe-0">
-                              <span class="text-xs text-secondary mb-0 ">
-                                <div>
-                                  <a
-                                    class="btn btn-outline-primary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-primary"
-                                    href="/edit-data-user"
-                                  >
-                                    <i class="fa fa-pencil text-primary"></i>
-                                  </a>
-                                  &nbsp;
-                                  <button
-                                    type="button"
-                                    class="btn btn-outline-danger btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-danger"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
-                                  >
-                                    <i class="fa fa-trash text-danger"></i>
-                                  </button>
-                                  &nbsp;
-                                  <a
-                                    class="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-secondary"
-                                    href="/view-data-user"
-                                  >
-                                    <i class="fa fa-eye text-secondary"></i>
-                                  </a>
-                                  <DeleteModal />
-                                </div>
-                              </span>
-                            </td>
-                          </tr>
-                          <tr>
-                            <td class="ps-0 align-middle text-center ">
-                              <span class="text-xs text-secondary mb-0">
-                                006
-                              </span>
-                            </td>
-                            <td class="align-middle text-start text-sm ps-2 pe-0">
-                              <span class="text-xs text-secondary mb-0 ">
-                                Ramadhan Hardani Putra, drg., M.Kes
-                              </span>
-                            </td>
-                            <td class="align-middle text-start text-sm ps-0">
-                              <span class="text-xs text-secondary mb-0">
-                                731604680766969
-                              </span>
-                            </td>
-                            <td class="align-middle text-start ps-0">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                ramadhan@gmail.com
-                              </span>
-                            </td>
-                            <td class="align-middle text-start ps-0">
-                              <span class="text-secondary text-xs font-weight-bold">
-                                Radiografer
-                              </span>
-                            </td>
-                            <td class="align-middle text-center text-sm pe-0">
-                              <span class="text-xs text-secondary mb-0 ">
-                                <div>
-                                  <a
-                                    class="btn btn-outline-primary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-primary"
-                                    href="/edit-data-user"
-                                  >
-                                    <i class="fa fa-pencil text-primary"></i>
-                                  </a>
-                                  &nbsp;
-                                  <button
-                                    type="button"
-                                    class="btn btn-outline-danger btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-danger"
-                                    data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal"
-                                  >
-                                    <i class="fa fa-trash text-danger"></i>
-                                  </button>
-                                  &nbsp;
-                                  <a
-                                    class="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-secondary"
-                                    href="/view-data-user"
-                                  >
-                                    <i class="fa fa-eye text-secondary"></i>
-                                  </a>
-                                  <DeleteModal />
-                                </div>
-                              </span>
-                            </td>
-                          </tr>
+                          {data.map((item) => (
+                            <tr key={item.id}>
+                              <td class="ps-0 align-middle text-center ">
+                                <span class="text-xs text-secondary mb-0">
+                                  001
+                                </span>
+                              </td>
+                              <td class="align-middle text-start text-sm ps-2 pe-0">
+                                <span class="text-xs text-secondary mb-0 ">
+                                  {item.fullname}
+                                </span>
+                              </td>
+                              <td class="align-middle text-start text-sm ps-0">
+                                <span class="text-xs text-secondary mb-0">
+                                  {item.nip}
+                                </span>
+                              </td>
+                              <td class="align-middle text-start ps-0">
+                                <span class="text-secondary text-xs font-weight-bold">
+                                  {item.email}
+                                </span>
+                              </td>
+                              <td class="align-middle text-start ps-0">
+                                <span class="text-secondary text-xs font-weight-bold">
+                                  {item.role}
+                                </span>
+                              </td>
+                              <td class="align-middle text-center text-sm pe-0">
+                                <span class="text-xs text-secondary mb-0 ">
+                                  <div>
+                                    <Link
+                                      class="btn btn-outline-primary btn-sm mb-0 me-2 pt-1 pb-1 ps-2 pe-2 text-primary"
+                                      to={`/edit-data-user/${item.id}`}
+                                    >
+                                      <i class="fa fa-pencil text-primary"></i>
+                                    </Link>
+                                    <button
+                                      type="button"
+                                      class="btn btn-outline-danger btn-sm mb-0 me-2 pt-1 pb-1 ps-2 pe-2 text-danger"
+                                      data-bs-toggle="modal"
+                                      data-bs-target="#exampleModal"
+                                    >
+                                      <i class="fa fa-trash text-danger"></i>
+                                    </button>
+                                    <Link
+                                      to={`/view-data-user/${item.id}`}
+                                      class="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-secondary"
+                                    >
+                                      <i class="fa fa-eye text-secondary"></i>
+                                    </Link>
+                                    <DeleteModal
+                                      userId={item.id}
+                                      handleDelete={handleDelete}
+                                    />
+                                  </div>
+                                </span>
+                              </td>
+                            </tr>
+                          ))}
                         </tbody>
                       </table>
                     </div>

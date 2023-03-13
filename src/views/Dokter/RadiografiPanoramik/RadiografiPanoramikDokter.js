@@ -1,30 +1,57 @@
-import React from "react";
+import { React, useState, useEffect } from "react";
 import HeaderUser from "../../../component/Header/HeaderUser";
 import SidebarDokter from "../../../component/Sidebar/SidebarDokter";
 import RadiografiPanoramikCardDokter from "../../../component/Card/RadiografiPanoramikCardDokter";
+import axios from "axios";
+import { baseURL } from "../../../routes/Config";
 
 const RadiografiPanoramikDokter = () => {
+  const [data, setData] = useState([]);
+
+  const token = sessionStorage.getItem("token");
+
+  useEffect(() => {
+    axios
+      .get(`${baseURL}/radiographics/all`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        if (response.data.status === "fail") {
+          setData([]);
+        } else {
+          setData(response.data.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div>
-      <body class="g-sidenav-show bg-gray-100">
-        <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <body className="g-sidenav-show bg-gray-100">
+        <div className="min-height-300 bg-primary position-absolute w-100"></div>
         <aside
-          class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-0 my-0 fixed-start ms-0"
+          className="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-0 my-0 fixed-start ms-0"
           id="sidenav-main"
         >
           <SidebarDokter />
         </aside>
-        <main class="main-content position-relative border-radius-lg">
+        <main className="main-content position-relative border-radius-lg">
           <HeaderUser />
-          <div class="container-fluid py-2">
-            <div class="row mb-4">
-              <div class="col-12">
-                <div class="card mb-4">
-                  <div class="card-header p-1">
-                    <div class="row p-2">
-                      <div class="col card-header p-4 pt-3">
-                        <h6 class="font-weight-bolder">Radiografi Panoramik</h6>
-                        <p class="text-xs text-secondary mb-0">
+          <div className="container-fluid py-2">
+            <div className="row mb-4">
+              <div className="col-12">
+                <div className="card mb-4">
+                  <div className="card-header p-1">
+                    <div className="row p-2">
+                      <div className="col card-header p-4 pt-3">
+                        <h6 className="font-weight-bolder">
+                          Radiografi Panoramik
+                        </h6>
+                        <p className="text-xs text-secondary mb-0">
                           Hasil diagnosa pada tabel di bawah merupakan hasil
                           diagnosa
                           <br />
@@ -33,20 +60,20 @@ const RadiografiPanoramikDokter = () => {
                       </div>
                     </div>
                   </div>
-                  <div class="card-body px-0 pt-0 pb-2">
-                    <div class="row">
-                      <di class="col-md-2">
-                        <p class="btn btn-link m-0 ps-0  text-secondary text-xs font-weight-bold">
+                  <div className="card-body px-0 pt-0 pb-2">
+                    <div className="row">
+                      <di className="col-md-2">
+                        <p className="btn btn-link m-0 ps-0  text-secondary text-xs font-weight-bold">
                           Semua Hasil
                         </p>
                       </di>
-                      <di class="col-md-2">
-                        <p class="ps-0 btn btn-link m-0 text-secondary text-xs font-weight-bold">
+                      <di className="col-md-2">
+                        <p className="ps-0 btn btn-link m-0 text-secondary text-xs font-weight-bold">
                           Telah Diverifikasi
                         </p>
                       </di>
-                      <di class="col-md-2">
-                        <p class="btn btn-link m-0 ps-0  text-secondary text-xs font-weight-bold">
+                      <di className="col-md-2">
+                        <p className="btn btn-link m-0 ps-0  text-secondary text-xs font-weight-bold">
                           Belum Diverifikasi
                         </p>
                       </di>
@@ -63,25 +90,18 @@ const RadiografiPanoramikDokter = () => {
                     </div>
                   </div>
                   {/* <!-- </card> --> */}
-                  <div class="row p-3 ">
-                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-                      <RadiografiPanoramikCardDokter />
-                    </div>
-                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-                      <RadiografiPanoramikCardDokter />
-                    </div>
-                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-                      <RadiografiPanoramikCardDokter />
-                    </div>
-                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-                      <RadiografiPanoramikCardDokter />
-                    </div>
-                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-                      <RadiografiPanoramikCardDokter />
-                    </div>
-                    <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-                      <RadiografiPanoramikCardDokter />
-                    </div>
+                  <div className="row p-3 ">
+                    {data.map((item) => (
+                      <div
+                        key={item.radiographics_id}
+                        className="col-xl-4 col-sm-6 mb-xl-0 mb-4"
+                      >
+                        <RadiografiPanoramikCardDokter
+                          data={item}
+                          baseURL={baseURL}
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>

@@ -4,32 +4,32 @@ const VerifiedNo = () => {
   return (
     <div>
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal2"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
         <div
-          class="modal-dialog modal-dialog-centered"
+          className="modal-dialog modal-dialog-centered"
           style={{ width: "30%" }}
         >
-          <div class="modal-content">
-            <div class="modal-body">
-              <p class="ms-2 pt-0 mt-0 mb-0 font-weight-bold text-dark">
+          <div className="modal-content">
+            <div className="modal-body">
+              <p className="ms-2 pt-0 mt-0 mb-0 font-weight-bold text-dark">
                 Verifikasi Diagnosa
               </p>
 
-              <p class="text-secondary text-xs ms-2 mt-2">
+              <p className="text-secondary text-xs ms-2 mt-2">
                 Radiodiagnosis Sistem
               </p>
-              <div class="row">
-                <div class="col-3">
-                  <p class="text-xs text-dark ps-2">Gigi #11</p>
+              <div className="row">
+                <div className="col-3">
+                  <p className="text-xs text-dark ps-2">Gigi #11</p>
                 </div>
-                <div class="col-4 ps-0">
+                <div className="col-4 ps-0">
                   <ul>
-                    <li class="text-xs text-warning font-weight-bold">
+                    <li className="text-xs text-warning font-weight-bold">
                       Karies Gigi
                     </li>
                   </ul>
@@ -44,25 +44,25 @@ const VerifiedNo = () => {
                   }}
                 />
               </div>
-              <div class="row">
-                <div class="col">
-                  <p class="text-dark text-xs ms-2 mt-0">
+              <div className="row">
+                <div className="col">
+                  <p className="text-dark text-xs ms-2 mt-0">
                     Apakah hasil Diagnosa Sistem <br />
                     sudah sesuai?
                   </p>
                 </div>
-                <div class="col">
-                  <div class="d-flex justify-content-end">
+                <div className="col">
+                  <div className="d-flex justify-content-end">
                     <input
                       type="radio"
-                      class="btn-check"
+                      className="btn-check"
                       name="btnradio"
                       id="btnradio3"
                       autocomplete="off"
                       checked
                     />
                     <label
-                      class="btn btn-sm btn-outline-primary mt-0 mb-0 p-2 ps-3 pe-3 border-radius-xl"
+                      className="btn btn-sm btn-outline-primary mt-0 mb-0 p-2 ps-3 pe-3 border-radius-xl"
                       for="btnradio3"
                     >
                       Ya
@@ -70,13 +70,13 @@ const VerifiedNo = () => {
 
                     <input
                       type="radio"
-                      class="btn-check"
+                      className="btn-check"
                       name="btnradio"
                       id="btnradio2"
                       autocomplete="off"
                     />
                     <label
-                      class="btn btn-sm btn-outline-primary mt-0 mb-0 p-2 border-radius-xl"
+                      className="btn btn-sm btn-outline-primary mt-0 mb-0 p-2 border-radius-xl"
                       for="btnradio2"
                     >
                       Tidak
@@ -84,11 +84,11 @@ const VerifiedNo = () => {
                   </div>
                 </div>
 
-                <p class="text-secondary text-xs ms-2 mt-0 mb-2">
+                <p className="text-secondary text-xs ms-2 mt-0 mb-2">
                   Radiodiagnosis Verifikator
                 </p>
                 <select
-                  class="form-select ms-3 mb-3 text-xs"
+                  className="form-select ms-3 mb-3 text-xs"
                   style={{ width: "92%" }}
                   id="exampleFormControlSelect1"
                   aria-placeholder="xsaas"
@@ -100,9 +100,9 @@ const VerifiedNo = () => {
                   <option>dll</option>
                 </select>
 
-                <p class="text-secondary text-xs ms-2 mt-0 mb-2">Catatan</p>
+                <p className="text-secondary text-xs ms-2 mt-0 mb-2">Catatan</p>
                 <textarea
-                  class="form-control ms-3 text-xs"
+                  className="form-control ms-3 text-xs"
                   style={{ width: "92%" }}
                   type="text"
                   placeholder="Masukkan catatan pasien"
@@ -110,15 +110,15 @@ const VerifiedNo = () => {
                 ></textarea>
               </div>
 
-              <div class="ms-auto text-end mt-4">
+              <div className="ms-auto text-end mt-4">
                 <button
                   type="button"
-                  class="btn btn-outline-secondary btn-sm mb-0 p-1"
+                  className="btn btn-outline-secondary btn-sm mb-0 p-1"
                   data-bs-dismiss="modal"
                 >
                   Batalkan
                 </button>
-                <button class="btn btn-primary btn-sm mb-0 pe-2 ps-2 pt-1 pb-1">
+                <button className="btn btn-primary btn-sm mb-0 pe-2 ps-2 pt-1 pb-1">
                   Selesai
                 </button>
               </div>

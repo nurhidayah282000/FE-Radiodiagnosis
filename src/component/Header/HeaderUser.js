@@ -1,31 +1,52 @@
-import React from "react";
+import axios from "axios";
+import { React, useState, useEffect } from "react";
+import { baseURL } from "../../routes/Config";
 
 const HeaderUser = () => {
+  const [data, setData] = useState({});
+
+  const token = sessionStorage.getItem("token");
+
+  useEffect(() => {
+    axios
+      .get(`${baseURL}/users/profile`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setData(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div>
-      <body class="g-sidenav-show bg-gray-100">
-        <div class="min-height-300 bg-primary position-absolute w-100"></div>
-        <main class="main-content position-relative border-radius-lg">
+      <body className="g-sidenav-show bg-gray-100">
+        <div className="min-height-300 bg-primary position-absolute w-100"></div>
+        <main className="main-content position-relative border-radius-lg">
           {/* <!-- Navbar --> */}
           <nav
-            class="navbar navbar-main navbar-expand-lg shadow-none border-radius-xl px-0"
+            className="navbar navbar-main navbar-expand-lg shadow-none border-radius-xl px-0"
             id="navbarBlur"
             data-scroll="false"
           >
-            <div class="container-fluid py-1 px-0">
+            <div className="container-fluid py-1 px-0">
               <nav aria-label="breadcrumb">
                 <div
-                  class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
+                  className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
                   id="navbar"
                 >
-                  <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                    <div class="input-group">
-                      <span class="input-group-text text-body border-radius-xl">
-                        <i class="fas fa-search" aria-hidden="true"></i>
+                  <div className="ms-md-auto pe-md-3 d-flex align-items-center">
+                    <div className="input-group">
+                      <span className="input-group-text text-body border-radius-xl">
+                        <i className="fas fa-search" aria-hidden="true"></i>
                       </span>
                       <input
                         type="text"
-                        class="form-control border-radius-xl"
+                        className="form-control border-radius-xl"
                         size="50"
                         placeholder="Cari berdasarkan nama dan kode pasien..."
                       />
@@ -34,45 +55,43 @@ const HeaderUser = () => {
                 </div>
               </nav>
               <div
-                class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
+                className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
                 id="navbar"
               >
-                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                  <ul class="navbar-nav justify-content-end">
-                    <li class="nav-item d-flex align-items-center">
+                <div className="ms-md-auto pe-md-3 d-flex align-items-center">
+                  <ul className="navbar-nav justify-content-end">
+                    <li className="nav-item d-flex align-items-center">
                       <a
                         href="javascript:;"
-                        class="nav-link text-white font-weight-bold px-0"
+                        className="nav-link text-white font-weight-bold px-0"
                       >
-                        <div class="d-flex px-2 py-1">
-                          <div class="d-flex flex-column justify-content-end">
-                            <h6 class="mb-0 text-sm text-white d-flex justify-content-end">
-                              Drg Ramadhan
-                            </h6>
-                            <p class="text-xs text-white mb-0 d-flex justify-content-end">
-                              Radiografer
+                        <div className="d-flex px-2 py-1">
+                          <div className="d-flex flex-column justify-content-end">
+                            <h6 className="mb-0 text-sm text-white d-flex justify-content-end">{data.fullname}</h6>
+                            <p className="text-xs text-white mb-0 d-flex justify-content-end">
+                              {data.role}
                             </p>
                           </div>
-                          <div class="ps-2">
+                          <div className="ps-2">
                             <img
-                              src="../assets/img/App/user.png"
-                              class="avatar avatar-sm me-0 "
+                              src={`${baseURL + data.profile_picture}`}
+                              className="avatar avatar-sm me-0 "
                               alt="user1"
                             />
                           </div>
                         </div>
                       </a>
                     </li>
-                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                    <li className="nav-item d-xl-none ps-3 d-flex align-items-center">
                       <a
                         href="javascript:;"
-                        class="nav-link text-white p-0"
+                        className="nav-link text-white p-0"
                         id="iconNavbarSidenav"
                       >
-                        <div class="sidenav-toggler-inner">
-                          <i class="sidenav-toggler-line bg-white"></i>
-                          <i class="sidenav-toggler-line bg-white"></i>
-                          <i class="sidenav-toggler-line bg-white"></i>
+                        <div className="sidenav-toggler-inner">
+                          <i className="sidenav-toggler-line bg-white"></i>
+                          <i className="sidenav-toggler-line bg-white"></i>
+                          <i className="sidenav-toggler-line bg-white"></i>
                         </div>
                       </a>
                     </li>

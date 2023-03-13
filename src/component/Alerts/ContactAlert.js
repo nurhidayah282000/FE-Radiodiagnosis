@@ -4,7 +4,7 @@ const ContactAlert = () => {
   return (
     <div>
       <div
-        class="alert alert-danger text-sm p-2 alert-dismissible fade show mt-4"
+        className="alert alert-danger text-sm p-2 alert-dismissible fade show mt-4"
         role="alert"
       >
         <strong>HALO!!!</strong>&nbsp; Untuk Mengubah Email dan No.HP Hubungi

@@ -1,77 +1,112 @@
-import React from "react";
+import axios from "axios";
+import moment from "moment";
+import { React, useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
 import HeaderDataUser from "../../../component/Header/HeaderDataUser";
 import SidebarDokter from "../../../component/Sidebar/SidebarDokter";
+import { baseURL } from "../../../routes/Config";
 
 const DetailCatatanPasien = () => {
+  const [data, setData] = useState({});
+
+  const { id } = useParams();
+  const token = sessionStorage.getItem("token");
+
+  useEffect(() => {
+    axios
+      .get(`${baseURL}/radiographics/detail/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setData(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [id]);
+
+  console.log(data);
+
   return (
     <div>
-      <body class="g-sidenav-show bg-gray-100">
-        <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <body className="g-sidenav-show bg-gray-100">
+        <div className="min-height-300 bg-primary position-absolute w-100"></div>
         <aside
-          class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-0 my-0 fixed-start ms-0"
+          className="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-0 my-0 fixed-start ms-0"
           id="sidenav-main"
         >
           <SidebarDokter />
         </aside>
-        <main class="main-content position-relative border-radius-lg">
+        <main className="main-content position-relative border-radius-lg">
           <HeaderDataUser />
-          <div class="container-fluid py-2">
-            <div class="row p-0">
-              <div class="col-12">
-                <div class="card mb-4">
-                  <div class="card-header pb-2 p-4">
-                    <div class="row">
-                      <div class="col-8 d-flex align-items-center">
+          <div className="container-fluid py-2">
+            <div className="row p-0">
+              <div className="col-12">
+                <div className="card mb-4">
+                  <div className="card-header pb-2 p-4">
+                    <div className="row">
+                      <div className="col-8 d-flex align-items-center">
                         <a
-                          class="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2"
+                          className="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2"
                           href="/dokter-catatan-pasien"
                         >
-                          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                          <i
+                            className="fa fa-arrow-left"
+                            aria-hidden="true"
+                          ></i>
                           &nbsp;&nbsp;Kembali
                         </a>
                       </div>
                     </div>
                   </div>
 
-                  <div class="card-body px-0 pb-2 pt-0 pe-3">
-                    <div class="row">
-                      <div class="col pe-0">
-                        <div class="card-header pb-0">
-                          <div class="d-flex align-items-center">
-                            <h6 class="mb-0 font-weight-bolder">
+                  <div className="card-body px-0 pb-2 pt-0 pe-3">
+                    <div className="row">
+                      <div className="col pe-0">
+                        <div className="card-header pb-0">
+                          <div className="d-flex align-items-center">
+                            <h6 className="mb-0 font-weight-bolder">
                               Detail Catatan Pasien
                             </h6>
                           </div>
-                          <div class="row mt-3">
-                            <div class="col-2">
-                              <p class="text-xs text-secondary mb-1">
+                          <div className="row mt-3">
+                            <div className="col-2">
+                              <p className="text-xs text-secondary mb-1">
                                 Kode Pasien
                               </p>
-                              <p class="text-xs font-weight-bolder mb-0">001</p>
+                              <p className="text-xs font-weight-bolder mb-0">
+                                {data.medic_number}
+                              </p>
                             </div>
-                            <div class="col-2">
-                              <p class="text-xs text-secondary mb-1">
+                            <div className="col-2">
+                              <p className="text-xs text-secondary mb-1">
                                 Nama Pasien
                               </p>
-                              <p class="text-xs font-weight-bolder mb-0">
-                                Nurhidayah
+                              <p className="text-xs font-weight-bolder mb-0">
+                                {data.fullname}
                               </p>
                             </div>
-                            <div class="col-3">
-                              <p class="text-xs text-secondary mb-1">
+                            <div className="col-3">
+                              <p className="text-xs text-secondary mb-1">
                                 Tanggal Verifikasi
                               </p>
-                              <p class="text-xs font-weight-bolder mb-0">
-                                01/10/2022
+                              <p className="text-xs font-weight-bolder mb-0">
+                                {data.panoramik_check_date !== null
+                                  ? moment(data.panoramik_check_date).format(
+                                      "DD/MM/YYYY"
+                                    )
+                                  : "-"}
                               </p>
                             </div>
-                            <div class="col-5 ">
-                              <div class="d-flex justify-content-end mb-0">
-                                <a href="/dokter-view-catatan-pasien">
-                                  <button class="btn btn-primary btn-sm mb-0">
+                            <div className="col-5 ">
+                              <div className="d-flex justify-content-end mb-0">
+                                <Link to={`/dokter-view-catatan-pasien/${id}`}>
+                                  <button className="btn btn-primary btn-sm mb-0">
                                     Lihat Catatan Pasien
                                   </button>
-                                </a>
+                                </Link>
                               </div>
                             </div>
                           </div>
@@ -87,59 +122,64 @@ const DetailCatatanPasien = () => {
                           }}
                         />
 
-                        <div class="card-body pb-2 pt-0">
-                          <div class="row justify-content-center">
-                            <div class="col-md-12">
+                        <div className="card-body pb-2 pt-0">
+                          <div className="row justify-content-center">
+                            <div className="col-md-12">
                               <div
-                                class="card shadow-none mt-2"
+                                className="card shadow-none mt-2"
                                 style={{ backgroundColor: "ghostwhite" }}
                               >
-                                <div class="row d-flex justify-content-center mt-4 mb-4">
-                                  <div class="col-8">
-                                    <div class="card shadow-none mt-4 me-2 ms-2">
-                                      <div class="card-body">
-                                        <p class="text-sm font-weight-bolder text-dark">
+                                <div className="row d-flex justify-content-center mt-4 mb-4">
+                                  <div className="col-8">
+                                    <div className="card shadow-none mt-4 me-2 ms-2">
+                                      <div className="card-body">
+                                        <p className="text-sm font-weight-bolder text-dark">
                                           Rekam Medik#12342
                                         </p>
-                                        <div class="row">
-                                          <div class="col-3">
-                                            <p class="text-xs text-secondary font-weight-bold">
+                                        <div className="row">
+                                          <div className="col-3">
+                                            <p className="text-xs text-secondary font-weight-bold">
                                               Tanggal Verifikasi
                                             </p>
                                           </div>
-                                          <div class="col-4">
-                                            <p class="text-xs text-primary font-weight-bold">
-                                              01/10/2022
+                                          <div className="col-4">
+                                            <p className="text-xs text-primary font-weight-bold">
+                                              {data.panoramik_check_date !==
+                                              null
+                                                ? moment(
+                                                    data.panoramik_check_date
+                                                  ).format("DD/MM/YYYY")
+                                                : "-"}
                                             </p>
                                           </div>
                                         </div>
-                                        <div class="row">
-                                          <div class="col-3">
-                                            <p class="text-xs text-secondary font-weight-bold">
+                                        <div className="row">
+                                          <div className="col-3">
+                                            <p className="text-xs text-secondary font-weight-bold">
                                               Dokter Verifikator
                                             </p>
                                           </div>
-                                          <div class="col-4">
-                                            <p class="text-xs text-primary font-weight-bold">
-                                              Drg. Ramadhan
+                                          <div className="col-4">
+                                            <p className="text-xs text-primary font-weight-bold">
+                                              {data.doctor_name ?? "-"}
                                             </p>
                                           </div>
                                         </div>
-                                        <div class="row mt-4">
-                                          <div class="col-12">
-                                            <p class="text-xxs text-secondary font-weight-bold">
+                                        <div className="row mt-4">
+                                          <div className="col-12">
+                                            <p className="text-xxs text-secondary font-weight-bold">
                                               Radiodiagnosis Sistem
                                             </p>
-                                            <div class="row">
-                                              <div class="col-2">
-                                                <ul class="ps-3">
-                                                  <li class="text-xs">
+                                            <div className="row">
+                                              <div className="col-2">
+                                                <ul className="ps-3">
+                                                  <li className="text-xs">
                                                     Gigi #11
                                                   </li>
                                                 </ul>
                                               </div>
-                                              <div class="col-10 ps-0">
-                                                <p class="text-xs text-dark font-weight-bold mb-0 pb-2">
+                                              <div className="col-10 ps-0">
+                                                <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
                                                   Karies Gigi
                                                 </p>
                                                 <hr
@@ -154,37 +194,37 @@ const DetailCatatanPasien = () => {
                                                 />
                                               </div>
                                             </div>
-                                            <div class="row">
-                                              <div class="col-2">
-                                                <ul class="ps-3">
-                                                  <li class="text-xs">
+                                            <div className="row">
+                                              <div className="col-2">
+                                                <ul className="ps-3">
+                                                  <li className="text-xs">
                                                     Gigi #22
                                                   </li>
                                                 </ul>
                                               </div>
-                                              <div class="col-4 ps-0">
-                                                <p class="text-xs text-dark font-weight-bold">
+                                              <div className="col-4 ps-0">
+                                                <p className="text-xs text-dark font-weight-bold">
                                                   Lesi Periapikal
                                                 </p>
                                               </div>
                                             </div>
                                           </div>
                                         </div>
-                                        <div class="row">
-                                          <div class="col-12">
-                                            <p class="text-xxs text-secondary font-weight-bold">
+                                        <div className="row">
+                                          <div className="col-12">
+                                            <p className="text-xxs text-secondary font-weight-bold">
                                               Radiodiagnosis Verifikator
                                             </p>
-                                            <div class="row">
-                                              <div class="col-2">
-                                                <ul class="ps-3">
-                                                  <li class="text-xs">
+                                            <div className="row">
+                                              <div className="col-2">
+                                                <ul className="ps-3">
+                                                  <li className="text-xs">
                                                     Gigi #11
                                                   </li>
                                                 </ul>
                                               </div>
-                                              <div class="col-10 ps-0">
-                                                <p class="text-xs text-dark font-weight-bold mb-0 pb-2">
+                                              <div className="col-10 ps-0">
+                                                <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
                                                   Resorbsi
                                                 </p>
                                                 <hr
@@ -199,16 +239,16 @@ const DetailCatatanPasien = () => {
                                                 />
                                               </div>
                                             </div>
-                                            <div class="row">
-                                              <div class="col-2">
-                                                <ul class="ps-3">
-                                                  <li class="text-xs">
+                                            <div className="row">
+                                              <div className="col-2">
+                                                <ul className="ps-3">
+                                                  <li className="text-xs">
                                                     Gigi #22
                                                   </li>
                                                 </ul>
                                               </div>
-                                              <div class="col-4 ps-0">
-                                                <p class="text-xs text-dark font-weight-bold">
+                                              <div className="col-4 ps-0">
+                                                <p className="text-xs text-dark font-weight-bold">
                                                   Karies Gigi
                                                 </p>
                                               </div>
@@ -216,21 +256,21 @@ const DetailCatatanPasien = () => {
                                           </div>
                                         </div>
 
-                                        <div class="row">
-                                          <div class="col-12">
-                                            <p class="text-xxs text-secondary font-weight-bold">
+                                        <div className="row">
+                                          <div className="col-12">
+                                            <p className="text-xxs text-secondary font-weight-bold">
                                               Interpretasi Manual
                                             </p>
-                                            <div class="row">
-                                              <div class="col-2">
-                                                <ul class="ps-3">
-                                                  <li class="text-xs">
+                                            <div className="row">
+                                              <div className="col-2">
+                                                <ul className="ps-3">
+                                                  <li className="text-xs">
                                                     Gigi #48
                                                   </li>
                                                 </ul>
                                               </div>
-                                              <div class="col-10 ps-0">
-                                                <p class="text-xs text-dark font-weight-bold mb-0 pb-2">
+                                              <div className="col-10 ps-0">
+                                                <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
                                                   Impaksi
                                                 </p>
                                                 <hr
@@ -245,16 +285,16 @@ const DetailCatatanPasien = () => {
                                                 />
                                               </div>
                                             </div>
-                                            <div class="row">
-                                              <div class="col-2">
-                                                <ul class="ps-3">
-                                                  <li class="text-xs">
+                                            <div className="row">
+                                              <div className="col-2">
+                                                <ul className="ps-3">
+                                                  <li className="text-xs">
                                                     Gigi #13
                                                   </li>
                                                 </ul>
                                               </div>
-                                              <div class="col-4 ps-0">
-                                                <p class="text-xs text-dark font-weight-bold">
+                                              <div className="col-4 ps-0">
+                                                <p className="text-xs text-dark font-weight-bold">
                                                   Lesi Periapikal
                                                 </p>
                                               </div>

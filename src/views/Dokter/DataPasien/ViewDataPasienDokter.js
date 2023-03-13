@@ -1,95 +1,118 @@
-import React from "react";
+import axios from "axios";
+import {React, useState, useEffect} from "react";
+import { useParams, Link } from "react-router-dom";
 import HeaderDataUser from "../../../component/Header/HeaderDataUser";
-import DeleteModal from "../../../component/Modal/DeleteModal";
 import SidebarDokter from "../../../component/Sidebar/SidebarDokter";
+import { baseURL } from "../../../routes/Config";
 
 const ViewDataPasienDokter = () => {
+  const [data, setData] = useState({});
+
+  const {id} = useParams()
+  const token = sessionStorage.getItem("token");
+
+  // get data user use axios
+  useEffect(() => {
+    axios
+      .get(`${baseURL}/patients/detail/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setData(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  }, []);
+
   return (
     <div>
-      <body class="g-sidenav-show bg-gray-100">
-        <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <body className="g-sidenav-show bg-gray-100">
+        <div className="min-height-300 bg-primary position-absolute w-100"></div>
         <aside
-          class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-0 my-0 fixed-start ms-0"
+          className="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-0 my-0 fixed-start ms-0"
           id="sidenav-main"
         >
           <SidebarDokter />
         </aside>
-        <main class="main-content position-relative border-radius-lg">
+        <main className="main-content position-relative border-radius-lg">
           <HeaderDataUser />
-          <div class="container-fluid py-2">
-            <div class="row p-0">
-              <div class="col-12">
-                <div class="card mb-4">
-                  <div class="card-header pb-2 p-4">
-                    <div class="row">
-                      <div class="col-8 d-flex align-items-center">
+          <div className="container-fluid py-2">
+            <div className="row p-0">
+              <div className="col-12">
+                <div className="card mb-4">
+                  <div className="card-header pb-2 p-4">
+                    <div className="row">
+                      <div className="col-8 d-flex align-items-center">
                         <a
-                          class="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2"
+                          className="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2"
                           href="/dokter-data-pasien"
                         >
-                          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                          <i className="fa fa-arrow-left" aria-hidden="true"></i>
                           &nbsp;&nbsp;Kembali
                         </a>
                       </div>
                     </div>
                   </div>
 
-                  <div class="card-body px-0 pb-2 pt-0">
-                    <div class="row justify-content-center">
-                      <div class="col-md-6">
-                        <div class="card shadow-none border-0">
-                          <div class="card-header pb-0">
-                            <div class="d-flex align-items-center">
-                              <h6 class="mb-0 font-weight-bolder">
+                  <div className="card-body px-0 pb-2 pt-0">
+                    <div className="row justify-content-center">
+                      <div className="col-md-6">
+                        <div className="card shadow-none border-0">
+                          <div className="card-header pb-0">
+                            <div className="d-flex align-items-center">
+                              <h6 className="mb-0 font-weight-bolder">
                                 Data Pasien
                               </h6>
                             </div>
                           </div>
 
-                          <div class="card-body pt-3">
-                            <div class="row">
-                              <div class="col">
-                                <div class="form-group">
+                          <div className="card-body pt-3">
+                            <div className="row">
+                              <div className="col">
+                                <div className="form-group">
                                   <label
-                                    for="example-text-input"
-                                    class="form-control-label"
+                                    htmlFor="example-text-input"
+                                    className="form-control-label"
                                   >
                                     Nama Lengkap
                                   </label>
-                                  <p class="form-control" type="text">
-                                    Nurhidayah
+                                  <p className="form-control" type="text">
+                                    {data.fullname}
                                   </p>
                                 </div>
-                                <div class="row-cols-md-3">
-                                  <div class="form-group">
+                                <div className="row-cols-md-3">
+                                  <div className="form-group">
                                     <label
-                                      for="example-text-input"
-                                      class="form-control-label"
+                                      htmlFor="example-text-input"
+                                      className="form-control-label"
                                     >
                                       Nomor Rekam Medik
                                     </label>
-                                    <p class="form-control" type="text">
-                                      001
+                                    <p className="form-control" type="text">
+                                      {data.medic_number}
                                     </p>
                                   </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div className="form-group">
                                   <label
-                                    for="example-text-input"
-                                    class="form-control-label"
+                                    htmlFor="example-text-input"
+                                    className="form-control-label"
                                   >
                                     NIK (Nomor Induk Kewarganegaraan)
                                   </label>
-                                  <p class="form-control" type="text">
-                                    731604680900003
+                                  <p className="form-control" type="text">
+                                    {data.id_number}
                                   </p>
                                 </div>
 
-                                <div class="row">
+                                <div className="row">
                                   <label
-                                    for="example-text-input"
-                                    class="form-control-label"
+                                    htmlFor="example-text-input"
+                                    className="form-control-label"
                                   >
                                     Jenis Kelamin
                                   </label>
@@ -97,149 +120,137 @@ const ViewDataPasienDokter = () => {
 
                                 <input
                                   type="radio"
-                                  class="btn-check"
+                                  className="btn-check"
                                   name="options-outlined"
                                   id="Laki-Laki"
-                                  autocomplete="off"
-                                  checked
+                                  autoComplete="off"
+                                  checked = {data.gender === "Laki-Laki"}
+                                  disabled
                                 />
                                 <label
-                                  class="btn btn-outline-primary btn-sm"
-                                  for="Laki-Laki"
+                                  className="btn btn-outline-primary btn-sm"
+                                  htmlFor="Laki-Laki"
                                 >
                                   Laki-Laki
                                 </label>
 
                                 <input
                                   type="radio"
-                                  class="btn-check"
+                                  className="btn-check"
                                   name="options-outlined"
                                   id="Perempuan"
-                                  autocomplete="off"
+                                  autoComplete="off"
+                                  checked={data.gender === "Perempuan"}
                                 />
                                 <label
-                                  class="btn btn-outline-secondary btn-sm"
-                                  for="Perempuan"
+                                  className="btn btn-outline-secondary btn-sm"
+                                  htmlFor="Perempuan"
                                 >
                                   Perempuan
                                 </label>
 
-                                <div class="row-cols-md-3">
-                                  <div class="form-group">
+                                <div className="row-cols-md-3">
+                                  <div className="form-group">
                                     <label
-                                      for="exampleFormControlSelect1"
-                                      class="form-control-label"
+                                      htmlFor="exampleFormControlSelect1"
+                                      className="form-control-label"
                                     >
                                       Agama
                                     </label>
-                                    <p class="form-control" type="text">
-                                      Islam
+                                    <p className="form-control" type="text">
+                                      {data.religion}
                                     </p>
                                   </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div className="form-group">
                                   <label
-                                    for="example-text-input"
-                                    class="form-control-label"
+                                    htmlFor="example-text-input"
+                                    className="form-control-label"
                                   >
                                     Alamat
                                   </label>
-                                  <p class="form-control" type="text">
-                                    Jl.Poros Kotu-Masalle, Enrekang
+                                  <p className="form-control" type="text">
+                                    {data.address}
                                   </p>
                                 </div>
 
                                 <label
-                                  for="example-text-input"
-                                  class="form-control-label"
+                                  htmlFor="example-text-input"
+                                  className="form-control-label"
                                 >
                                   Tempat Tanggal Lahir
                                 </label>
 
-                                <div class="row">
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <p class="form-control" type="text">
-                                        Enrekang
+                                <div className="row">
+                                  <div className="col-md-6">
+                                    <div className="form-group">
+                                      <p className="form-control" type="text">
+                                        {data.born_location}
                                       </p>
                                     </div>
                                   </div>
-                                  <div class="col-md-6">
-                                    <div class="form-group">
-                                      <p class="form-control" type="text">
-                                        28/09/2000
+                                  <div className="col-md-6">
+                                    <div className="form-group">
+                                      <p className="form-control" type="text">
+                                        {data.born_date}
                                       </p>
                                     </div>
                                   </div>
                                 </div>
 
                                 <label
-                                  for="example-text-input"
-                                  class="form-control-label"
+                                  htmlFor="example-text-input"
+                                  className="form-control-label"
                                 >
                                   Umur Pasien
                                 </label>
-                                <div class="row">
-                                  <div class="col-md-3">
-                                    <div class="form-group">
-                                      <p class="form-control" type="text">
-                                        22
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-3">
-                                    <div class="form-group">
-                                      <p class="form-control" type="text">
-                                        3
-                                      </p>
-                                    </div>
-                                  </div>
-                                  <div class="col-md-3">
-                                    <div class="form-group">
-                                      <p class="form-control" type="text">
-                                        14
+                                <div className="row">
+                                  <div className="col-md-3">
+                                    <div className="form-group">
+                                      <p className="form-control" type="text">
+                                        {data.age}
                                       </p>
                                     </div>
                                   </div>
                                 </div>
 
-                                <div class="form-group">
+                                <div className="form-group">
                                   <label
-                                    for="example-text-input"
-                                    class="form-control-label"
+                                    htmlFor="example-text-input"
+                                    className="form-control-label"
                                   >
                                     Nomor Telepon
                                   </label>
-                                  <p class="form-control" type="text">
-                                    0853145797
+                                  <p className="form-control" type="text">
+                                    {data.phone_number}
                                   </p>
                                 </div>
 
-                                <div class="form-group">
+                                <div className="form-group">
                                   <label
-                                    for="exampleFormControlSelect1"
-                                    class="form-control-label"
+                                    htmlFor="exampleFormControlSelect1"
+                                    className="form-control-label"
                                   >
                                     Asal Rujukan
                                   </label>
-                                  <p class="form-control" type="text">
-                                    Konservasi Gigi
+                                  <p className="form-control" type="text">
+                                    {data.referral_origin}
                                   </p>
                                 </div>
-                                <hr class="horizontal dark" />
-                                <p class=" text-sm text-uppercase">
+                                <hr className="horizontal dark" />
+                                <p className=" text-sm text-uppercase">
                                   Data Radiografer
                                 </p>
-                                <div class="form-group">
+                                <div className="form-group">
                                   <label
-                                    for="exampleFormControlSelect1"
-                                    class="form-control-label"
+                                    htmlFor="exampleFormControlSelect1"
+                                    className="form-control-label"
                                   >
                                     Pilih Radiografer
                                   </label>
-                                  <p class="form-control" type="text">
-                                    Ramadhan
+                                  <p className="form-control" type="text">
+                                    {data.radiographer}
                                   </p>
                                 </div>
                               </div>

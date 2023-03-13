@@ -1,123 +1,135 @@
-import React from "react";
+import axios from "axios";
+import { React, useState, useEffect } from "react";
+import { useParams } from 'react-router-dom';
 import HeaderAdmin from "../../component/Header/HeaderAdmin";
 import SidebarAdmin from "../../component/Sidebar/SidebarAdmin";
+import { baseURL } from "../../routes/Config";
 
-export const ViewDataUser = () => {
+export const ViewDataUser = (props) => {
+  const [data, setData] = useState({});
+
+  const {id} = useParams()
+  const token = sessionStorage.getItem("token");
+
+  // get data user use axios
+  useEffect(() => {
+    axios
+      .get(`${baseURL}/users/profile/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        setData(response.data.data);
+      })
+      .catch((error) => {
+        console.log(error.response.data);
+      });
+  }, []);
+
   return (
     <div>
-      <body class="g-sidenav-show bg-gray-100">
-        <div class="min-height-300 bg-primary position-absolute w-100"></div>
+      <body className="g-sidenav-show bg-gray-100">
+        <div className="min-height-300 bg-primary position-absolute w-100"></div>
         <aside
-          class="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-0 my-0 fixed-start ms-0"
+          className="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-0 my-0 fixed-start ms-0"
           id="sidenav-main"
         >
           <SidebarAdmin />
         </aside>
-        <main class="main-content position-relative border-radius-lg">
+        <main className="main-content position-relative border-radius-lg">
           <HeaderAdmin />
-          <div class="container-fluid py-2">
-            <div class="row p-0">
-              <div class="col-12">
-                <div class="card mb-4">
-                  <div class="card-header pb-2 p-4">
-                    <div class="row">
-                      <div class="col-6 d-flex align-items-center">
+          <div className="container-fluid py-2">
+            <div className="row p-0">
+              <div className="col-12">
+                <div className="card mb-4">
+                  <div className="card-header pb-2 p-4">
+                    <div className="row">
+                      <div className="col-6 d-flex align-items-center">
                         <a
-                          class="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2"
+                          className="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2"
                           href="/data-user"
                         >
-                          <i class="fa fa-arrow-left" aria-hidden="true"></i>
+                          <i className="fa fa-arrow-left" aria-hidden="true"></i>
                           &nbsp;&nbsp;Kembali
                         </a>
                       </div>
                     </div>
                   </div>
 
-                  <div class="card-body px-0 pb-2 pt-0">
-                    <div class="row justify-content-center">
-                      <div class="col-md-6">
-                        <div class="card shadow-none border-0">
-                          <div class="card-header pb-0">
-                            <div class="d-flex align-items-center">
-                              <h6 class="mb-0 font-weight-bolder">Data User</h6>
+                  <div className="card-body px-0 pb-2 pt-0">
+                    <div className="row justify-content-center">
+                      <div className="col-md-6">
+                        <div className="card shadow-none border-0">
+                          <div className="card-header pb-0">
+                            <div className="d-flex align-items-center">
+                              <h6 className="mb-0 font-weight-bolder">Data User</h6>
                             </div>
                           </div>
 
-                          <div class="card-body pt-3">
-                            <div class="row mt-2">
-                              <div class="col">
-                                <div class="form-group">
+                          <div className="card-body pt-3">
+                            <div className="row mt-2">
+                              <div className="col">
+                                <div className="form-group">
                                   <label
                                     for="example-text-input"
-                                    class="form-control-label"
+                                    className="form-control-label"
                                   >
                                     Nama Lengkap
                                   </label>
 
                                   <p
-                                    class="form-control"
-                                    type="text"
-                                    placeholder="Masukkan nama lengkap anda"
-                                    value=""
+                                    className="form-control"
                                   >
-                                    Ramadhan Hardani Putra, drg., M.Kes
+                                    {data.fullname ?? ""}
                                   </p>
                                 </div>
 
-                                <div class="form-group">
+                                <div className="form-group">
                                   <label
                                     for="example-text-input"
-                                    class="form-control-label"
+                                    className="form-control-label"
                                   >
                                     NIP
                                   </label>
                                   <p
-                                    class="form-control"
-                                    type="text"
-                                    placeholder="Masukkan NIP"
-                                    value=""
+                                    className="form-control"
                                   >
-                                    731604680766969
+                                    {data.nip ?? ""}
                                   </p>
                                 </div>
 
-                                <div class="form-group">
+                                <div className="form-group">
                                   <label
                                     for="example-text-input"
-                                    class="form-control-label"
+                                    className="form-control-label"
                                   >
                                     Email
                                   </label>
                                   <p
-                                    class="form-control"
-                                    type="text"
-                                    placeholder="Masukkan email anda"
-                                    value=""
+                                    className="form-control"
                                   >
-                                    ramadhan@gmail.com
+                                    {data.email ?? ""}
                                   </p>
                                 </div>
-                                <div class="form-group">
+                                <div className="form-group">
                                   <label
                                     for="example-text-input"
-                                    class="form-control-label"
+                                    className="form-control-label"
                                   >
                                     Nomor Telepon
                                   </label>
                                   <p
-                                    class="form-control"
-                                    type="text"
-                                    placeholder="Masukkan nomor telepon anda"
-                                    value=""
+                                    className="form-control"
                                   >
-                                    0845768768178
+                                    {data.phone_number ?? ""}
                                   </p>
                                 </div>
 
-                                <div class="row">
+                                <div className="row">
                                   <label
                                     for="example-text-input"
-                                    class="form-control-label"
+                                    className="form-control-label"
                                   >
                                     Jenis Kelamin
                                   </label>
@@ -125,14 +137,16 @@ export const ViewDataUser = () => {
 
                                 <input
                                   type="radio"
-                                  class="btn-check"
-                                  name="options-outlined"
+                                  className="btn-check"
+                                  name="gender"
                                   id="Laki-Laki"
+                                  value="Laki-Laki"
                                   autocomplete="off"
-                                  checked
+                                  checked={data.gender === "Laki-Laki"}
+                                  disabled
                                 />
                                 <label
-                                  class="btn btn-outline-primary btn-sm"
+                                  className="btn btn-outline-primary btn-sm"
                                   for="Laki-Laki"
                                 >
                                   Laki-Laki
@@ -140,103 +154,98 @@ export const ViewDataUser = () => {
 
                                 <input
                                   type="radio"
-                                  class="btn-check"
-                                  name="options-outlined"
+                                  className="btn-check"
+                                  name="gender"
                                   id="Perempuan"
+                                  value="Perempuan"
                                   autocomplete="off"
+                                  checked={data.gender === "Perempuan"}
+                                  disabled
                                 />
                                 <label
-                                  class="btn btn-outline-secondary btn-sm"
+                                  className="btn btn-outline-secondary btn-sm"
                                   for="Perempuan"
                                 >
                                   Perempuan
                                 </label>
-                                <div class="form-group">
+                                <div className="form-group">
                                   <label
                                     for="example-text-input"
-                                    class="form-control-label"
+                                    className="form-control-label"
                                   >
                                     Profesi
                                   </label>
                                   <p
-                                    class="form-control"
-                                    type="text"
-                                    placeholder="Masukkan profesi anda"
-                                    value=""
+                                    className="form-control"
                                   >
-                                    Radiografer
+                                    {data.role ?? ""}
                                   </p>
                                 </div>
                               </div>
                             </div>{" "}
-                            <div class="row">
-                              <div class="col-md-12">
-                                <div class="form-group">
+                            <div className="row">
+                              <div className="col-md-12">
+                                <div className="form-group">
                                   <label
                                     for="example-text-input"
-                                    class="form-control-label"
+                                    className="form-control-label"
                                   >
                                     Alamat
                                   </label>
                                   <p
-                                    class="form-control"
-                                    type="text"
-                                    placeholder="Masukkan alamat anda"
-                                    value=""
+                                    className="form-control"
                                   >
-                                    Jl. Ahmad Yani, Perumahan Griya Kenari nomor
-                                    10
+                                    {data.address ?? ""}
                                   </p>
                                 </div>
                               </div>
-                              <div class="col-md-4">
-                                <div class="form-group">
+                              <div className="col-md-4">
+                                <div className="form-group">
                                   <label
                                     for="exampleFormControlSelect1"
-                                    class="form-control-label"
+                                    className="form-control-label"
                                   >
                                     Provinsi
                                   </label>
                                   <p
-                                    class="form-control"
+                                    className="form-control"
                                     id="exampleFormControlSelect1"
                                   >
-                                    Jawa Timur
+                                    {data.province ?? "s"}
                                   </p>
                                 </div>
                               </div>
 
-                              <div class="col-md-4">
-                                <div class="form-group">
+                              <div className="col-md-4">
+                                <div className="form-group">
                                   <label
                                     for="exampleFormControlSelect1"
-                                    class="form-control-label"
+                                    className="form-control-label"
                                   >
                                     Kota
                                   </label>
                                   <p
-                                    class="form-control"
+                                    className="form-control"
                                     id="exampleFormControlSelect1"
                                   >
-                                    Surabaya
+                                    {data.city ?? ""}
                                   </p>
                                 </div>
                               </div>
 
-                              <div class="col-md-4">
-                                <div class="form-group">
+                              <div className="col-md-4">
+                                <div className="form-group">
                                   <label
                                     for="example-text-input"
-                                    class="form-control-label"
+                                    className="form-control-label"
                                   >
                                     Kode Pos
                                   </label>
                                   <p
-                                    class="form-control"
-                                    type="text"
-                                    placeholder="Kode pos"
-                                    value=""
-                                  >731562</p>
+                                    className="form-control"
+                                  >
+                                    {data.postal_code ?? ""}
+                                  </p>
                                 </div>
                               </div>
                             </div>
