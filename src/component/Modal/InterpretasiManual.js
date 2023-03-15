@@ -1,64 +1,112 @@
-import React from "react";
+import axios from "axios";
+import { React, useState } from "react";
+import { baseURL } from "../../routes/Config";
 
-const InterpretasiManual = () => {
+const InterpretasiManual = ({ radiographicId }) => {
+  const [data, setData] = useState({
+    toothNumber: "",
+    manualDiagnosis: "",
+    radiographicId: radiographicId,
+  });
+
+  const token = sessionStorage.getItem("token");
+
+  const handleChange = (e) => {
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    axios
+      .post(`${baseURL}/diagnoses/${radiographicId}/manual`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div>
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal3"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
         <div
-          class="modal-dialog modal-dialog-centered"
+          className="modal-dialog modal-dialog-centered"
           style={{ width: "30%" }}
         >
-          <div class="modal-content">
-            <div class="modal-body">
-              <p class="ms-2 pt-0 mt-0 mb-0 font-weight-bold text-dark">
+          <div className="modal-content">
+            <div className="modal-body">
+              <p className="ms-2 pt-0 mt-0 mb-0 font-weight-bold text-dark">
                 Interpretasi Manual
               </p>
 
-              <div class="row mt-2">
-                <div class="col-3">
-                  <p class="text-secondary text-xs ms-2 mt-0 mb-2">No.Gigi</p>
-                  <select
-                    class="form-select ms-2 mb-3 text-xs"
-                    style={{ width: "92%" }}
-                    id="exampleFormControlSelect1"
-                  >
-                    <option>55</option>
-                    <option>54</option>
-                    <option>53</option>
-                    <option>52</option>
-                    <option>51</option>
-                  </select>
+              <form onSubmit={handleSubmit}>
+                <div className="row mt-2">
+                  <div className="col-3">
+                    <p className="text-secondary text-xs ms-2 mt-0 mb-2">
+                      No.Gigi
+                    </p>
+                    <select
+                      className="form-select ms-2 mb-3 text-xs"
+                      style={{ width: "92%" }}
+                      id="toothNumber"
+                      name="toothNumber"
+                      value={data.toothNumber}
+                      onChange={handleChange}
+                      required
+                    >
+                      <option value="" selected disabled>no. Gigi</option>
+                      <option value="55">55</option>
+                      <option value="54">54</option>
+                      <option value="53">53</option>
+                      <option value="52">52</option>
+                      <option value="51">51</option>
+                    </select>
+                  </div>
+                  <div className="col-9">
+                    <p className="text-secondary text-xs ms-2 mt-0 mb-2">
+                      Tulis Diagnosa
+                    </p>
+                    <input
+                      className="ms-2 mb-3 text-xs form-control"
+                      style={{ width: "92%" }}
+                      placeholder="tulis nama penyakit"
+                      name="manualDiagnosis"
+                      value={data.manualDiagnosis}
+                      onChange={handleChange}
+                      required
+                    />
+                  </div>
                 </div>
-                <div class="col-9">
-                  <p class="text-secondary text-xs ms-2 mt-0 mb-2">
-                    Tulis Diagnosa
-                  </p>
-                  <input
-                    class="ms-2 mb-3 text-xs form-control"
-                    style={{ width: "92%" }}
-                    placeholder="tulis nama penyakit"
-                  />
-                </div>
-              </div>
 
-              <div class="ms-auto text-end mt-4">
-                <button
-                  type="button"
-                  class="btn btn-outline-secondary btn-sm mb-0 p-1"
-                  data-bs-dismiss="modal"
-                >
-                  Batalkan
-                </button> &nbsp;
-                <button class="btn btn-primary btn-sm mb-0 pe-2 ps-2 pt-1 pb-1">
-                  Selesai
-                </button>
-              </div>
+                <div className="ms-auto text-end mt-4">
+                  <button
+                    type="button"
+                    className="btn btn-outline-secondary btn-sm mb-0 p-1"
+                    data-bs-dismiss="modal"
+                  >
+                    Batalkan
+                  </button>{" "}
+                  &nbsp;
+                  <button
+                    type="submit"
+                    className="btn btn-primary btn-sm mb-0 pe-2 ps-2 pt-1 pb-1"
+                  >
+                    Selesai
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>

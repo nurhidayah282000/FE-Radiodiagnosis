@@ -984,7 +984,7 @@ const ViewGambarPanoramikDokter = () => {
                                           >
                                             Interpretasi Manual
                                           </button>
-                                          <InterpretasiManual />
+                                          <InterpretasiManual radiographicId={id}/>
                                         </div>
                                       </div>
                                     </div>

@@ -8,6 +8,9 @@ import { baseURL } from "../../../routes/Config";
 
 const DetailCatatanPasien = () => {
   const [data, setData] = useState({});
+  const [system, setSystem] = useState([]);
+  const [manual, setManual] = useState([]);
+  const [verificator, setVerificator] = useState([]);
 
   const { id } = useParams();
   const token = sessionStorage.getItem("token");
@@ -21,13 +24,39 @@ const DetailCatatanPasien = () => {
       })
       .then((response) => {
         setData(response.data.data);
+        mappingDiagnoses(response.data.data.diagnoses);
       })
       .catch((error) => {
         console.log(error);
       });
   }, [id]);
 
-  console.log(data);
+  const mappingDiagnoses = (diagnoses) => {
+    let systemDiagnosis = [];
+    let manualDiagnosis = [];
+    let verificatorDiagnosis = [];
+
+    diagnoses.map((diagnosis) => {
+      systemDiagnosis.push({
+        tooth: diagnosis.tooth_number,
+        diagnosis: diagnosis.system_diagnosis,
+      });
+
+      manualDiagnosis.push({
+        tooth: diagnosis.tooth_number,
+        diagnosis: diagnosis.manual_diagnosis,
+      });
+
+      verificatorDiagnosis.push({
+        tooth: diagnosis.tooth_number,
+        diagnosis: diagnosis.verificator_diagnosis,
+      });
+    });
+
+    setSystem(systemDiagnosis);
+    setManual(manualDiagnosis);
+    setVerificator(verificatorDiagnosis);
+  };
 
   return (
     <div>
@@ -261,44 +290,32 @@ const DetailCatatanPasien = () => {
                                             <p className="text-xxs text-secondary font-weight-bold">
                                               Interpretasi Manual
                                             </p>
-                                            <div className="row">
-                                              <div className="col-2">
-                                                <ul className="ps-3">
-                                                  <li className="text-xs">
-                                                    Gigi #48
-                                                  </li>
-                                                </ul>
+                                            {manual.map((item, index) => (
+                                              <div key={index} className="row">
+                                                <div className="col-2">
+                                                  <ul className="ps-3">
+                                                    <li className="text-xs">
+                                                      Gigi #{item.tooth}
+                                                    </li>
+                                                  </ul>
+                                                </div>
+                                                <div className="col-10 ps-0">
+                                                  <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
+                                                    {item.diagnosis}
+                                                  </p>
+                                                  <hr
+                                                    style={{
+                                                      height: "1px",
+                                                      borderWidth: "0 px",
+                                                      color: "gray",
+                                                      backgroundColor: "gray",
+                                                      marginBottom: "0 px",
+                                                      marginTop: "0 px",
+                                                    }}
+                                                  />
+                                                </div>
                                               </div>
-                                              <div className="col-10 ps-0">
-                                                <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
-                                                  Impaksi
-                                                </p>
-                                                <hr
-                                                  style={{
-                                                    height: "1px",
-                                                    borderWidth: "0 px",
-                                                    color: "gray",
-                                                    backgroundColor: "gray",
-                                                    marginBottom: "0 px",
-                                                    marginTop: "0 px",
-                                                  }}
-                                                />
-                                              </div>
-                                            </div>
-                                            <div className="row">
-                                              <div className="col-2">
-                                                <ul className="ps-3">
-                                                  <li className="text-xs">
-                                                    Gigi #13
-                                                  </li>
-                                                </ul>
-                                              </div>
-                                              <div className="col-4 ps-0">
-                                                <p className="text-xs text-dark font-weight-bold">
-                                                  Lesi Periapikal
-                                                </p>
-                                              </div>
-                                            </div>
+                                            ))}
                                           </div>
                                         </div>
                                       </div>
