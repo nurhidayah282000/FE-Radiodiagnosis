@@ -19,7 +19,9 @@ const Profil = () => {
           },
         })
         .then((response) => {
-          setData(response.data.data);
+          if (response.data.data) {
+            setData(response.data.data);
+          }
         })
         .catch((error) => {
           console.log(error);
@@ -128,7 +130,7 @@ const Profil = () => {
                         aria-labelledby="pills-contact-tab"
                       >
                         {data ? (
-                          <Kontak auth={data}/>
+                          <Kontak auth={data} />
                         ) : (
                           <p>Loading data ...</p>
                         )}

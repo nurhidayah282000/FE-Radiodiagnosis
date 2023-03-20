@@ -19,7 +19,7 @@ export const EditDataUser = () => {
     postal_code: "",
   });
 
-  const {id} = useParams()
+  const { id } = useParams();
   const token = sessionStorage.getItem("token");
 
   // get data user use axios
@@ -32,7 +32,9 @@ export const EditDataUser = () => {
         },
       })
       .then((response) => {
-        setData(response.data.data);
+        if (response.data.data) {
+          setData(response.data.data);
+        }
       })
       .catch((error) => {
         console.log(error.response.data);

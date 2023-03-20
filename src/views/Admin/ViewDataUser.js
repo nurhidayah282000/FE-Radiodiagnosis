@@ -1,6 +1,6 @@
 import axios from "axios";
 import { React, useState, useEffect } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import HeaderAdmin from "../../component/Header/HeaderAdmin";
 import SidebarAdmin from "../../component/Sidebar/SidebarAdmin";
 import { baseURL } from "../../routes/Config";
@@ -8,7 +8,7 @@ import { baseURL } from "../../routes/Config";
 export const ViewDataUser = (props) => {
   const [data, setData] = useState({});
 
-  const {id} = useParams()
+  const { id } = useParams();
   const token = sessionStorage.getItem("token");
 
   // get data user use axios
@@ -20,7 +20,9 @@ export const ViewDataUser = (props) => {
         },
       })
       .then((response) => {
-        setData(response.data.data);
+        if (response.data.data) {
+          setData(response.data.data);
+        }
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -50,7 +52,10 @@ export const ViewDataUser = (props) => {
                           className="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2"
                           href="/data-user"
                         >
-                          <i className="fa fa-arrow-left" aria-hidden="true"></i>
+                          <i
+                            className="fa fa-arrow-left"
+                            aria-hidden="true"
+                          ></i>
                           &nbsp;&nbsp;Kembali
                         </a>
                       </div>
@@ -63,7 +68,9 @@ export const ViewDataUser = (props) => {
                         <div className="card shadow-none border-0">
                           <div className="card-header pb-0">
                             <div className="d-flex align-items-center">
-                              <h6 className="mb-0 font-weight-bolder">Data User</h6>
+                              <h6 className="mb-0 font-weight-bolder">
+                                Data User
+                              </h6>
                             </div>
                           </div>
 
@@ -78,9 +85,7 @@ export const ViewDataUser = (props) => {
                                     Nama Lengkap
                                   </label>
 
-                                  <p
-                                    className="form-control"
-                                  >
+                                  <p className="form-control">
                                     {data.fullname ?? ""}
                                   </p>
                                 </div>
@@ -92,9 +97,7 @@ export const ViewDataUser = (props) => {
                                   >
                                     NIP
                                   </label>
-                                  <p
-                                    className="form-control"
-                                  >
+                                  <p className="form-control">
                                     {data.nip ?? ""}
                                   </p>
                                 </div>
@@ -106,9 +109,7 @@ export const ViewDataUser = (props) => {
                                   >
                                     Email
                                   </label>
-                                  <p
-                                    className="form-control"
-                                  >
+                                  <p className="form-control">
                                     {data.email ?? ""}
                                   </p>
                                 </div>
@@ -119,9 +120,7 @@ export const ViewDataUser = (props) => {
                                   >
                                     Nomor Telepon
                                   </label>
-                                  <p
-                                    className="form-control"
-                                  >
+                                  <p className="form-control">
                                     {data.phone_number ?? ""}
                                   </p>
                                 </div>
@@ -175,9 +174,7 @@ export const ViewDataUser = (props) => {
                                   >
                                     Profesi
                                   </label>
-                                  <p
-                                    className="form-control"
-                                  >
+                                  <p className="form-control">
                                     {data.role ?? ""}
                                   </p>
                                 </div>
@@ -192,9 +189,7 @@ export const ViewDataUser = (props) => {
                                   >
                                     Alamat
                                   </label>
-                                  <p
-                                    className="form-control"
-                                  >
+                                  <p className="form-control">
                                     {data.address ?? ""}
                                   </p>
                                 </div>
@@ -241,9 +236,7 @@ export const ViewDataUser = (props) => {
                                   >
                                     Kode Pos
                                   </label>
-                                  <p
-                                    className="form-control"
-                                  >
+                                  <p className="form-control">
                                     {data.postal_code ?? ""}
                                   </p>
                                 </div>

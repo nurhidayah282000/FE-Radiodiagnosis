@@ -1,5 +1,5 @@
 import axios from "axios";
-import {React, useState, useEffect} from "react";
+import { React, useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import HeaderDataUser from "../../../component/Header/HeaderDataUser";
 import DeleteModal from "../../../component/Modal/DeleteModal";
@@ -9,7 +9,7 @@ import { baseURL } from "../../../routes/Config";
 const ViewDataPasien = () => {
   const [data, setData] = useState({});
 
-  const {id} = useParams()
+  const { id } = useParams();
   const token = sessionStorage.getItem("token");
 
   // get data user use axios
@@ -21,7 +21,9 @@ const ViewDataPasien = () => {
         },
       })
       .then((response) => {
-        setData(response.data.data);
+        if (response.data.data) {
+          setData(response.data.data);
+        }
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -67,7 +69,10 @@ const ViewDataPasien = () => {
                           className="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2"
                           href="/radiografer-data-pasien"
                         >
-                          <i className="fa fa-arrow-left" aria-hidden="true"></i>
+                          <i
+                            className="fa fa-arrow-left"
+                            aria-hidden="true"
+                          ></i>
                           &nbsp;&nbsp;Kembali
                         </a>
                       </div>
@@ -76,7 +81,7 @@ const ViewDataPasien = () => {
                         <div className="row">
                           <div className="col-6 d-flex justify-content-end">
                             <Link to={`/radiografer-edit-data-pasien/${id}`}>
-                            <i className="fa fa-pencil text-success"></i>
+                              <i className="fa fa-pencil text-success"></i>
                               &nbsp;&nbsp; Edit Data Pasien
                             </Link>
                           </div>
@@ -90,7 +95,10 @@ const ViewDataPasien = () => {
                               <i className="fa fa-trash text-danger"></i>
                               &nbsp;&nbsp; Hapus Data Pasien
                             </button>
-                            <DeleteModal userId={id} handleDelete={handleDelete}/>
+                            <DeleteModal
+                              userId={id}
+                              handleDelete={handleDelete}
+                            />
                           </div>
                         </div>
                       </div>
@@ -164,7 +172,7 @@ const ViewDataPasien = () => {
                                   name="options-outlined"
                                   id="Laki-Laki"
                                   autocomplete="off"
-                                  checked = {data.gender === "Laki-Laki"}
+                                  checked={data.gender === "Laki-Laki"}
                                   disabled
                                 />
                                 <label
@@ -180,7 +188,7 @@ const ViewDataPasien = () => {
                                   name="options-outlined"
                                   id="Perempuan"
                                   autocomplete="off"
-                                  checked = {data.gender === "Perempuan"}
+                                  checked={data.gender === "Perempuan"}
                                   disabled
                                 />
                                 <label

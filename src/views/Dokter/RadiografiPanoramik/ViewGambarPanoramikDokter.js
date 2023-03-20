@@ -36,7 +36,9 @@ const ViewGambarPanoramikDokter = () => {
         },
       })
       .then((response) => {
-        setDoctors(response.data.data);
+        if (response.data.data) {
+          setData(response.data.data);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -984,7 +986,9 @@ const ViewGambarPanoramikDokter = () => {
                                           >
                                             Interpretasi Manual
                                           </button>
-                                          <InterpretasiManual radiographicId={id}/>
+                                          <InterpretasiManual
+                                            radiographicId={id}
+                                          />
                                         </div>
                                       </div>
                                     </div>

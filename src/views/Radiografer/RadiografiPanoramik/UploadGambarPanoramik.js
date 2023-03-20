@@ -22,7 +22,9 @@ const UploadGambarPanoramik = () => {
         },
       })
       .then((response) => {
-        setPatients(response.data.data);
+        if (response.data.data) {
+          setPatients(response.data.data);
+        }
       })
       .catch((error) => {
         console.log(error);

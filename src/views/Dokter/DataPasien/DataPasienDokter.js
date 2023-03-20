@@ -18,7 +18,9 @@ const DataPasienDokter = () => {
         },
       })
       .then((response) => {
-        setData(response.data.data);
+        if (response.data.data) {
+          setData(response.data.data);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -109,7 +111,9 @@ const DataPasienDokter = () => {
                                   </span>
                                 </td>
                                 <td className="align-middle text-start text-sm pe-0 text-center">
-                                  <Link to={`/dokter-view-data-pasien/${item.id}`}>
+                                  <Link
+                                    to={`/dokter-view-data-pasien/${item.id}`}
+                                  >
                                     <span className="badge text-secondary badge-sm bg-gradient-white border border-gray">
                                       Lihat Detail
                                     </span>

@@ -23,8 +23,10 @@ const DetailCatatanPasien = () => {
         },
       })
       .then((response) => {
-        setData(response.data.data);
-        mappingDiagnoses(response.data.data.diagnoses);
+        if (response.data.data) {
+          setData(response.data.data);
+          mappingDiagnoses(response.data.data.diagnoses);
+        }
       })
       .catch((error) => {
         console.log(error);

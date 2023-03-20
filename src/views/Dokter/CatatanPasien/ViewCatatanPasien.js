@@ -24,10 +24,12 @@ const ViewCatatanPasien = () => {
           },
         })
         .then((response) => {
-          setData(response.data.data);
-          setManualInterpretation({
-            manualInterpretation: response.data.data.manual_interpretation,
-          });
+          if (response.data.data) {
+            setData(response.data.data);
+            setManualInterpretation({
+              manualInterpretation: response.data.data.manual_interpretation,
+            });
+          }
         })
         .catch((error) => {
           console.log(error);

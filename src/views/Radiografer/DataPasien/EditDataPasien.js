@@ -33,7 +33,9 @@ const EditDataPasien = () => {
         },
       })
       .then((response) => {
-        setData(response.data.data);
+        if (response.data.data) {
+          setData(response.data.data);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -46,7 +48,9 @@ const EditDataPasien = () => {
         },
       })
       .then((response) => {
-        setRadiographics(response.data.data);
+        if (response.data.data) {
+          setRadiographics(response.data.data);
+        }
       })
       .catch((error) => {
         console.log(error.response.data);

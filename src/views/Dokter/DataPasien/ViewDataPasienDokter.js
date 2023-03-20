@@ -20,7 +20,9 @@ const ViewDataPasienDokter = () => {
         },
       })
       .then((response) => {
-        setData(response.data.data);
+        if (response.data.data) {
+          setData(response.data.data);
+        }
       })
       .catch((error) => {
         console.log(error.response.data);

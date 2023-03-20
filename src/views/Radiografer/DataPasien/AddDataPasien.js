@@ -31,7 +31,9 @@ const AddDataPasien = () => {
         },
       })
       .then((response) => {
-        setRadiographics(response.data.data);
+        if (response.data.data) {
+          setRadiographics(response.data.data);
+        }
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -394,7 +396,10 @@ const AddDataPasien = () => {
                                     <option>pilih radiografer</option>
                                     {radiographics.map((radiographic) => {
                                       return (
-                                        <option key={radiographic.id} value={radiographic.id}>
+                                        <option
+                                          key={radiographic.id}
+                                          value={radiographic.id}
+                                        >
                                           {radiographic.fullname}
                                         </option>
                                       );
@@ -404,9 +409,13 @@ const AddDataPasien = () => {
                               </div>
                             </div>
                             <div class="d-flex justify-content-end mt-4">
-                                <button type="button" class="btn btn-primary btn-sm ms-auto" onClick={handleSubmit}>
-                                  Simpan Data Pasien
-                                </button>
+                              <button
+                                type="button"
+                                class="btn btn-primary btn-sm ms-auto"
+                                onClick={handleSubmit}
+                              >
+                                Simpan Data Pasien
+                              </button>
                             </div>
                           </div>
                         </div>
