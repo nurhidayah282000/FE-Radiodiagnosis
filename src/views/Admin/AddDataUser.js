@@ -33,11 +33,12 @@ const AddDataUser = () => {
       .post(`${baseURL}/users`, data, {
         headers: {
           "Content-Type": "application/json",
-          "Authorization": `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       })
       .then((response) => {
-        window.location.href = "/data-user";
+        // window.location.href = "/data-user";
+        console.log(response.data);
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -208,14 +209,19 @@ const AddDataUser = () => {
                                   >
                                     Profesi
                                   </label>
-                                  <input
+                                  <select
                                     name="role"
-                                    className="form-control"
-                                    type="text"
+                                    className="form-select"
+                                    id="profession"
                                     placeholder="Masukkan profesi anda"
                                     value={data.role}
                                     onChange={handleChange}
-                                  />
+                                  >
+                                    <option value="radiographer">
+                                      Radiographer
+                                    </option>
+                                    <option value="doctor">Doctor</option>
+                                  </select>
                                 </div>
                               </div>
                             </div>{" "}

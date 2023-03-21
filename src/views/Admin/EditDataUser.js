@@ -229,14 +229,19 @@ export const EditDataUser = () => {
                                   >
                                     Profesi
                                   </label>
-                                  <input
-                                    className="form-control"
-                                    type="text"
+                                  <select
+                                    name="role"
+                                    className="form-select"
+                                    id="profession"
                                     placeholder="Masukkan profesi anda"
                                     value={data.role}
-                                    name="role"
                                     onChange={handleChange}
-                                  />
+                                  >
+                                    <option value="radiographer">
+                                      Radiographer
+                                    </option>
+                                    <option value="doctor">Doctor</option>
+                                  </select>
                                 </div>
                               </div>
                             </div>{" "}
