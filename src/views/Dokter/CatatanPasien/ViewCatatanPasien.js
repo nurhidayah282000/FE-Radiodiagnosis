@@ -5,8 +5,11 @@ import HeaderDataUser from "../../../component/Header/HeaderDataUser";
 import DeleteModal from "../../../component/Modal/DeleteModal";
 import SidebarDokter from "../../../component/Sidebar/SidebarDokter";
 import { baseURL } from "../../../routes/Config";
+import WithAuthorization from "../../../utils/auth";
 
 const ViewCatatanPasien = () => {
+  const auth = WithAuthorization(["doctor"]);
+
   const [data, setData] = useState({});
   const [manualInterpretation, setManualInterpretation] = useState({
     manualInterpretation: "",
@@ -87,100 +90,102 @@ const ViewCatatanPasien = () => {
       });
   };
 
-  return (
-    <div>
-      <body className="g-sidenav-show bg-gray-100">
-        <div className="min-height-300 bg-primary position-absolute w-100"></div>
-        <aside
-          className="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-0 my-0 fixed-start ms-0"
-          id="sidenav-main"
-        >
-          <SidebarDokter />
-        </aside>
-        <main className="main-content position-relative border-radius-lg">
-          <HeaderDataUser />
-          <div className="container-fluid py-2">
-            <div className="row p-0">
-              <div className="col-12">
-                <div className="card mb-4">
-                  <div className="card-header pb-2 p-4">
-                    <div className="row">
-                      <div className="col-8 d-flex align-items-center">
-                        <Link to={`/dokter-detail-catatan-pasien/${id}`}>
-                          <i
-                            className="fa fa-arrow-left"
-                            aria-hidden="true"
-                          ></i>
-                          &nbsp;&nbsp;Kembali
-                        </Link>
-                      </div>
-
-                      <div className="col">
-                        <div className="row">
-                          <div className="col-6 d-flex justify-content-end">
-                            <button
-                              type="button"
-                              className="btn btn-outline-success btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-success"
-                              onClick={handleSubmit}
-                            >
-                              <i className="fa fa-pencil text-success"></i>
-                              &nbsp; Edit Catatan
-                            </button>
-                          </div>
-                          <div className="col-6">
-                            <button
-                              type="button"
-                              className="btn btn-outline-danger btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-danger"
-                              style={{ backgroundColor: "#FFE9EA" }}
-                              data-bs-toggle="modal"
-                              data-bs-target="#exampleModal"
-                            >
-                              <i className="fa fa-trash text-danger"></i>&nbsp;
-                              Hapus Catatan
-                            </button>
-                            <DeleteModal
-                              userId={id}
-                              handleDelete={handleDelete}
-                            />
+  if(auth) {
+    return (
+      <div>
+        <body className="g-sidenav-show bg-gray-100">
+          <div className="min-height-300 bg-primary position-absolute w-100"></div>
+          <aside
+            className="sidenav bg-white navbar navbar-vertical navbar-expand-xs border-0 border-radius-0 my-0 fixed-start ms-0"
+            id="sidenav-main"
+          >
+            <SidebarDokter />
+          </aside>
+          <main className="main-content position-relative border-radius-lg">
+            <HeaderDataUser />
+            <div className="container-fluid py-2">
+              <div className="row p-0">
+                <div className="col-12">
+                  <div className="card mb-4">
+                    <div className="card-header pb-2 p-4">
+                      <div className="row">
+                        <div className="col-8 d-flex align-items-center">
+                          <Link to={`/dokter-detail-catatan-pasien/${id}`}>
+                            <i
+                              className="fa fa-arrow-left"
+                              aria-hidden="true"
+                            ></i>
+                            &nbsp;&nbsp;Kembali
+                          </Link>
+                        </div>
+  
+                        <div className="col">
+                          <div className="row">
+                            <div className="col-6 d-flex justify-content-end">
+                              <button
+                                type="button"
+                                className="btn btn-outline-success btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-success"
+                                onClick={handleSubmit}
+                              >
+                                <i className="fa fa-pencil text-success"></i>
+                                &nbsp; Edit Catatan
+                              </button>
+                            </div>
+                            <div className="col-6">
+                              <button
+                                type="button"
+                                className="btn btn-outline-danger btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-danger"
+                                style={{ backgroundColor: "#FFE9EA" }}
+                                data-bs-toggle="modal"
+                                data-bs-target="#exampleModal"
+                              >
+                                <i className="fa fa-trash text-danger"></i>&nbsp;
+                                Hapus Catatan
+                              </button>
+                              <DeleteModal
+                                userId={id}
+                                handleDelete={handleDelete}
+                              />
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  <div className="card-body px-0 pb-2 pt-0">
-                    <div className="row justify-content-center">
-                      <div className="col-md-6">
-                        <div className="card shadow-none border-0">
-                          <div className="card-header pb-0">
-                            <div className="d-flex align-items-center">
-                              <h6 className="mb-0 font-weight-bolder">
-                                Catatan Pasien
-                              </h6>
+  
+                    <div className="card-body px-0 pb-2 pt-0">
+                      <div className="row justify-content-center">
+                        <div className="col-md-6">
+                          <div className="card shadow-none border-0">
+                            <div className="card-header pb-0">
+                              <div className="d-flex align-items-center">
+                                <h6 className="mb-0 font-weight-bolder">
+                                  Catatan Pasien
+                                </h6>
+                              </div>
                             </div>
-                          </div>
-
-                          <div className="card-body pt-3">
-                            <div className="row">
-                              <div className="col">
-                                <div className="form-group">
-                                  <label
-                                    for="example-text-input"
-                                    className="form-control-label text-secondary"
-                                  >
-                                    Catatan Pasien
-                                  </label>
-                                  <textarea
-                                    className="form-control"
-                                    style={{ height: "20rem" }}
-                                    type="text"
-                                    placeholder="Masukkan catatan pasien"
-                                    value={
-                                      manualInterpretation.manualInterpretation
-                                    }
-                                    name="manualInterpretation"
-                                    onChange={handleChange}
-                                  ></textarea>
+  
+                            <div className="card-body pt-3">
+                              <div className="row">
+                                <div className="col">
+                                  <div className="form-group">
+                                    <label
+                                      for="example-text-input"
+                                      className="form-control-label text-secondary"
+                                    >
+                                      Catatan Pasien
+                                    </label>
+                                    <textarea
+                                      className="form-control"
+                                      style={{ height: "20rem" }}
+                                      type="text"
+                                      placeholder="Masukkan catatan pasien"
+                                      value={
+                                        manualInterpretation.manualInterpretation
+                                      }
+                                      name="manualInterpretation"
+                                      onChange={handleChange}
+                                    ></textarea>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -192,11 +197,13 @@ const ViewCatatanPasien = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </main>
-      </body>
-    </div>
-  );
+          </main>
+        </body>
+      </div>
+    );
+  } else {
+    return <div></div>
+  }
 };
 
 export default ViewCatatanPasien;

@@ -1,15 +1,20 @@
 import React from "react";
 import NavbarAuthAdmin from "../component/Navbar/NavbarAuthAdmin";
-
 import LoginCardAdmin from "./LoginCardAdmin";
 
 const LoginAdmin = () => {
-  return (
-    <div>
-      <NavbarAuthAdmin/>
-      <LoginCardAdmin/>
-    </div>
-  );
+  const auth = sessionStorage.getItem("token");
+
+  if(!auth) {
+    return (
+      <div>
+        <NavbarAuthAdmin/>
+        <LoginCardAdmin/>
+      </div>
+    );
+  } else {
+    window.history.back()
+  }
 };
 
 export default LoginAdmin;

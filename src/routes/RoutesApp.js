@@ -36,7 +36,7 @@ const RoutesApp = () => {
         <Routes>
           <Route path="/" element={<LoginAdmin/>} />
           <Route path="/register-admin" element={<RegisterAdmin/>} />
-          <Route path="/data-user" element={<DataUser/>} />
+          <Route path="/data-user" element={<DataUser/>}/>
           <Route path="/add-data-user" element={<AddDataUser/>} />
           <Route path="/edit-data-user/:id" element={<EditDataUser/>} />
           <Route path="/view-data-user/:id" element={<ViewDataUser/>} />
@@ -61,7 +61,6 @@ const RoutesApp = () => {
           <Route path="/dokter-detail-catatan-pasien/:id" element={<DetailCatatanPasien/>} />
           <Route path="/dokter-view-catatan-pasien/:id" element={<ViewCatatanPasien/>} />
           <Route path="/dokter-edit-catatan-pasien" element={<EditCatatanPasien/>} />
-          
         </Routes>
       </Router>
     </div>
