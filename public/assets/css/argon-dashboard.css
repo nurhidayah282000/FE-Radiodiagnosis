@@ -5539,7 +5539,8 @@ fieldset:disabled .btn {
   --bs-pagination-disabled-bg: #fff;
   --bs-pagination-disabled-border-color: #dee2e6;
   display: flex;
-  padding-left: 0;
+  /* padding-left: 0; */
+  justify-content: end;
   list-style: none;
 }
 
@@ -23792,8 +23793,9 @@ hr.horizontal.gray-light {
   justify-content: center;
   color: #8392ab;
   padding: 0;
-  margin: 0 3px;
-  border-radius: 50% !important;
+  margin:  0px;
+  justify-items: end;
+  border-radius: 0%; 
   width: 36px;
   height: 36px;
   font-size: 0.875rem;

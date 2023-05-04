@@ -117,7 +117,11 @@ const LoginCardAdmin = () => {
                     }}
                   >
                     <span className="mask bg-gradient-primary opacity-5"></span>
-                    <h4 className="mt-5 text-white font-weight-bolder position-relative">
+                    <div>
+                      <img src="./assets/img/App/admin.png"></img>
+                      <img src="./assets/img/App/admin.png"></img>
+                    </div>
+                    <h4 className="mt-0 text-white font-weight-bolder position-relative">
                       "PENS - UA Radiodiagnostic Report"
                     </h4>
                     <p className="text-white position-relative">

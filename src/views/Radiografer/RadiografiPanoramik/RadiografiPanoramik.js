@@ -6,10 +6,11 @@ import UploadGambarSuccess from "../../../component/Alerts/UploadGambarSuccess";
 import axios from "axios";
 import { baseURL } from "../../../routes/Config";
 import WithAuthorization from "../../../utils/auth";
+import Paginations from "../../../component/Pagination/Paginations";
 
 const RadiografiPanoramik = () => {
   const auth = WithAuthorization(["radiographer"]);
-  
+
   const [data, setData] = useState([]);
   const [month, setMonth] = useState(undefined);
 
@@ -41,7 +42,7 @@ const RadiografiPanoramik = () => {
 
   console.log(data);
 
-  if(auth) {
+  if (auth) {
     return (
       <div>
         <body className="g-sidenav-show bg-gray-100">
@@ -93,7 +94,7 @@ const RadiografiPanoramik = () => {
                           {/* <p className="ps-4 text-uppercase text-primary text-xxs font-weight-bolder">
                             Oktober
                           </p> */}
-  
+
                           <div className="row-cols-md-3 ">
                             <div>
                               <select
@@ -117,7 +118,7 @@ const RadiografiPanoramik = () => {
                             </div>
                           </div>
                         </div>
-  
+
                         <di className="col-md-2">
                           <p className="ps-4 text-uppercase text-primary text-xxs font-weight-bolder">
                             {data.length} <span>Gambar</span>
@@ -154,10 +155,11 @@ const RadiografiPanoramik = () => {
                         ))
                       ) : (
                         <center>Belum ada Data</center>
-                      )}
+                      )}                   
                       <UploadGambarSuccess />
                     </div>
                   </div>
+                  <Paginations />
                 </div>
               </div>
             </div>
@@ -166,7 +168,7 @@ const RadiografiPanoramik = () => {
       </div>
     );
   } else {
-    return <div></div>
+    return <div></div>;
   }
 };
 

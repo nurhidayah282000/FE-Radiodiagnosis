@@ -6,6 +6,7 @@ import SidebarDokter from "../../../component/Sidebar/SidebarDokter";
 import { baseURL } from "../../../routes/Config";
 import { Link } from "react-router-dom";
 import WithAuthorization from "../../../utils/auth";
+import Paginations from "../../../component/Pagination/Paginations";
 
 const CatatanPasien = () => {
   const auth = WithAuthorization(["doctor"]);
@@ -133,6 +134,7 @@ const CatatanPasien = () => {
                       </div>
                     </div>
                   </div>
+                  <Paginations/>
                 </div>
               </div>
             </div>

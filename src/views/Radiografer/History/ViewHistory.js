@@ -6,6 +6,7 @@ import HeaderDataUser from "../../../component/Header/HeaderDataUser";
 import SidebarRadiografer from "../../../component/Sidebar/SidebarRadiografer";
 import { baseURL } from "../../../routes/Config";
 import WithAuthorization from "../../../utils/auth";
+import Paginations from "../../../component/Pagination/Paginations";
 
 const ViewHistory = () => {
   const auth = WithAuthorization(["radiographer"]);
@@ -34,7 +35,7 @@ const ViewHistory = () => {
       });
   }, [id]);
 
-  if(auth) {
+  if (auth) {
     return (
       <div>
         <body className="g-sidenav-show bg-gray-100">
@@ -67,7 +68,7 @@ const ViewHistory = () => {
                         </div>
                       </div>
                     </div>
-  
+
                     <div className="card-body px-0 pb-2 pt-0 pe-3 pl-0">
                       <div className="row">
                         <div className="col pe-0">
@@ -107,18 +108,22 @@ const ViewHistory = () => {
                               marginStart: "0px",
                             }}
                           />
-  
+
                           <div className="card-body pb-2 pt-0">
                             <div className="row justify-content-center">
                               <div className="col-md-12">
-                                <HistoryCard data={data}/>
+                                <HistoryCard data={data} />
                               </div>
                             </div>
+                           
                           </div>
+                          
+                    
                         </div>
                       </div>
                     </div>
                   </div>
+                  <Paginations/>
                 </div>
               </div>
             </div>
@@ -127,7 +132,7 @@ const ViewHistory = () => {
       </div>
     );
   } else {
-    return <div></div>
+    return <div></div>;
   }
 };
 

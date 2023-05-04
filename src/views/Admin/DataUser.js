@@ -6,6 +6,7 @@ import SidebarAdmin from "../../component/Sidebar/SidebarAdmin";
 import { baseURL } from "../../routes/Config";
 import { Link } from "react-router-dom";
 import WithAuthorization from "../../utils/auth";
+import Paginations from "../../component/Pagination/Paginations";
 
 const DataUser = () => {
   const auth = WithAuthorization(["admin"]);
@@ -25,7 +26,7 @@ const DataUser = () => {
         },
       })
       .then((response) => {
-        if(response.data.data) {
+        if (response.data.data) {
           setData(response.data.data);
         }
       })
@@ -63,7 +64,7 @@ const DataUser = () => {
       });
   };
 
-  if(auth) {
+  if (auth) {
     return (
       <div>
         <body class="g-sidenav-show bg-gray-100">
@@ -157,7 +158,7 @@ const DataUser = () => {
                             </div>
                           </div>
                         </div>
-  
+
                         <div class="col-8 text-end">
                           <a
                             class="btn bg-gradient-primary btn-sm mb-0"
@@ -182,7 +183,7 @@ const DataUser = () => {
                               <th class="text-uppercase text-secondary text-start text-xxs font-weight-bolder opacity-7 ps-0">
                                 NIP
                               </th>
-  
+
                               <th class="text-uppercase text-secondary text-start text-xxs font-weight-bolder opacity-7 ps-0 ">
                                 Email
                               </th>
@@ -261,13 +262,14 @@ const DataUser = () => {
                   </div>
                 </div>
               </div>
+              <Paginations />
             </div>
           </main>
         </body>
       </div>
     );
   } else {
-    return <div></div>
+    return <div></div>;
   }
 };
 

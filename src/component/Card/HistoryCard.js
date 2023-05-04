@@ -1,5 +1,6 @@
 import moment from "moment";
 import React from "react";
+import Paginations from "../Pagination/Paginations";
 
 const HistoryCard = ({data}) => {
   return (
@@ -124,8 +125,8 @@ const HistoryCard = ({data}) => {
                     </p>
                   </div>
                 </div>
-              </div>
-            </div>
+              </div>        
+            </div>      
           </div>
         </div>
       </div>

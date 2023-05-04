@@ -5,6 +5,7 @@ import SidebarRadiografer from "../../../component/Sidebar/SidebarRadiografer";
 import { baseURL } from "../../../routes/Config";
 import { Link } from "react-router-dom";
 import WithAuthorization from "../../../utils/auth";
+import Paginations from "../../../component/Pagination/Paginations";
 
 const History = () => {
   const auth = WithAuthorization(["radiographer"]);
@@ -105,7 +106,8 @@ const History = () => {
                   </div>
                 </div>
               </div>
-            </div>
+              <Paginations/>
+            </div>          
           </main>
         </body>
       </div>

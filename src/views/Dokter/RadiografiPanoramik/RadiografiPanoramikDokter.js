@@ -5,6 +5,7 @@ import RadiografiPanoramikCardDokter from "../../../component/Card/RadiografiPan
 import axios from "axios";
 import { baseURL } from "../../../routes/Config";
 import WithAuthorization from "../../../utils/auth";
+import Paginations from "../../../component/Pagination/Paginations";
 
 const RadiografiPanoramikDokter = () => {
   const auth = WithAuthorization(["doctor"]);
@@ -108,6 +109,7 @@ const RadiografiPanoramikDokter = () => {
                       ))}
                     </div>
                   </div>
+                  <Paginations/>
                 </div>
               </div>
             </div>

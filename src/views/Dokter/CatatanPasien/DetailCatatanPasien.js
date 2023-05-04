@@ -6,6 +6,7 @@ import HeaderDataUser from "../../../component/Header/HeaderDataUser";
 import SidebarDokter from "../../../component/Sidebar/SidebarDokter";
 import { baseURL } from "../../../routes/Config";
 import WithAuthorization from "../../../utils/auth";
+import Paginations from "../../../component/Pagination/Paginations";
 
 const DetailCatatanPasien = () => {
   const auth = WithAuthorization(["doctor"]);
@@ -336,6 +337,7 @@ const DetailCatatanPasien = () => {
                       </div>
                     </div>
                   </div>
+                  <Paginations/>
                 </div>
               </div>
             </div>

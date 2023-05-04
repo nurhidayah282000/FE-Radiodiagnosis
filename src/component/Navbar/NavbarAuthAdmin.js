@@ -32,7 +32,7 @@ const NavbarAuthAdmin = () => {
                 </button>
                 <div class="collapse navbar-collapse" id="navigation">
                   <ul class="navbar-nav mx-auto"></ul>
-                  <ul class="navbar-nav d-lg-block d-none">
+                  <ul class="navbar-nav d-lg-block">
                     <li class="nav-item">
                       <a class="nav-link me-2" href="/register-admin">
                         <i class="fas fa-user-circle opacity-6 text-dark me-1"></i>
@@ -40,7 +40,7 @@ const NavbarAuthAdmin = () => {
                       </a>
                     </li>
                   </ul>
-                  <ul class="navbar-nav d-lg-block d-none">
+                  <ul class="navbar-nav d-lg-block">
                     <li class="nav-item">
                       <a class="nav-link me-2" href="/">
                         <i class="fas fa-key opacity-6 text-dark me-1"></i>
