@@ -14,6 +14,8 @@ const DataUser = () => {
   const [data, setData] = useState([]);
   const [pagination, setPagination] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
+  
+  let startIndex = (currentPage - 1) * 10;
 
   let doctor = 0;
   let radiographer = 0;
@@ -43,6 +45,7 @@ const DataUser = () => {
   };
 
   // COUNT DOCTOR AND RADIOGRAPHER
+  console.log(startIndex)
 
   data.map((profession) => {
     if (profession.role === "doctor") {
@@ -207,7 +210,7 @@ const DataUser = () => {
                               <tr key={item.id}>
                                 <td class="ps-0 align-middle text-center ">
                                   <span class="text-xs text-secondary mb-0">
-                                    {index + 1}
+                                    {startIndex + index + 1}
                                   </span>
                                 </td>
                                 <td class="align-middle text-start text-sm ps-2 pe-0">
