@@ -60,7 +60,7 @@ const VerifiedYes = () => {
                       name="btnradio"
                       id="btnradio1"
                       autoComplete="off"
-                      checked
+                      defaultChecked
                     />
                     <label
                       className="btn btn-sm btn-outline-primary mt-0 mb-0 p-2 ps-3 pe-3 border-radius-xl"

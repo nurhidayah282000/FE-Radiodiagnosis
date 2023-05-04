@@ -12,6 +12,8 @@ const DataUser = () => {
   const auth = WithAuthorization(["admin"]);
 
   const [data, setData] = useState([]);
+  const [pagination, setPagination] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
 
   let doctor = 0;
   let radiographer = 0;
@@ -19,7 +21,7 @@ const DataUser = () => {
   // get data user use axios
   useEffect(() => {
     axios
-      .get(`${baseURL}/users/all`, {
+      .get(`${baseURL}/users/all?page=${currentPage}`, {
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -28,12 +30,17 @@ const DataUser = () => {
       .then((response) => {
         if (response.data.data) {
           setData(response.data.data);
+          setPagination(response.data.meta);
         }
       })
       .catch((error) => {
         console.log(error.response.data);
       });
-  }, []);
+  }, [currentPage]);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   // COUNT DOCTOR AND RADIOGRAPHER
 
@@ -196,11 +203,11 @@ const DataUser = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {data.map((item) => (
+                            {data.map((item, index) => (
                               <tr key={item.id}>
                                 <td class="ps-0 align-middle text-center ">
                                   <span class="text-xs text-secondary mb-0">
-                                    001
+                                    {index + 1}
                                   </span>
                                 </td>
                                 <td class="align-middle text-start text-sm ps-2 pe-0">
@@ -262,7 +269,11 @@ const DataUser = () => {
                   </div>
                 </div>
               </div>
-              <Paginations />
+              <Paginations
+                currentPage={currentPage}
+                totalPages={pagination.totalPages}
+                onPageChange={handlePageChange}
+              />
             </div>
           </main>
         </body>

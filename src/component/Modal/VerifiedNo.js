@@ -58,12 +58,12 @@ const VerifiedNo = () => {
                       className="btn-check"
                       name="btnradio"
                       id="btnradio3"
-                      autocomplete="off"
-                      checked
+                      autoComplete="off"
+                      defaultChecked
                     />
                     <label
                       className="btn btn-sm btn-outline-primary mt-0 mb-0 p-2 ps-3 pe-3 border-radius-xl"
-                      for="btnradio3"
+                      htmlFor="btnradio3"
                     >
                       Ya
                     </label>
@@ -73,11 +73,11 @@ const VerifiedNo = () => {
                       className="btn-check"
                       name="btnradio"
                       id="btnradio2"
-                      autocomplete="off"
+                      autoComplete="off"
                     />
                     <label
                       className="btn btn-sm btn-outline-primary mt-0 mb-0 p-2 border-radius-xl"
-                      for="btnradio2"
+                      htmlFor="btnradio2"
                     >
                       Tidak
                     </label>
@@ -93,11 +93,11 @@ const VerifiedNo = () => {
                   id="exampleFormControlSelect1"
                   aria-placeholder="xsaas"
                 >
-                  <option>Karies</option>
-                  <option>Lesi Periapikal</option>
-                  <option>Impaksi</option>
-                  <option>Resorbsi</option>
-                  <option>dll</option>
+                  <option value='karises'>Karies</option>
+                  <option value='lesi periapikal'>Lesi Periapikal</option>
+                  <option value='impaksi'>Impaksi</option>
+                  <option value='resorbsi'>Resorbsi</option>
+                  <option value='lain-lain'>dll</option>
                 </select>
 
                 <p className="text-secondary text-xs ms-2 mt-0 mb-2">Catatan</p>
@@ -106,7 +106,6 @@ const VerifiedNo = () => {
                   style={{ width: "92%" }}
                   type="text"
                   placeholder="Masukkan catatan pasien"
-                  value=""
                 ></textarea>
               </div>
 

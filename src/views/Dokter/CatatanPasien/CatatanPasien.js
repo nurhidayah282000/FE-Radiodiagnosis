@@ -12,12 +12,14 @@ const CatatanPasien = () => {
   const auth = WithAuthorization(["doctor"]);
 
   const [data, setData] = useState([]);
+  const [pagination, setPagination] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
 
   const token = sessionStorage.getItem("token");
 
   useEffect(() => {
     axios
-      .get(`${baseURL}/radiographics/all`, {
+      .get(`${baseURL}/radiographics/all?page=${currentPage}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -25,14 +27,19 @@ const CatatanPasien = () => {
       .then((response) => {
         if (response.data.data) {
           setData(response.data.data);
+          setPagination(response.data.meta);
         }
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [currentPage]);
 
-  if(auth) {
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  if (auth) {
     return (
       <div>
         <body className="g-sidenav-show bg-gray-100">
@@ -84,7 +91,7 @@ const CatatanPasien = () => {
                               <th className="col-2 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                 Tanggal Verifikasi
                               </th>
-  
+
                               <th className="col-2 text-uppercase text-secondary text-start text-xxs font-weight-bolder opacity-7 ps-2 pe-0">
                                 Aksi
                               </th>
@@ -111,13 +118,13 @@ const CatatanPasien = () => {
                                 <td className="align-middle text-start text-sm ps-2">
                                   <p className="text-xs text-secondary mb-0">
                                     {item.panoramik_check_date !== null
-                                      ? moment(item.panoramik_check_date).format(
-                                          "DD/MM/YYYY"
-                                        )
+                                      ? moment(
+                                          item.panoramik_check_date
+                                        ).format("DD/MM/YYYY")
                                       : "-"}
                                   </p>
                                 </td>
-  
+
                                 <td className="align-middle text-sm">
                                   <Link
                                     to={`/dokter-detail-catatan-pasien/${item.radiographics_id}`}
@@ -134,7 +141,11 @@ const CatatanPasien = () => {
                       </div>
                     </div>
                   </div>
-                  <Paginations/>
+                  <Paginations
+                    currentPage={currentPage}
+                    totalPages={pagination.totalPages}
+                    onPageChange={handlePageChange}
+                  />
                 </div>
               </div>
             </div>
@@ -143,7 +154,7 @@ const CatatanPasien = () => {
       </div>
     );
   } else {
-    return <div></div>
+    return <div></div>;
   }
 };
 

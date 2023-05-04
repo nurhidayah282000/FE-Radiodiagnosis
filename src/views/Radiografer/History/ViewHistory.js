@@ -6,7 +6,6 @@ import HeaderDataUser from "../../../component/Header/HeaderDataUser";
 import SidebarRadiografer from "../../../component/Sidebar/SidebarRadiografer";
 import { baseURL } from "../../../routes/Config";
 import WithAuthorization from "../../../utils/auth";
-import Paginations from "../../../component/Pagination/Paginations";
 
 const ViewHistory = () => {
   const auth = WithAuthorization(["radiographer"]);
@@ -115,15 +114,11 @@ const ViewHistory = () => {
                                 <HistoryCard data={data} />
                               </div>
                             </div>
-                           
                           </div>
-                          
-                    
                         </div>
                       </div>
                     </div>
                   </div>
-                  <Paginations/>
                 </div>
               </div>
             </div>

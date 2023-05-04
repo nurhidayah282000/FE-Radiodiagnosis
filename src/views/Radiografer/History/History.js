@@ -11,12 +11,14 @@ const History = () => {
   const auth = WithAuthorization(["radiographer"]);
 
   const [data, setData] = useState([]);
+  const [pagination, setPagination] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
 
   const token = sessionStorage.getItem("token");
 
   useEffect(() => {
     axios
-      .get(`${baseURL}/radiographics/all`, {
+      .get(`${baseURL}/radiographics/all?page=${currentPage}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -26,14 +28,19 @@ const History = () => {
           setData([]);
         } else {
           setData(response.data.data);
+          setPagination(response.data.meta);
         }
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [currentPage]);
 
-  if(auth) {
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  if (auth) {
     return (
       <div>
         <body className="g-sidenav-show bg-gray-100">
@@ -68,7 +75,7 @@ const History = () => {
                               <th className="col-8 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
                                 Nama Pasien
                               </th>
-  
+
                               <th className="col-2 text-uppercase text-secondary text-start text-xxs font-weight-bolder opacity-7 ps-2 pe-0">
                                 Aksi
                               </th>
@@ -87,7 +94,7 @@ const History = () => {
                                     {item.fullname}
                                   </p>
                                 </td>
-  
+
                                 <td className="align-middle text-sm">
                                   <Link
                                     to={`/radiografer-view-history/${item.radiographics_id}`}
@@ -106,14 +113,18 @@ const History = () => {
                   </div>
                 </div>
               </div>
-              <Paginations/>
-            </div>          
+              <Paginations
+                currentPage={currentPage}
+                totalPages={pagination.totalPages}
+                onPageChange={handlePageChange}
+              />
+            </div>
           </main>
         </body>
       </div>
     );
   } else {
-    return <div></div>
+    return <div></div>;
   }
 };
 

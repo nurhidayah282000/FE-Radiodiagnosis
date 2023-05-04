@@ -40,7 +40,7 @@ const ViewGambarPanoramikDokter = () => {
       })
       .then((response) => {
         if (response.data.data) {
-          setData(response.data.data);
+          setDoctors(response.data.data);
         }
       })
       .catch((error) => {
@@ -62,13 +62,14 @@ const ViewGambarPanoramikDokter = () => {
         }
       )
       .then((response) => {
-        console.log(response);
         window.location.reload();
       })
       .catch((error) => {
         console.log(error);
       });
   };
+
+  console.log(data)
 
   if(auth) {
     return (
@@ -161,7 +162,7 @@ const ViewGambarPanoramikDokter = () => {
                                   }
                                   required
                                 >
-                                  <option value="">Pilih Dokter</option>
+                                  <option>Pilih Dokter</option>
                                   {doctors.map((doctor) => (
                                     <option key={doctor.id} value={doctor.id}>
                                       {doctor.fullname}

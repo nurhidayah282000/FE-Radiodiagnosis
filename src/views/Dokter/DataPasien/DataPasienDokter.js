@@ -12,11 +12,13 @@ const DataPasienDokter = () => {
   const auth = WithAuthorization(["doctor"]);
 
   const [data, setData] = useState([]);
+  const [pagination, setPagination] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
 
   const token = sessionStorage.getItem("token");
   useEffect(() => {
     axios
-      .get(`${baseURL}/patients/all`, {
+      .get(`${baseURL}/patients/all?page=${currentPage}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -24,14 +26,19 @@ const DataPasienDokter = () => {
       .then((response) => {
         if (response.data.data) {
           setData(response.data.data);
+          setPagination(response.data.meta);
         }
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [currentPage]);
 
-  if(auth) {
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  if (auth) {
     return (
       <div>
         <body className="g-sidenav-show bg-gray-100">
@@ -51,7 +58,9 @@ const DataPasienDokter = () => {
                     <div className="card-header pb-2 p-4">
                       <div className="row">
                         <div className="col-6 d-flex align-items-center">
-                          <h6 className="mb-0 font-weight-bolder">Data Pasien</h6>
+                          <h6 className="mb-0 font-weight-bolder">
+                            Data Pasien
+                          </h6>
                         </div>
                       </div>
                     </div>
@@ -134,14 +143,18 @@ const DataPasienDokter = () => {
                   </div>
                 </div>
               </div>
-              <Paginations/>
+              <Paginations
+                currentPage={currentPage}
+                totalPages={pagination.totalPages}
+                onPageChange={handlePageChange}
+              />
             </div>
           </main>
         </body>
       </div>
     );
   } else {
-    return <div></div>
+    return <div></div>;
   }
 };
 

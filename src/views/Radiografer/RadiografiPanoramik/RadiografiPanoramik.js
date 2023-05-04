@@ -13,13 +13,15 @@ const RadiografiPanoramik = () => {
 
   const [data, setData] = useState([]);
   const [month, setMonth] = useState(undefined);
+  const [pagination, setPagination] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
 
   const token = sessionStorage.getItem("token");
 
   useEffect(() => {
-    let url = `${baseURL}/radiographics/all`;
+    let url = `${baseURL}/radiographics/all?page=${currentPage}`;
     if (month !== undefined) {
-      url = `${baseURL}/radiographics/all?month=${month}`;
+      url = `${baseURL}/radiographics/all?month=${month}&page=${currentPage}`;
     }
 
     axios
@@ -33,14 +35,17 @@ const RadiografiPanoramik = () => {
           setData([]);
         } else {
           setData(response.data.data);
+          setPagination(response.data.meta);
         }
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [month]);
+  }, [month, currentPage]);
 
-  console.log(data);
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   if (auth) {
     return (
@@ -155,11 +160,15 @@ const RadiografiPanoramik = () => {
                         ))
                       ) : (
                         <center>Belum ada Data</center>
-                      )}                   
+                      )}
                       <UploadGambarSuccess />
                     </div>
                   </div>
-                  <Paginations />
+                  <Paginations
+                    currentPage={currentPage}
+                    totalPages={pagination.totalPages}
+                    onPageChange={handlePageChange}
+                  />
                 </div>
               </div>
             </div>

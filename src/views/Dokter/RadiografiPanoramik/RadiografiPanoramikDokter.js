@@ -11,12 +11,14 @@ const RadiografiPanoramikDokter = () => {
   const auth = WithAuthorization(["doctor"]);
 
   const [data, setData] = useState([]);
+  const [pagination, setPagination] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
 
   const token = sessionStorage.getItem("token");
 
   useEffect(() => {
     axios
-      .get(`${baseURL}/radiographics/all`, {
+      .get(`${baseURL}/radiographics/all?page=${currentPage}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -26,14 +28,19 @@ const RadiografiPanoramikDokter = () => {
           setData([]);
         } else {
           setData(response.data.data);
+          setPagination(response.data.meta);
         }
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [currentPage]);
 
-  if(auth) {
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
+  if (auth) {
     return (
       <div>
         <body className="g-sidenav-show bg-gray-100">
@@ -109,7 +116,11 @@ const RadiografiPanoramikDokter = () => {
                       ))}
                     </div>
                   </div>
-                  <Paginations/>
+                  <Paginations
+                    currentPage={currentPage}
+                    totalPages={pagination.totalPages}
+                    onPageChange={handlePageChange}
+                  />
                 </div>
               </div>
             </div>
@@ -118,7 +129,7 @@ const RadiografiPanoramikDokter = () => {
       </div>
     );
   } else {
-    return <div></div>
+    return <div></div>;
   }
 };
 

@@ -66,7 +66,7 @@ const InterpretasiManual = ({ radiographicId }) => {
                       onChange={handleChange}
                       required
                     >
-                      <option value="" selected disabled>no. Gigi</option>
+                      <option disabled>no. Gigi</option>
                       <option value="55">55</option>
                       <option value="54">54</option>
                       <option value="53">53</option>

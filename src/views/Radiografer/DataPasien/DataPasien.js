@@ -12,11 +12,13 @@ const DataPasien = () => {
   const auth = WithAuthorization(["radiographer"]);
 
   const [data, setData] = useState([]);
+  const [pagination, setPagination] = useState({});
+  const [currentPage, setCurrentPage] = useState(1);
 
   const token = sessionStorage.getItem("token");
   useEffect(() => {
     axios
-      .get(`${baseURL}/patients/all`, {
+      .get(`${baseURL}/patients/all?page=${currentPage}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -24,12 +26,17 @@ const DataPasien = () => {
       .then((response) => {
         if (response.data.data) {
           setData(response.data.data);
+          setPagination(response.data.meta);
         }
       })
       .catch((error) => {
         console.log(error);
       });
-  }, []);
+  }, [currentPage]);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   if(auth) {
     return (
@@ -141,7 +148,11 @@ const DataPasien = () => {
                   </div>
                 </div>
               </div>
-              <Paginations/>
+              <Paginations
+                currentPage={currentPage}
+                totalPages={pagination.totalPages}
+                onPageChange={handlePageChange}
+              />
             </div>
           </main>
         </body>
