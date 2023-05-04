@@ -40,8 +40,7 @@ const AddDataUser = () => {
         },
       })
       .then((response) => {
-        // window.location.href = "/data-user";
-        console.log(response.data);
+        window.location.href = "/data-user";
       })
       .catch((error) => {
         console.log(error.response.data);
