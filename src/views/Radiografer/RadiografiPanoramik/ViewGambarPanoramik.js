@@ -49,7 +49,7 @@ const ViewGambarPanoramik = () => {
       });
   };
 
-  if(auth) {
+  if (auth) {
     return (
       <div>
         <body className="g-sidenav-show bg-gray-100">
@@ -80,16 +80,21 @@ const ViewGambarPanoramik = () => {
                             &nbsp;&nbsp;Kembali
                           </a>
                         </div>
-  
+
                         <div className="col">
                           <div className="row">
                             <div className="col-7 d-flex justify-content-end">
-                              <Link
-                                to={`/radiografer-upload-ulang-gambar-panoramik/${id}`}
+                              <button
+                                type="button"
+                                className="btn btn-outline-primary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-danger"
                               >
-                                <i className="fa fa-cloud-upload"></i>&nbsp;&nbsp;
-                                Unggah Ulang Gambar
-                              </Link>
+                                <Link
+                                  to={`/radiografer-upload-ulang-gambar-panoramik/${id}`}
+                                >
+                                  <i className="fa fa-cloud-upload text-primary"></i>
+                                  &nbsp;&nbsp; Unggah Ulang Gambar
+                                </Link>
+                              </button>
                             </div>
                             <div className="col-5">
                               <button
@@ -110,7 +115,7 @@ const ViewGambarPanoramik = () => {
                         </div>
                       </div>
                     </div>
-  
+
                     <div className="card-body px-0 pb-2 pt-0 pe-3">
                       <div className="row">
                         <div className="col pe-0">
@@ -174,7 +179,7 @@ const ViewGambarPanoramik = () => {
                               marginBottom: "0 px",
                             }}
                           />
-  
+
                           <div className="card-body pb-2 pt-0">
                             <div className="row justify-content-center">
                               <div className="col-md-12">
@@ -187,18 +192,18 @@ const ViewGambarPanoramik = () => {
                                       <p className="text-xs p-2 mb-0">
                                         Gambar Radiografi
                                       </p>
-  
+
                                       <img
                                         className="img-fluid border-radius-xl p-2"
                                         src={`${
                                           baseURL + data.panoramik_picture
                                         }`}
                                       />
-  
+
                                       <p className="text-xs p-2 mb-0 mt-4">
                                         Diagram Gigi
                                       </p>
-  
+
                                       <div className="card shadow-none mt-2 me-2 ms-2 mb-4">
                                         <div className="card-body">
                                           <div className="row">
@@ -218,7 +223,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 55
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -231,7 +236,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 54
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -244,7 +249,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 53
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -257,7 +262,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 52
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -270,7 +275,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 51
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -283,7 +288,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 61
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -296,7 +301,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 62
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -309,7 +314,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 63
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -322,7 +327,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 64
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -349,7 +354,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 18
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -362,7 +367,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 17
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -375,7 +380,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 16
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -388,7 +393,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 15
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -401,7 +406,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 14
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -414,7 +419,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 13
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -427,7 +432,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 12
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -440,7 +445,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 11
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -453,7 +458,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 21
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -466,7 +471,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 22
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -479,7 +484,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 23
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -492,7 +497,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 24
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -505,7 +510,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 25
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -518,7 +523,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 26
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -531,7 +536,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 27
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -551,7 +556,7 @@ const ViewGambarPanoramik = () => {
                                             <div className="d-flex justify-content-center img-fluid mt-5">
                                               <img src="../assets/img/App/line2.png" />
                                             </div>
-  
+
                                             <div className="col d-flex justify-content-center mt-1">
                                               <input
                                                 type="checkbox"
@@ -565,7 +570,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 48
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -578,7 +583,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 47
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -591,7 +596,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 46
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -604,7 +609,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 45
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -617,7 +622,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 44
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -630,7 +635,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 43
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -643,7 +648,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 42
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -656,7 +661,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 41
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -669,7 +674,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 31
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -682,7 +687,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 32
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -695,7 +700,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 33
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -708,7 +713,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 34
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -721,7 +726,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 35
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -734,7 +739,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 36
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -747,7 +752,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 37
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -761,7 +766,7 @@ const ViewGambarPanoramik = () => {
                                                 38
                                               </label>
                                             </div>
-  
+
                                             <div className="col d-flex justify-content-center">
                                               <input
                                                 type="checkbox"
@@ -775,7 +780,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 85
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -788,7 +793,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 84
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -801,7 +806,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 83
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -814,7 +819,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 82
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -827,7 +832,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 81
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -840,7 +845,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 71
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -853,7 +858,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 72
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -866,7 +871,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 73
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -879,7 +884,7 @@ const ViewGambarPanoramik = () => {
                                               >
                                                 74
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"

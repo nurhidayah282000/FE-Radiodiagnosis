@@ -90,7 +90,7 @@ const ViewCatatanPasien = () => {
       });
   };
 
-  if(auth) {
+  if (auth) {
     return (
       <div>
         <body className="g-sidenav-show bg-gray-100">
@@ -110,15 +110,18 @@ const ViewCatatanPasien = () => {
                     <div className="card-header pb-2 p-4">
                       <div className="row">
                         <div className="col-8 d-flex align-items-center">
-                          <Link to={`/dokter-detail-catatan-pasien/${id}`}>
-                            <i
-                              className="fa fa-arrow-left"
-                              aria-hidden="true"
-                            ></i>
-                            &nbsp;&nbsp;Kembali
-                          </Link>
+                          <butto className="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2">
+                            {" "}
+                            <Link to={`/dokter-detail-catatan-pasien/${id}`}>
+                              <i
+                                className="fa fa-arrow-left"
+                                aria-hidden="true"
+                              ></i>
+                              &nbsp;&nbsp;Kembali
+                            </Link>
+                          </butto>
                         </div>
-  
+
                         <div className="col">
                           <div className="row">
                             <div className="col-6 d-flex justify-content-end">
@@ -139,8 +142,8 @@ const ViewCatatanPasien = () => {
                                 data-bs-toggle="modal"
                                 data-bs-target="#exampleModal"
                               >
-                                <i className="fa fa-trash text-danger"></i>&nbsp;
-                                Hapus Catatan
+                                <i className="fa fa-trash text-danger"></i>
+                                &nbsp; Hapus Catatan
                               </button>
                               <DeleteModal
                                 userId={id}
@@ -151,7 +154,7 @@ const ViewCatatanPasien = () => {
                         </div>
                       </div>
                     </div>
-  
+
                     <div className="card-body px-0 pb-2 pt-0">
                       <div className="row justify-content-center">
                         <div className="col-md-6">
@@ -163,7 +166,7 @@ const ViewCatatanPasien = () => {
                                 </h6>
                               </div>
                             </div>
-  
+
                             <div className="card-body pt-3">
                               <div className="row">
                                 <div className="col">
@@ -202,7 +205,7 @@ const ViewCatatanPasien = () => {
       </div>
     );
   } else {
-    return <div></div>
+    return <div></div>;
   }
 };
 

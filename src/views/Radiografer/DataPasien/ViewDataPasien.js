@@ -49,7 +49,7 @@ const ViewDataPasien = () => {
       });
   };
 
-  if(auth) {
+  if (auth) {
     return (
       <div>
         <body className="g-sidenav-show bg-gray-100">
@@ -80,14 +80,21 @@ const ViewDataPasien = () => {
                             &nbsp;&nbsp;Kembali
                           </a>
                         </div>
-  
+
                         <div className="col">
                           <div className="row">
                             <div className="col-6 d-flex justify-content-end">
-                              <Link to={`/radiografer-edit-data-pasien/${id}`}>
-                                <i className="fa fa-pencil text-success"></i>
-                                &nbsp;&nbsp; Edit Data Pasien
-                              </Link>
+                              <button
+                                type="button"
+                                className="btn btn-outline-success btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-danger"
+                              >
+                                <Link
+                                  to={`/radiografer-edit-data-pasien/${id}`}
+                                >
+                                  <i className="fa fa-pencil text-success "></i>
+                                  &nbsp;&nbsp; Edit Data Pasien
+                                </Link>
+                              </button>
                             </div>
                             <div className="col-6">
                               <button
@@ -108,7 +115,7 @@ const ViewDataPasien = () => {
                         </div>
                       </div>
                     </div>
-  
+
                     <div className="card-body px-0 pb-2 pt-0">
                       <div className="row justify-content-center">
                         <div className="col-md-6">
@@ -120,7 +127,7 @@ const ViewDataPasien = () => {
                                 </h6>
                               </div>
                             </div>
-  
+
                             <div className="card-body pt-3">
                               <div className="row">
                                 <div className="col">
@@ -148,7 +155,7 @@ const ViewDataPasien = () => {
                                       </p>
                                     </div>
                                   </div>
-  
+
                                   <div className="form-group">
                                     <label
                                       htmlFor="example-text-input"
@@ -160,7 +167,7 @@ const ViewDataPasien = () => {
                                       {data.id_number}
                                     </p>
                                   </div>
-  
+
                                   <div className="row">
                                     <label
                                       htmlFor="example-text-input"
@@ -169,7 +176,7 @@ const ViewDataPasien = () => {
                                       Jenis Kelamin
                                     </label>
                                   </div>
-  
+
                                   <input
                                     type="radio"
                                     className="btn-check"
@@ -185,7 +192,7 @@ const ViewDataPasien = () => {
                                   >
                                     Laki-Laki
                                   </label>
-  
+
                                   <input
                                     type="radio"
                                     className="btn-check"
@@ -201,7 +208,7 @@ const ViewDataPasien = () => {
                                   >
                                     Perempuan
                                   </label>
-  
+
                                   <div className="row-cols-md-3">
                                     <div className="form-group">
                                       <label
@@ -215,7 +222,7 @@ const ViewDataPasien = () => {
                                       </p>
                                     </div>
                                   </div>
-  
+
                                   <div className="form-group">
                                     <label
                                       htmlFor="example-text-input"
@@ -227,14 +234,14 @@ const ViewDataPasien = () => {
                                       {data.address}
                                     </p>
                                   </div>
-  
+
                                   <label
                                     htmlFor="example-text-input"
                                     className="form-control-label"
                                   >
                                     Tempat Tanggal Lahir
                                   </label>
-  
+
                                   <div className="row">
                                     <div className="col-md-6">
                                       <div className="form-group">
@@ -251,7 +258,7 @@ const ViewDataPasien = () => {
                                       </div>
                                     </div>
                                   </div>
-  
+
                                   <label
                                     htmlFor="example-text-input"
                                     className="form-control-label"
@@ -281,7 +288,7 @@ const ViewDataPasien = () => {
                                       </div>
                                     </div> */}
                                   </div>
-  
+
                                   <div className="form-group">
                                     <label
                                       htmlFor="example-text-input"
@@ -293,7 +300,7 @@ const ViewDataPasien = () => {
                                       {data.phone_number}
                                     </p>
                                   </div>
-  
+
                                   <div className="form-group">
                                     <label
                                       htmlFor="exampleFormControlSelect1"
@@ -336,7 +343,7 @@ const ViewDataPasien = () => {
       </div>
     );
   } else {
-    return <div></div>
+    return <div></div>;
   }
 };
 

@@ -116,11 +116,18 @@ const LoginCardAdmin = () => {
                       backgroundPosition: "center",
                     }}
                   >
-                    <span className="mask bg-gradient-primary opacity-5"></span>
                     <div>
-                      <img src="./assets/img/App/admin.png"></img>
-                      <img src="./assets/img/App/admin.png"></img>
+                      <img
+                        src="./assets/img/App/Logo_PENS.png"
+                        className="w-20 h-1"
+                      ></img>
+                      <img
+                        src="./assets/img/App/Logo Branding UNAIR (biru).png"
+                        className="w-20 h-1"
+                      ></img>
                     </div>
+                    <span className="mask bg-gradient-primary opacity-5"></span>
+
                     <h4 className="mt-0 text-white font-weight-bolder position-relative">
                       "PENS - UA Radiodiagnostic Report"
                     </h4>
