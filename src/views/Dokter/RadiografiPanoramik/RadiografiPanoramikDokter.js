@@ -6,6 +6,7 @@ import axios from "axios";
 import { baseURL } from "../../../routes/Config";
 import WithAuthorization from "../../../utils/auth";
 import Paginations from "../../../component/Pagination/Paginations";
+import HeaderDataUser from "../../../component/Header/HeaderDataUser";
 
 const RadiografiPanoramikDokter = () => {
   const auth = WithAuthorization(["doctor"]);
@@ -52,23 +53,39 @@ const RadiografiPanoramikDokter = () => {
             <SidebarDokter />
           </aside>
           <main className="main-content position-relative border-radius-lg">
-            <HeaderUser />
+            <HeaderDataUser/>
             <div className="container-fluid py-2">
               <div className="row mb-4">
                 <div className="col-12">
                   <div className="card mb-4">
                     <div className="card-header p-1">
                       <div className="row p-2">
-                        <div className="col card-header p-4 pt-3">
-                          <h6 className="font-weight-bolder">
+                        <div className="col-9 card-header p-4 pt-3">
+                          <h5 className="font-weight-bolder">
                             Radiografi Panoramik
-                          </h6>
+                          </h5>
                           <p className="text-xs text-secondary mb-0">
                             Hasil diagnosa pada tabel di bawah merupakan hasil
                             diagnosa
                             <br />
                             sementara yang perlu diverifikasi oleh dokter
                           </p>
+                        </div>
+                        <div class="col-3 pe-3 pt-3">
+                          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group">
+                              <span class="input-group-text text-body border-radius-xl">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                              </span>
+                              <input
+                                type="text"
+                                class="form-control border-radius-xl"
+                                size="50"
+                                placeholder="Nama Pasien, Kode Pasien..."
+                                style={{height:"80%"}}
+                              />
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>

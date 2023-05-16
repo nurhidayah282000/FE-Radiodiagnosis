@@ -8,7 +8,7 @@ const LoginAdmin = () => {
   if(!auth) {
     return (
       <div>
-        <NavbarAuthAdmin/>
+    
         <LoginCardAdmin/>
       </div>
     );

@@ -69,9 +69,9 @@ const ViewGambarPanoramikDokter = () => {
       });
   };
 
-  console.log(data)
+  console.log(data);
 
-  if(auth) {
+  if (auth) {
     return (
       <div>
         <body className="g-sidenav-show bg-gray-100">
@@ -104,8 +104,7 @@ const ViewGambarPanoramikDokter = () => {
                         </div>
                       </div>
                     </div>
-  
-                    <div className="card-body px-0 pb-2 pt-0 pe-3">
+                      <div className="card-body px-0 pb-2 pt-0 pe-3">
                       <div className="row">
                         <div className="col pe-0">
                           <div className="card-header pb-0 ps-0">
@@ -131,7 +130,7 @@ const ViewGambarPanoramikDokter = () => {
                                   {data.fullname}
                                 </p>
                               </div>
-  
+
                               <div className="col-3">
                                 <p className="text-xs text-secondary mb-1">
                                   Status
@@ -150,7 +149,7 @@ const ViewGambarPanoramikDokter = () => {
                                 <p className="text-xs text-secondary mb-1">
                                   Dokter Verifikator
                                 </p>
-  
+
                                 <select
                                   className="form-select form-select-sm"
                                   aria-label=".form-select-sm example"
@@ -181,7 +180,7 @@ const ViewGambarPanoramikDokter = () => {
                               marginBottom: "0 px",
                             }}
                           />
-  
+
                           <div className="card-body pb-2 pt-0">
                             <div className="row justify-content-center">
                               <div className="col-md-12">
@@ -194,16 +193,16 @@ const ViewGambarPanoramikDokter = () => {
                                       <p className="text-xs p-2 mb-0">
                                         Gambar Radiografi
                                       </p>
-  
+
                                       <img
                                         className="img-fluid border-radius-xl p-2"
                                         src="../assets/img/App/panoramik.jpg"
                                       />
-  
+
                                       <p className="text-xs p-2 mb-0 mt-4">
                                         Diagram Gigi
                                       </p>
-  
+
                                       <div className="card shadow-none mt-2 me-2 ms-2 mb-4">
                                         <div className="card-body">
                                           <div className="row">
@@ -223,7 +222,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 55
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -236,7 +235,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 54
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -249,7 +248,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 53
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -262,7 +261,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 52
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -275,7 +274,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 51
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -288,7 +287,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 61
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -301,7 +300,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 62
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -314,7 +313,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 63
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -327,7 +326,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 64
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -354,7 +353,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 18
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -367,7 +366,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 17
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -380,7 +379,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 16
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -393,7 +392,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 15
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -406,7 +405,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 14
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -419,7 +418,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 13
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -432,7 +431,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 12
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -445,7 +444,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 11
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -458,7 +457,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 21
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -471,7 +470,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 22
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -484,7 +483,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 23
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -497,7 +496,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 24
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -510,7 +509,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 25
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -523,7 +522,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 26
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -536,7 +535,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 27
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -556,7 +555,7 @@ const ViewGambarPanoramikDokter = () => {
                                             <div className="d-flex justify-content-center img-fluid mt-5">
                                               <img src="../assets/img/App/line2.png" />
                                             </div>
-  
+
                                             <div className="col d-flex justify-content-center mt-1">
                                               <input
                                                 type="checkbox"
@@ -570,7 +569,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 48
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -583,7 +582,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 47
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -596,7 +595,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 46
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -609,7 +608,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 45
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -622,7 +621,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 44
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -635,7 +634,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 43
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -648,7 +647,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 42
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -661,7 +660,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 41
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -674,7 +673,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 31
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -687,7 +686,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 32
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -700,7 +699,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 33
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -713,7 +712,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 34
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -726,7 +725,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 35
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -739,7 +738,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 36
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -752,7 +751,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 37
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -766,7 +765,7 @@ const ViewGambarPanoramikDokter = () => {
                                                 38
                                               </label>
                                             </div>
-  
+
                                             <div className="col d-flex justify-content-center">
                                               <input
                                                 type="checkbox"
@@ -780,7 +779,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 85
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -793,7 +792,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 84
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -806,7 +805,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 83
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -819,7 +818,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 82
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -832,7 +831,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 81
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -845,7 +844,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 71
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -858,7 +857,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 72
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -871,7 +870,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 73
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -884,7 +883,7 @@ const ViewGambarPanoramikDokter = () => {
                                               >
                                                 74
                                               </label>
-  
+
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
@@ -922,14 +921,18 @@ const ViewGambarPanoramikDokter = () => {
                                                 Karies Gigi
                                               </p>
                                             </div>
-  
-                                            <div className="col-6 ps-0">
+
+                                            <div className="col-6 text-end">
                                               <a
-                                                className="btn btn-link btn-sm text-xs text-primary pt-0 pe-0 mb-0 font-weight-bold d-flex justify-content-end"
+                                                className="btn btn-sm btn pe-0 ps-0 btn-success w-50 shadow-none"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal"
                                               >
-                                                Verifikasi Diagnosa
+                                                <img
+                                                  src="../assets/img/App/verification.png"
+                                                  className="w-10 h-1"
+                                                ></img>
+                                                &nbsp;&nbsp;Verifikasi Diagnosa
                                               </a>
                                             </div>
                                             <VerifiedNo />
@@ -947,13 +950,17 @@ const ViewGambarPanoramikDokter = () => {
                                                 Lesi Periapikal
                                               </p>
                                             </div>
-                                            <div className="col-6 ps-0">
+                                            <div className="col-6 text-end">
                                               <a
-                                                className="btn btn-link btn-sm text-xs text-primary pt-0 pe-0 mb-0 font-weight-bold d-flex justify-content-end"
+                                                className="btn btn-sm btn pe-0 ps-0 btn-success w-50 shadow-none"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal"
                                               >
-                                                Verifikasi Diagnosa
+                                                <img
+                                                  src="../assets/img/App/verification.png"
+                                                  className="w-10 h-1"
+                                                ></img>
+                                                &nbsp;&nbsp;Verifikasi Diagnosa
                                               </a>
                                               <VerifiedYes />
                                             </div>
@@ -971,20 +978,35 @@ const ViewGambarPanoramikDokter = () => {
                                                 Impaksi
                                               </p>
                                             </div>
-                                            <div className="col-6 ps-0">
+                                            <div className="col-6 text-end">
                                               <a
-                                                className="btn btn-link btn-sm text-xs text-primary pt-0 pe-0 mb-0 font-weight-bold d-flex justify-content-end"
+                                                className="btn btn-sm btn pe-0 ps-0 btn-success w-50 shadow-none"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal"
                                               >
-                                                Verifikasi Diagnosa
+                                                <img
+                                                  src="../assets/img/App/verification.png"
+                                                  className="w-10 h-1"
+                                                ></img>
+                                                &nbsp;&nbsp;Verifikasi Diagnosa
                                               </a>
                                               <VerifiedYes />
                                             </div>
                                           </div>
+                                          <hr
+                                            style={{
+                                              height: "1px",
+                                              borderWidth: "0px",
+                                              color: "gray",
+                                              backgroundColor: "gray",
+                                              marginBottom: "0px",
+                                              marginTop: "0px",
+                                              marginStart: "0px",
+                                            }}
+                                          />
                                           <div className="d-grid">
                                             <button
-                                              className="btn btn-sm btn-primary mt-2 mb-2"
+                                              className="btn btn-sm btn-primary mt-4 mb-2"
                                               type="button"
                                               data-bs-toggle="modal"
                                               data-bs-target="#exampleModal3"
@@ -1015,7 +1037,7 @@ const ViewGambarPanoramikDokter = () => {
       </div>
     );
   } else {
-    return <div></div>
+    return <div></div>;
   }
 };
 

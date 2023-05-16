@@ -10585,6 +10585,16 @@ fieldset:disabled .btn {
   background-color: #5e72e4 !important;
 }
 
+.bg-radiographer {
+  background-color: #41AAAE !important;
+}
+
+.bg-doctor{
+ 
+  background-color: #FF5347 !important;
+  /* background-color: #E76F00 !important; */
+}
+
 .bg-secondary {
   background-color: #8392ab !important;
 }

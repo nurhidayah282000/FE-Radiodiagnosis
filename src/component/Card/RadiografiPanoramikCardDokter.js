@@ -64,7 +64,7 @@ const RadiografiPanoramikCardDokter = ({ data, baseURL }) => {
                 )}
               </div>
 
-              <div className="col-4 pe-0 text-end">
+              <div className="col-6 pe-2 text-end">
                 <Link
                   to={`/dokter-view-gambar-panoramik/${data.radiographics_id}`}
                 >
@@ -76,11 +76,11 @@ const RadiografiPanoramikCardDokter = ({ data, baseURL }) => {
                   </button>
                 </Link>
               </div>
-              <div className="col-2 ps-0">
+              {/* <div className="col-2 ps-0">
                 <button className="btn btn-outline-secondary btn-sm px-3 py-1 text-dark opacity-5 mb-0">
                   <i className="fa fa-ellipsis-v text-xs"></i>
                 </button>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

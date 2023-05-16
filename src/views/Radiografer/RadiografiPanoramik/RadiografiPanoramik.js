@@ -7,6 +7,7 @@ import axios from "axios";
 import { baseURL } from "../../../routes/Config";
 import WithAuthorization from "../../../utils/auth";
 import Paginations from "../../../component/Pagination/Paginations";
+import HeaderDataUser from "../../../component/Header/HeaderDataUser";
 
 const RadiografiPanoramik = () => {
   const auth = WithAuthorization(["radiographer"]);
@@ -59,17 +60,17 @@ const RadiografiPanoramik = () => {
             <SidebarRadiografer />
           </aside>
           <main className="main-content position-relative border-radius-lg">
-            <HeaderUser />
+            <HeaderDataUser/>
             <div className="container-fluid py-2">
               <div className="row mb-4">
                 <div className="col-12">
                   <div className="card mb-4">
                     <div className="card-header p-1">
                       <div className="row p-2">
-                        <div className="col card-header p-4 pt-3">
-                          <h6 className="font-weight-bolder">
+                        <div className="col-7 card-header p-4 pt-3">
+                          <h5 className="font-weight-bolder">
                             Radiografi Panoramik
-                          </h6>
+                          </h5>
                           <p className="text-xs text-secondary mb-0">
                             Hasil diagnosa pada tabel di bawah merupakan hasil
                             diagnosa
@@ -77,9 +78,26 @@ const RadiografiPanoramik = () => {
                             sementara yang perlu diverifikasi oleh dokter
                           </p>
                         </div>
-                        <div className="col card-header pt-3 text-end">
+                        <div class="col-3 text-end pt-3 pe-0">
+                          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group">
+                              <span class="input-group-text text-body border-radius-xl">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                              </span>
+                              <input
+                                type="text"
+                                class="form-control border-radius-xl"
+                                style={{height:"80%"}}
+                                size="50"
+                                placeholder="Nama Pasien, Kode Pasien..."
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-2 card-header pt-3 text-end">
                           <a
-                            className="btn bg-gradient-primary btn-sm mb-0"
+                            className="btn bg-gradient-primary btn-sm mb-0 pe-0 ps-0  border-radius-xl" 
+                            style={{height:"55%", width:"100%"}}
                             href="/radiografer-upload-gambar-panoramik"
                           >
                             <i className="fas fa-plus"></i>&nbsp;&nbsp;Upload
@@ -100,7 +118,7 @@ const RadiografiPanoramik = () => {
                             Oktober
                           </p> */}
 
-                          <div className="row-cols-md-3 ">
+                          <div className="row-cols-md-3 pt-0">
                             <div>
                               <select
                                 className=" ps-4 text-uppercase text-primary textr-start text-xxs font-weight-bolder border-0"

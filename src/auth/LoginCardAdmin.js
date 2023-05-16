@@ -116,6 +116,7 @@ const LoginCardAdmin = () => {
                       backgroundPosition: "center",
                     }}
                   >
+                     <span className="mask bg-gradient-primary opacity-5"></span>
                     <div>
                       <img
                         src="./assets/img/App/Logo_PENS.png"
@@ -126,7 +127,7 @@ const LoginCardAdmin = () => {
                         className="w-20 h-1"
                       ></img>
                     </div>
-                    <span className="mask bg-gradient-primary opacity-5"></span>
+                   
 
                     <h4 className="mt-0 text-white font-weight-bolder position-relative">
                       "PENS - UA Radiodiagnostic Report"

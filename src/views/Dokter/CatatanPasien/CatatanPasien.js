@@ -58,10 +58,26 @@ const CatatanPasien = () => {
                   <div className="card mb-4">
                     <div className="card-header pb-2 p-4">
                       <div className="row">
-                        <div className="col-6 d-flex align-items-center">
-                          <h6 className="mb-0 font-weight-bolder">
+                        <div className="col-9 d-flex align-items-center">
+                          <h5 className="mb-0 font-weight-bolder">
                             Catatan Pasien
-                          </h6>
+                          </h5>
+                        </div>
+                        <div class="col-3 text-end pe-2">
+                          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div class="input-group">
+                              <span class="input-group-text text-body border-radius-xl">
+                                <i class="fas fa-search" aria-hidden="true"></i>
+                              </span>
+                              <input
+                                type="text"
+                                class="form-control border-radius-xl"
+                                size="50"
+                                placeholder="Nama Pasien, Kode Pasien..."
+                                style={{height:"80%"}}
+                              />
+                            </div>
+                          </div>
                         </div>
                         {/* <div className="col-6 text-end">
                           <a
@@ -74,7 +90,7 @@ const CatatanPasien = () => {
                         </div> */}
                       </div>
                     </div>
-                    <div className="card-body px-0 pt-0 pb-2">
+                    <div className="card-body px-0 pt-0 pb-2 mt-2">
                       <div className="table-responsive p-0">
                         <table className="table align-items-center mb-0">
                           <thead>

@@ -114,8 +114,8 @@ const UploadGambarPanoramik = () => {
                               onChange={(e) => setPatientId(e.target.value)}
                               required
                             >
-                              <option selected disabled value=" " >
-                                Kode RM
+                              <option selected disabled value="">
+                                Koed RM
                               </option>
                               {patients.map((p) => (
                                 <option key={p.id} value={p.id}>
@@ -123,15 +123,17 @@ const UploadGambarPanoramik = () => {
                                 </option>
                               ))}
                             </select>
-                           {/* UI YANG BENAR */}
-                            {/* <p className="text-xs text-secondary mb-2">Kode RM</p>
+                            {/* UI YANG BENAR */}
+                            {/* <p className="text-xs text-secondary mb-2">
+                              Kode RM
+                            </p>
                             <form class="d-flex">
                               <input
                                 style={{ height: "0%", width: "100%" }}
                                 class="form-control me-2 text-sm"
                                 type="search"
                                 placeholder="Search"
-                                aria-label="Search"  
+                                aria-label="Search"
                               />
                               <button
                                 class="btn btn-outline-secondary btn-sm pe-3 ps-3"
@@ -145,14 +147,13 @@ const UploadGambarPanoramik = () => {
                             <p class="text-xs text-secondary mb-2">
                               Nama Pasien
                             </p>
-                            <form>
-                              <p
-                                style={{ width: "100%" }}
-                                class="form-control me-2 text-sm"
-                              >
-                                {patient?.fullname} 
-                              </p>
-                            </form>
+
+                            <p
+                              style={{ width: "100%", height: "50%" }}
+                              class="form-control me-2 text-sm"
+                            >
+                              {patient?.fullname}
+                            </p>
                           </div>
                           {/* <div class="col-3 me-0">
                             <p class="text-xs text-secondary mb-2">
