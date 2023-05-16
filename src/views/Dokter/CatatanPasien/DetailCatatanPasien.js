@@ -63,7 +63,7 @@ const DetailCatatanPasien = () => {
     setVerificator(verificatorDiagnosis);
   };
 
-  if(auth) {
+  if (auth) {
     return (
       <div>
         <body className="g-sidenav-show bg-gray-100">
@@ -96,8 +96,8 @@ const DetailCatatanPasien = () => {
                         </div>
                       </div>
                     </div>
-  
-                    <div className="card-body px-0 pb-2 pt-0 pe-3">
+
+                    <div className="card-body ps-0 pb-2 pt-0 pe-3">
                       <div className="row">
                         <div className="col pe-0">
                           <div className="card-header pb-0">
@@ -123,7 +123,7 @@ const DetailCatatanPasien = () => {
                                   {data.fullname}
                                 </p>
                               </div>
-                              <div className="col-3">
+                              <div className="col-4">
                                 <p className="text-xs text-secondary mb-1">
                                   Tanggal Verifikasi
                                 </p>
@@ -135,18 +135,35 @@ const DetailCatatanPasien = () => {
                                     : "-"}
                                 </p>
                               </div>
-                              <div className="col-5 ">
+                              <div className="col-2 text-end pe-0">
                                 <div className="d-flex justify-content-end mb-0">
-                                  <Link to={`/dokter-view-catatan-pasien/${id}`}>
+                                  <Link
+                                  // to={``}
+                                  >
+                                    <button className="btn btn-warning btn-sm mb-0">
+                                      <i
+                                        className="fa fa-print"
+                                        aria-hidden="true"
+                                      ></i>
+                                      &nbsp;&nbsp; Cetak Catatan
+                                    </button>
+                                  </Link>
+                                </div>
+                              </div>
+                              <div className="col-2 ps-3">
+                                <div className="d-flex justify-content-start mb-0">
+                                  <Link
+                                    to={`/dokter-view-catatan-pasien/${id}`}
+                                  >
                                     <button className="btn btn-primary btn-sm mb-0">
-                                      Lihat Catatan Pasien
+                                      Lihat Catatan
                                     </button>
                                   </Link>
                                 </div>
                               </div>
                             </div>
                           </div>
-  
+
                           <hr
                             style={{
                               height: "1px",
@@ -156,7 +173,7 @@ const DetailCatatanPasien = () => {
                               marginBottom: "0 px",
                             }}
                           />
-  
+
                           <div className="card-body pb-2 pt-0">
                             <div className="row justify-content-center">
                               <div className="col-md-12">
@@ -169,8 +186,18 @@ const DetailCatatanPasien = () => {
                                       <div className="card shadow-none mt-4 me-2 ms-2">
                                         <div className="card-body">
                                           <p className="text-sm font-weight-bolder text-dark">
-                                            Rekam Medik#12342
+                                            Rekam Medik#1
                                           </p>
+                                          <p class="text-xs text-secondary font-weight-bold">
+                                            Gambar Panoramik Gigi
+                                          </p>
+                                          <img
+                                            className=" img-fluid ps-0 pb-4 border-radius-xl"
+                                            // style={{borderBottomLeftRadius:"1rem" }}
+                                            src={`${
+                                              baseURL + data.panoramik_picture
+                                            }`}
+                                          />
                                           <div className="row">
                                             <div className="col-3">
                                               <p className="text-xs text-secondary font-weight-bold">
@@ -290,14 +317,17 @@ const DetailCatatanPasien = () => {
                                               </div>
                                             </div>
                                           </div>
-  
+
                                           <div className="row">
                                             <div className="col-12">
                                               <p className="text-xxs text-secondary font-weight-bold">
                                                 Interpretasi Manual
                                               </p>
                                               {manual.map((item, index) => (
-                                                <div key={index} className="row">
+                                                <div
+                                                  key={index}
+                                                  className="row"
+                                                >
                                                   <div className="col-2">
                                                     <ul className="ps-3">
                                                       <li className="text-xs">
@@ -344,7 +374,7 @@ const DetailCatatanPasien = () => {
       </div>
     );
   } else {
-    return <div></div>
+    return <div></div>;
   }
 };
 

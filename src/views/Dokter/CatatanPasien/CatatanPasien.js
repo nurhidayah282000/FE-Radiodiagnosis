@@ -7,6 +7,7 @@ import { baseURL } from "../../../routes/Config";
 import { Link } from "react-router-dom";
 import WithAuthorization from "../../../utils/auth";
 import Paginations from "../../../component/Pagination/Paginations";
+import HeaderDataUser from "../../../component/Header/HeaderDataUser";
 
 const CatatanPasien = () => {
   const auth = WithAuthorization(["doctor"]);
@@ -51,7 +52,7 @@ const CatatanPasien = () => {
             <SidebarDokter />
           </aside>
           <main className="main-content position-relative border-radius-lg">
-            <HeaderUser />
+            <HeaderDataUser />
             <div className="container-fluid py-2">
               <div className="row p-0">
                 <div className="col-12">

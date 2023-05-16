@@ -1,8 +1,9 @@
 import moment from "moment";
 import React from "react";
+import { baseURL } from "../../routes/Config";
 import Paginations from "../Pagination/Paginations";
 
-const HistoryCard = ({data}) => {
+const HistoryCard = ({ data }) => {
   return (
     <div>
       <div
@@ -13,9 +14,16 @@ const HistoryCard = ({data}) => {
           <div class="col-8">
             <div class="card shadow-none mt-4 me-2 ms-2">
               <div class="card-body">
-                <p class="text-sm font-weight-bolder text-dark">
-                  Histori#12342
+                <p class="text-sm font-weight-bolder text-dark">Histori#1</p>
+                <p class="text-xs text-secondary font-weight-bold">
+                  Gambar Panoramik Gigi
                 </p>
+                <img
+                  className=" img-fluid ps-0 pb-4 border-radius-xl"
+                  // style={{borderBottomLeftRadius:"1rem" }}
+                  src={`${baseURL + data.panoramik_picture}`}
+                />
+
                 <div class="row">
                   <div class="col-3">
                     <p class="text-xs text-secondary font-weight-bold">
@@ -24,7 +32,7 @@ const HistoryCard = ({data}) => {
                   </div>
                   <div class="col-4">
                     <p class="text-xs text-primary font-weight-bold">
-                    {moment(data.panoramik_upload_date).format('DD/MM/YYYY')}
+                      {moment(data.panoramik_upload_date).format("DD/MM/YYYY")}
                     </p>
                   </div>
                 </div>
@@ -125,8 +133,8 @@ const HistoryCard = ({data}) => {
                     </p>
                   </div>
                 </div>
-              </div>        
-            </div>      
+              </div>
+            </div>
           </div>
         </div>
       </div>

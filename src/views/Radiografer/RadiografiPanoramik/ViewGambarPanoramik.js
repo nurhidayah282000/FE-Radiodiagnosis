@@ -190,7 +190,7 @@ const ViewGambarPanoramik = () => {
                                   <div className="row d-flex justify-content-center mt-4">
                                     <div className="col-8">
                                       <p className="text-xs p-2 mb-0">
-                                        Gambar Radiografi
+                                        Gambar Panoramik Gigi
                                       </p>
 
                                       <img
