@@ -19,7 +19,7 @@ const HistoryCard = ({ data }) => {
                   Gambar Panoramik Gigi
                 </p>
                 <img
-                  className=" img-fluid ps-0 pb-4 border-radius-xl"
+                  className=" img-fluid ps-0 pb-4"
                   // style={{borderBottomLeftRadius:"1rem" }}
                   src={`${baseURL + data.panoramik_picture}`}
                 />
@@ -27,12 +27,24 @@ const HistoryCard = ({ data }) => {
                 <div class="row">
                   <div class="col-3">
                     <p class="text-xs text-secondary font-weight-bold">
-                      Tanggal Periksa
+                      Tanggal Upload 
                     </p>
                   </div>
                   <div class="col-4">
                     <p class="text-xs text-primary font-weight-bold">
                       {moment(data.panoramik_upload_date).format("DD/MM/YYYY")}
+                    </p>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-3">
+                    <p class="text-xs text-secondary font-weight-bold">
+                      Radiografer 
+                    </p>
+                  </div>
+                  <div class="col-4">
+                    <p class="text-xs text-primary font-weight-bold">
+                      {data.doctor_name ?? "-"}
                     </p>
                   </div>
                 </div>

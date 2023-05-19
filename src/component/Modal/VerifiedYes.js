@@ -17,18 +17,18 @@ const VerifiedYes = () => {
         >
           <div className="modal-content">
             <div className="modal-body">
-              <p className="ms-2 pt-0 mt-0 mb-0 font-weight-bold text-dark">
+              <p className="ms-2 pt-0 mt-0 mb-0 font-weight-bold text-dark text-start">
                 Verifikasi Diagnosa
               </p>
 
-              <p className="text-secondary text-xs ms-2 mt-2">
+              <p className="text-secondary text-xs ms-2 mt-2 text-start">
                 Radiodiagnosis Sistem
               </p>
               <div className="row">
-                <div className="col-3">
+                <div className="col-3 text-start">
                   <p className="text-xs text-dark ps-2">Gigi #11</p>
                 </div>
-                <div className="col-4 ps-0">
+                <div className="col-4 text-start ps-0">
                   <ul>
                     <li className="text-xs text-warning font-weight-bold">
                       Karies Gigi
@@ -47,7 +47,7 @@ const VerifiedYes = () => {
               </div>
               <div className="row">
                 <div className="col">
-                  <p className="text-dark text-xs ms-2 mt-0">
+                  <p className="text-dark text-start text-xs ms-2 mt-0">
                     Apakah hasil Diagnosa Sistem <br />
                     sudah sesuai?
                   </p>
@@ -105,7 +105,7 @@ const VerifiedYes = () => {
                   data-bs-dismiss="modal"
                 >
                   Batalkan
-                </button>
+                </button>&nbsp;
                 <button className="btn btn-primary btn-sm mb-0 pe-2 ps-2 pt-1 pb-1">
                   Selesai
                 </button>

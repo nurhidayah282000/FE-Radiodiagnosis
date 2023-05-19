@@ -16,7 +16,7 @@ const VerifiedNo = () => {
         >
           <div className="modal-content">
             <div className="modal-body">
-              <p className="ms-2 pt-0 mt-0 mb-0 font-weight-bold text-dark">
+              <p className="ms-2 pt-0 mt-0 mb-0 font-weight-bold text-dark ">
                 Verifikasi Diagnosa
               </p>
 
@@ -46,7 +46,7 @@ const VerifiedNo = () => {
               </div>
               <div className="row">
                 <div className="col">
-                  <p className="text-dark text-xs ms-2 mt-0">
+                  <p className="text-dark text-xs ms-2 mt-1">
                     Apakah hasil Diagnosa Sistem <br />
                     sudah sesuai?
                   </p>
@@ -62,7 +62,7 @@ const VerifiedNo = () => {
                       defaultChecked
                     />
                     <label
-                      className="btn btn-sm btn-outline-primary mt-0 mb-0 p-2 ps-3 pe-3 border-radius-xl"
+                      className="btn btn-sm btn-outline-primary  mb-0 p-2 ps-3 pe-3 border-radius-xl mt-1"
                       htmlFor="btnradio3"
                     >
                       Ya
@@ -76,7 +76,7 @@ const VerifiedNo = () => {
                       autoComplete="off"
                     />
                     <label
-                      className="btn btn-sm btn-outline-primary mt-0 mb-0 p-2 border-radius-xl"
+                      className="btn btn-sm btn-outline-primary mt-1 mb-0 p-2 border-radius-xl"
                       htmlFor="btnradio2"
                     >
                       Tidak
@@ -116,7 +116,7 @@ const VerifiedNo = () => {
                   data-bs-dismiss="modal"
                 >
                   Batalkan
-                </button>
+                </button>&nbsp;
                 <button className="btn btn-primary btn-sm mb-0 pe-2 ps-2 pt-1 pb-1">
                   Selesai
                 </button>

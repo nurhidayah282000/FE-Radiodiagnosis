@@ -6,6 +6,7 @@ import HeaderDataUser from "../../../component/Header/HeaderDataUser";
 import SidebarDokter from "../../../component/Sidebar/SidebarDokter";
 import { baseURL } from "../../../routes/Config";
 import WithAuthorization from "../../../utils/auth";
+import PaginationsHistory from "../../../component/Pagination/PaginationsHistory";
 
 const DetailCatatanPasien = () => {
   const auth = WithAuthorization(["doctor"]);
@@ -140,7 +141,7 @@ const DetailCatatanPasien = () => {
                                   <Link
                                   // to={``}
                                   >
-                                    <button className="btn btn-warning btn-sm mb-0">
+                                    <button className="btn text-white btn-sm mb-0" style={{backgroundColor:"#FF5347"}}>
                                       <i
                                         className="fa fa-print"
                                         aria-hidden="true"
@@ -366,6 +367,7 @@ const DetailCatatanPasien = () => {
                       </div>
                     </div>
                   </div>
+                  <PaginationsHistory/>
                 </div>
               </div>
             </div>

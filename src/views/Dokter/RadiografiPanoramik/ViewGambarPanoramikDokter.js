@@ -8,6 +8,9 @@ import VerifiedYes from "../../../component/Modal/VerifiedYes";
 import SidebarDokter from "../../../component/Sidebar/SidebarDokter";
 import { baseURL } from "../../../routes/Config";
 import WithAuthorization from "../../../utils/auth";
+import VerifiedResult from "../../../component/Modal/VerifiedResult";
+import ButtonVerified from "../../../component/Button/ButtonVerified";
+import ButtonVerifiedResult from "../../../component/Button/ButtonVerifiedResult";
 
 const ViewGambarPanoramikDokter = () => {
   const auth = WithAuthorization(["doctor"]);
@@ -104,7 +107,7 @@ const ViewGambarPanoramikDokter = () => {
                         </div>
                       </div>
                     </div>
-                      <div className="card-body px-0 pb-2 pt-0 pe-3">
+                    <div className="card-body px-0 pb-2 pt-0 pe-3">
                       <div className="row">
                         <div className="col pe-0">
                           <div className="card-header pb-0 ps-0">
@@ -923,19 +926,10 @@ const ViewGambarPanoramikDokter = () => {
                                             </div>
 
                                             <div className="col-6 text-end">
-                                              <a
-                                                className="btn btn-sm btn pe-0 ps-0 btn-success w-50 shadow-none"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal"
-                                              >
-                                                <img
-                                                  src="../assets/img/App/verification.png"
-                                                  className="w-10 h-1"
-                                                ></img>
-                                                &nbsp;&nbsp;Verifikasi Diagnosa
-                                              </a>
+                                             <ButtonVerifiedResult/>
                                             </div>
-                                            <VerifiedNo />
+                                            {/* <VerifiedNo /> */}
+                                            <VerifiedResult />
                                           </div>
                                           <div className="row">
                                             <div className="col-2">
@@ -951,17 +945,7 @@ const ViewGambarPanoramikDokter = () => {
                                               </p>
                                             </div>
                                             <div className="col-6 text-end">
-                                              <a
-                                                className="btn btn-sm btn pe-0 ps-0 btn-success w-50 shadow-none"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal"
-                                              >
-                                                <img
-                                                  src="../assets/img/App/verification.png"
-                                                  className="w-10 h-1"
-                                                ></img>
-                                                &nbsp;&nbsp;Verifikasi Diagnosa
-                                              </a>
+                                              <ButtonVerified/>
                                               <VerifiedYes />
                                             </div>
                                           </div>
@@ -979,17 +963,7 @@ const ViewGambarPanoramikDokter = () => {
                                               </p>
                                             </div>
                                             <div className="col-6 text-end">
-                                              <a
-                                                className="btn btn-sm btn pe-0 ps-0 btn-success w-50 shadow-none"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal"
-                                              >
-                                                <img
-                                                  src="../assets/img/App/verification.png"
-                                                  className="w-10 h-1"
-                                                ></img>
-                                                &nbsp;&nbsp;Verifikasi Diagnosa
-                                              </a>
+                                              <ButtonVerified />
                                               <VerifiedYes />
                                             </div>
                                           </div>

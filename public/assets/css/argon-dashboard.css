@@ -26953,4 +26953,20 @@ pre[class*="language-"] {
   }
 }
 
+.ast-separate-container .post-navigation {
+  border-top: 0;
+  padding-left: 3.33333em;
+  padding-right: 3.33333em;
+}
+
+.single .post-navigation {
+  margin: 0;
+  padding: 2em 0 0;
+  border-top: 1px solid #eee;
+}
+
+.site-main .comment-navigation, .site-main .post-navigation, .site-main .posts-navigation {
+  margin: 0 0 1.5em;
+  overflow: hidden;
+}
 /*# sourceMappingURL=dashboard-free.css.map */

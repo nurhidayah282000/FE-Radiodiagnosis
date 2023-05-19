@@ -8,6 +8,7 @@ import WithAuthorization from "../../../utils/auth";
 
 const UploadGambarPanoramik = () => {
   const auth = WithAuthorization(["radiographer"]);
+  const [radiographics, setRadiographics] = useState([]);
 
   const [data, setData] = useState({});
   const [patients, setPatients] = useState([]);
@@ -48,6 +49,13 @@ const UploadGambarPanoramik = () => {
         console.log(error);
       });
   }, [patientId]);
+
+  const handleChange = (e) => {
+    setData({
+      ...data,
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const handleUploadImage = (e) => {
     e.preventDefault();
@@ -154,6 +162,42 @@ const UploadGambarPanoramik = () => {
                             >
                               {patient?.fullname}
                             </p>
+                          </div>
+                          <div className="col-3">
+                            <p className="text-xs text-secondary mb-1">
+                              Radiografer
+                            </p>
+
+                            <select
+                              className="form-select form-select-sm"
+                              aria-label=".form-select-sm example"
+                              style={{ width: "70%" }}
+                              id="radiographic_id"
+                              name="radiographic_id"
+                              defaultValue={data.radiographic_id}
+                              onChange={handleChange}
+                              // onChange={(e) =>
+                              //   handleSubmit(e, e.target.value)
+                              // }
+                              // required
+                              // value={data.doctor_id}
+                              // onChange={(e) =>
+                              //   handleSubmit(e, e.target.value)
+                              // }
+                              // required
+                            >
+                              <option>Pilih Radiografer</option>
+                              {radiographics.map((radiographic) => {
+                                return (
+                                  <option
+                                    key={radiographic.id}
+                                    value={radiographic.id}
+                                  >
+                                    {radiographic.fullname}
+                                  </option>
+                                );
+                              })}
+                            </select>
                           </div>
                           {/* <div class="col-3 me-0">
                             <p class="text-xs text-secondary mb-2">
