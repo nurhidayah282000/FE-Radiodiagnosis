@@ -17,6 +17,8 @@ const DataUser = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [inputText, setInputText] = useState("");
   const [statusSearch, setStatusSearch] = useState(false);
+  const [doctor, setDoctor] = useState(0);
+  const [radiographer, setRadiographer] = useState(0);
 
   const handleChange = event => {
     setInputText(event.target.value);
@@ -24,9 +26,6 @@ const DataUser = () => {
   };
   
   let startIndex = (currentPage - 1) * 10;
-
-  let doctor = 0;
-  let radiographer = 0;
   const token = sessionStorage.getItem("token");
   // get data user use axios
   useEffect(() => {
@@ -42,6 +41,9 @@ const DataUser = () => {
           // setData(response.data.data)
           setSearchData(response.data.data)
           setPagination(response.data.meta)
+          setDoctor(response.data.meta.doctor)
+          setRadiographer(response.data.meta.radiographer);
+          console.log(response.data.meta)
         }
       })
       .catch((error) => {
@@ -62,6 +64,9 @@ const DataUser = () => {
         if (response.data.data) {
           setData(response.data.data);
           setPagination(response.data.meta);
+          setDoctor(response.data.meta.doctor)
+          setRadiographer(response.data.meta.radiographer);
+          console.log(response.data.meta)
         }
       })
       .catch((error) => {
@@ -93,17 +98,6 @@ const DataUser = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
-  // COUNT DOCTOR AND RADIOGRAPHER
-  console.log(startIndex)
-
-  data.map((profession) => {
-    if (profession.role === "doctor") {
-      doctor += 1;
-    } else if (profession.role === "radiographer") {
-      radiographer += 1;
-    }
-  });
 
   // END COUNT
 
@@ -203,7 +197,7 @@ const DataUser = () => {
                   <div className="card">
                     <div className="card-header pb-0 p-4">
                       <div className="row">
-                      <div className="col-7 d-flex align-items-center">
+                        <div className="col-7 d-flex align-items-center">
                           <h5 className="mb-0 font-weight-bolder">Data User</h5>
                         </div>
                         <div class="col-3 text-end pe-0">
@@ -227,10 +221,12 @@ const DataUser = () => {
 
                         <div className="col-2 text-end">
                           <a
-                            className="btn bg-gradient-primary btn-sm mb-0 border-radius-xl" style={{height:"95%"}}
+                            className="btn bg-gradient-primary btn-sm mb-0 border-radius-xl"
+                            style={{ height: "95%" }}
                             href="/add-data-user"
                           >
-                            <i className="fas fa-plus"></i>&nbsp;&nbsp;Tambah Data
+                            <i className="fas fa-plus"></i>&nbsp;&nbsp;Tambah
+                            Data
                           </a>
                         </div>
                       </div>
@@ -363,7 +359,7 @@ const DataUser = () => {
                                         type="button"
                                         className="btn btn-outline-danger btn-sm mb-0 me-2 pt-1 pb-1 ps-2 pe-2 text-danger"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal"
+                                        data-bs-target={`#exampleModal${item.id}`}
                                       >
                                         <i className="fa fa-trash text-danger"></i>
                                       </button>

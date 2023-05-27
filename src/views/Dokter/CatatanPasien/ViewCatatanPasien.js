@@ -171,7 +171,7 @@ const ViewCatatanPasien = () => {
                                       type="button"
                                       className="btn btn-outline-danger btn-sm mb-0 me-2 pt-1 pb-1 ps-2 pe-2 text-danger"
                                       data-bs-toggle="modal"
-                                      data-bs-target="#exampleModal"
+                                      data-bs-target={`#exampleModal${id}`}
                                     >
                                       <i className="fa fa-trash text-danger"></i>
                                     </button>
