@@ -333,7 +333,7 @@ const AddDataUser = () => {
                                   className="btn btn-primary btn-sm ms-auto"
                                   onClick={handleSubmit}
                                 >
-                                  Simpan Data
+                                  Daftar Akun
                                 </button>
                               </div>
                             </div>

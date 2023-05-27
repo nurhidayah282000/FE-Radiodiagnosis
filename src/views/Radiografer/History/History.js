@@ -12,30 +12,61 @@ const History = () => {
   const auth = WithAuthorization(["radiographer"]);
 
   const [data, setData] = useState([]);
+  const [searchData, setSearchData] = useState([]);
   const [pagination, setPagination] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
+  const [inputText, setInputText] = useState("");
+  const [statusSearch, setStatusSearch] = useState(false);
+
+  const handleChange = (event) => {
+    setInputText(event.target.value);
+    setStatusSearch(true);
+  };
 
   const token = sessionStorage.getItem("token");
 
   useEffect(() => {
-    axios
-      .get(`${baseURL}/radiographics/all?page=${currentPage}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        if (response.data.status === "fail") {
-          setData([]);
-        } else {
-          setData(response.data.data);
-          setPagination(response.data.meta);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [currentPage]);
+    if (inputText.length > 0) {
+      axios
+        .get(
+          `${baseURL}/radiographics/all?page=${currentPage}&search=${inputText}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          if (response.data.data) {
+            // setData(response.data.data)
+            setSearchData(response.data.data);
+            setPagination(response.data.meta);
+          }
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+        });
+    } else {
+      axios
+        .get(`${baseURL}/radiographics/all?page=${currentPage}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          if (response.data.status === "fail") {
+            setData([]);
+          } else {
+            setData(response.data.data);
+            setPagination(response.data.meta);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [currentPage, inputText]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -77,6 +108,8 @@ const History = () => {
                                 size="50"
                                 placeholder="Nama Pasien, Kode Pasien..."
                                 style={{ height: "80%" }}
+                                onChange={handleChange}
+                                value={inputText}
                               />
                             </div>
                           </div>
@@ -100,30 +133,55 @@ const History = () => {
                               </tr>
                             </thead>
                             <tbody>
-                              {data.map((item) => (
-                                <tr>
-                                  <td className="ps-0">
-                                    <p className="text-xs text-secondary mb-0 text-center">
-                                      {item.medic_number}
-                                    </p>
-                                  </td>
-                                  <td className="align-middle text-start text-sm ps-4">
-                                    <p className="text-xs text-secondary mb-0">
-                                      {item.fullname}
-                                    </p>
-                                  </td>
+                              {statusSearch == true
+                                ? searchData.map((item) => (
+                                    <tr>
+                                      <td className="ps-0">
+                                        <p className="text-xs text-secondary mb-0 text-center">
+                                          {item.medic_number}
+                                        </p>
+                                      </td>
+                                      <td className="align-middle text-start text-sm ps-4">
+                                        <p className="text-xs text-secondary mb-0">
+                                          {item.fullname}
+                                        </p>
+                                      </td>
 
-                                  <td className="align-middle text-sm">
-                                    <Link
-                                      to={`/radiografer-view-history/${item.radiographics_id}`}
-                                    >
-                                      <span className="btn mt-2 mb-2 shadow-none badge text-secondary badge-sm bg-gradient-white border border-gray">
-                                        Lihat History Pasien
-                                      </span>
-                                    </Link>
-                                  </td>
-                                </tr>
-                              ))}
+                                      <td className="align-middle text-sm">
+                                        <Link
+                                          to={`/radiografer-view-history/${item.radiographics_id}`}
+                                        >
+                                          <span className="btn mt-2 mb-2 shadow-none badge text-secondary badge-sm bg-gradient-white border border-gray">
+                                            Lihat History Pasien
+                                          </span>
+                                        </Link>
+                                      </td>
+                                    </tr>
+                                  ))
+                                : data.map((item) => (
+                                    <tr>
+                                      <td className="ps-0">
+                                        <p className="text-xs text-secondary mb-0 text-center">
+                                          {item.medic_number}
+                                        </p>
+                                      </td>
+                                      <td className="align-middle text-start text-sm ps-4">
+                                        <p className="text-xs text-secondary mb-0">
+                                          {item.fullname}
+                                        </p>
+                                      </td>
+
+                                      <td className="align-middle text-sm">
+                                        <Link
+                                          to={`/radiografer-view-history/${item.radiographics_id}`}
+                                        >
+                                          <span className="btn mt-2 mb-2 shadow-none badge text-secondary badge-sm bg-gradient-white border border-gray">
+                                            Lihat History Pasien
+                                          </span>
+                                        </Link>
+                                      </td>
+                                    </tr>
+                                  ))}
                             </tbody>
                           </table>
                         </div>

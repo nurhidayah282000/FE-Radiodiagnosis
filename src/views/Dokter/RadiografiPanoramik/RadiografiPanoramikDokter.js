@@ -12,30 +12,61 @@ const RadiografiPanoramikDokter = () => {
   const auth = WithAuthorization(["doctor"]);
 
   const [data, setData] = useState([]);
+  const [searchData, setSearchData] = useState([]);
   const [pagination, setPagination] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
+  const [inputText, setInputText] = useState("");
+  const [statusSearch, setStatusSearch] = useState(false);
+
+  const handleChange = (event) => {
+    setInputText(event.target.value);
+    setStatusSearch(true);
+  };
 
   const token = sessionStorage.getItem("token");
 
   useEffect(() => {
-    axios
-      .get(`${baseURL}/radiographics/all?page=${currentPage}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        if (response.data.status === "fail") {
-          setData([]);
-        } else {
-          setData(response.data.data);
-          setPagination(response.data.meta);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [currentPage]);
+    if (inputText.length > 0) {
+      axios
+        .get(
+          `${baseURL}/radiographics/all?page=${currentPage}&search=${inputText}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          if (response.data.data) {
+            // setData(response.data.data)
+            setSearchData(response.data.data);
+            setPagination(response.data.meta);
+          }
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+        });
+    } else {
+      axios
+        .get(`${baseURL}/radiographics/all?page=${currentPage}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          if (response.data.status === "fail") {
+            setData([]);
+          } else {
+            setData(response.data.data);
+            setPagination(response.data.meta);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [currentPage, inputText]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -53,7 +84,7 @@ const RadiografiPanoramikDokter = () => {
             <SidebarDokter />
           </aside>
           <main className="main-content position-relative border-radius-lg">
-            <HeaderDataUser/>
+            <HeaderDataUser />
             <div className="container-fluid py-2">
               <div className="row mb-4">
                 <div className="col-12">
@@ -82,7 +113,9 @@ const RadiografiPanoramikDokter = () => {
                                 class="form-control border-radius-xl"
                                 size="50"
                                 placeholder="Nama Pasien, Kode Pasien..."
-                                style={{height:"80%"}}
+                                style={{ height: "80%" }}
+                                onChange={handleChange}
+                                value={inputText}
                               />
                             </div>
                           </div>
@@ -120,17 +153,29 @@ const RadiografiPanoramikDokter = () => {
                     </div>
                     {/* <!-- </card> --> */}
                     <div className="row p-3 ">
-                      {data.map((item) => (
-                        <div
-                          key={item.radiographics_id}
-                          className="col-xl-4 col-sm-6 mb-xl-0 mb-4"
-                        >
-                          <RadiografiPanoramikCardDokter
-                            data={item}
-                            baseURL={baseURL}
-                          />
-                        </div>
-                      ))}
+                      {statusSearch == true
+                        ? searchData.map((item) => (
+                            <div
+                              key={item.radiographics_id}
+                              className="col-xl-4 col-sm-6 mb-xl-0 mb-4"
+                            >
+                              <RadiografiPanoramikCardDokter
+                                data={item}
+                                baseURL={baseURL}
+                              />
+                            </div>
+                          ))
+                        : data.map((item) => (
+                            <div
+                              key={item.radiographics_id}
+                              className="col-xl-4 col-sm-6 mb-xl-0 mb-4"
+                            >
+                              <RadiografiPanoramikCardDokter
+                                data={item}
+                                baseURL={baseURL}
+                              />
+                            </div>
+                          ))}
                     </div>
                   </div>
                   <Paginations

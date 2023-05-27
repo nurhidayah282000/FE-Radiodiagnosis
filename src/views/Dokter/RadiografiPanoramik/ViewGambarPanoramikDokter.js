@@ -11,6 +11,8 @@ import WithAuthorization from "../../../utils/auth";
 import VerifiedResult from "../../../component/Modal/VerifiedResult";
 import ButtonVerified from "../../../component/Button/ButtonVerified";
 import ButtonVerifiedResult from "../../../component/Button/ButtonVerifiedResult";
+import StatusUnverified from "../../../component/Alerts/StatusUnverified";
+import StatusVerified from "../../../component/Alerts/StatusVerified";
 
 const ViewGambarPanoramikDokter = () => {
   const auth = WithAuthorization(["doctor"]);
@@ -139,8 +141,8 @@ const ViewGambarPanoramikDokter = () => {
                                   Status
                                 </p>
                                 {data.panoramik_check_date === null ? (
-                                  <p className="text-xs font-weight-bolder mb-0 text-warning">
-                                    Belum Diverifikasi oleh Dokter
+                                  <p className="text-xs font-weight-bolder mb-0">
+                                    <StatusUnverified />
                                   </p>
                                 ) : (
                                   <p className="text-xs font-weight-bolder mb-0 text-success">
@@ -926,7 +928,7 @@ const ViewGambarPanoramikDokter = () => {
                                             </div>
 
                                             <div className="col-6 text-end">
-                                             <ButtonVerifiedResult/>
+                                              <ButtonVerifiedResult />
                                             </div>
                                             {/* <VerifiedNo /> */}
                                             <VerifiedResult />
@@ -945,7 +947,7 @@ const ViewGambarPanoramikDokter = () => {
                                               </p>
                                             </div>
                                             <div className="col-6 text-end">
-                                              <ButtonVerified/>
+                                              <ButtonVerified />
                                               <VerifiedYes />
                                             </div>
                                           </div>

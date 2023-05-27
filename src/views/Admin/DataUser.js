@@ -12,9 +12,17 @@ const DataUser = () => {
   const auth = WithAuthorization(["admin"]);
 
   const [data, setData] = useState([]);
+  const [searchData, setSearchData] = useState([]);
   const [pagination, setPagination] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
+  const [inputText, setInputText] = useState("");
+  const [statusSearch, setStatusSearch] = useState(false);
 
+  const handleChange = event => {
+    setInputText(event.target.value);
+    setStatusSearch(true);
+  };
+  
   let startIndex = (currentPage - 1) * 10;
 
   let doctor = 0;
@@ -22,7 +30,28 @@ const DataUser = () => {
   const token = sessionStorage.getItem("token");
   // get data user use axios
   useEffect(() => {
-    axios
+    if(inputText.length > 0) {
+      axios.get(`${baseURL}/users/all?page=${currentPage}&search=${inputText}`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        }
+      })
+      .then((response) => {
+        if (response.data.data) {
+          // setData(response.data.data)
+          setSearchData(response.data.data)
+          setPagination(response.data.meta)
+        }
+      })
+      .catch((error) => {
+        console.log(error.response.data)
+      })
+    }
+    else {
+      setStatusSearch(false);
+      setSearchData([]);
+      axios
       .get(`${baseURL}/users/all?page=${currentPage}`, {
         headers: {
           "Content-Type": "application/json",
@@ -38,7 +67,28 @@ const DataUser = () => {
       .catch((error) => {
         console.log(error.response.data);
       });
-  }, [currentPage]);
+
+      // axios
+      // .get(`${baseURL}/users/all}`, {
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //     Authorization: `Bearer ${token}`,
+      //   },
+      // })
+      // .then((response) => {
+      //   if (response.data.data) {
+      //     // setData(response.data.data);
+      //     // setPagination(response.data.meta);
+      //     console.log("banyak data user : " + response.data.length);
+      //   }
+      //   console.log("data user : " + response);
+      //   console.log("data user");
+      // })
+      // .catch((error) => {
+      //   console.log(error)
+      // });
+    }
+  }, [currentPage, inputText]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -164,7 +214,9 @@ const DataUser = () => {
                                 class="form-control border-radius-xl"
                                 size="50"
                                 placeholder="Nama User, NIP..."
-                                style={{ height: "80%" }}
+                                style={{height:"80%"}}
+                                onChange={handleChange}
+                                value={inputText}
                               />
                             </div>
                           </div>
@@ -209,7 +261,68 @@ const DataUser = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {data.map((item, index) => (
+                            {statusSearch == true ?
+                              searchData.map((item, index) => (
+                                <tr key={item.id}>
+                                  <td className="ps-0 align-middle text-center ">
+                                    <span className="text-xs text-secondary mb-0">
+                                      {startIndex + index + 1}
+                                    </span>
+                                  </td>
+                                  <td className="align-middle text-start text-sm ps-2 pe-0">
+                                    <span className="text-xs text-secondary mb-0 ">
+                                      {item.fullname}
+                                    </span>
+                                  </td>
+                                  <td className="align-middle text-start text-sm ps-0">
+                                    <span className="text-xs text-secondary mb-0">
+                                      {item.nip}
+                                    </span>
+                                  </td>
+                                  <td className="align-middle text-start ps-0">
+                                    <span className="text-secondary text-xs font-weight-bold">
+                                      {item.email}
+                                    </span>
+                                  </td>
+                                  <td className="align-middle text-start ps-0">
+                                    <span className="text-secondary text-xs font-weight-bold">
+                                      {item.role}
+                                    </span>
+                                  </td>
+                                  <td className="align-middle text-center text-sm pe-0">
+                                    <span className="text-xs text-secondary mb-0 ">
+                                      <div>
+                                        <Link
+                                          className="btn btn-outline-primary btn-sm mb-0 me-2 pt-1 pb-1 ps-2 pe-2 text-primary"
+                                          to={`/edit-data-user/${item.id}`}
+                                        >
+                                          <i className="fa fa-pencil text-primary"></i>
+                                        </Link>
+                                        <button
+                                          type="button"
+                                          className="btn btn-outline-danger btn-sm mb-0 me-2 pt-1 pb-1 ps-2 pe-2 text-danger"
+                                          data-bs-toggle="modal"
+                                          data-bs-target="#exampleModal"
+                                        >
+                                          <i className="fa fa-trash text-danger"></i>
+                                        </button>
+                                        <Link
+                                          to={`/view-data-user/${item.id}`}
+                                          className="btn btn-outline-secondary btn-sm mb-0 pt-1 pb-1 ps-2 pe-2 text-secondary"
+                                        >
+                                          <i className="fa fa-eye text-secondary"></i>
+                                        </Link>
+                                        <DeleteModal
+                                          userId={item.id}
+                                          handleDelete={handleDelete}
+                                        />
+                                      </div>
+                                    </span>
+                                  </td>
+                                </tr>
+                              ))
+                             : 
+                             data.map((item, index) => (
                               <tr key={item.id}>
                                 <td className="ps-0 align-middle text-center ">
                                   <span className="text-xs text-secondary mb-0">
