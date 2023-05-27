@@ -1,7 +1,6 @@
 import axios from "axios";
 import moment from "moment/moment";
 import { React, useState, useEffect } from "react";
-import HeaderUser from "../../../component/Header/HeaderUser";
 import SidebarDokter from "../../../component/Sidebar/SidebarDokter";
 import { baseURL } from "../../../routes/Config";
 import { Link } from "react-router-dom";
@@ -13,28 +12,59 @@ const CatatanPasien = () => {
   const auth = WithAuthorization(["doctor"]);
 
   const [data, setData] = useState([]);
+  const [searchData, setSearchData] = useState([]);
   const [pagination, setPagination] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
+  const [inputText, setInputText] = useState("");
+  const [statusSearch, setStatusSearch] = useState(false);
+
+  const handleChange = (event) => {
+    setInputText(event.target.value);
+    setStatusSearch(true);
+  };
 
   const token = sessionStorage.getItem("token");
 
   useEffect(() => {
-    axios
-      .get(`${baseURL}/radiographics/all?page=${currentPage}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        if (response.data.data) {
-          setData(response.data.data);
-          setPagination(response.data.meta);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [currentPage]);
+    if (inputText.length > 0) {
+      axios
+        .get(
+          `${baseURL}/radiographics/all?page=${currentPage}&search=${inputText}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          if (response.data.data) {
+            // setData(response.data.data)
+            setSearchData(response.data.data);
+            setPagination(response.data.meta);
+          }
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+        });
+    } else {
+      axios
+        .get(`${baseURL}/radiographics/all?page=${currentPage}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          if (response.data.data) {
+            setData(response.data.data);
+            setPagination(response.data.meta);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [currentPage, inputText]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -75,7 +105,9 @@ const CatatanPasien = () => {
                                 class="form-control border-radius-xl"
                                 size="50"
                                 placeholder="Nama Pasien, Kode Pasien..."
-                                style={{height:"80%"}}
+                                style={{ height: "80%" }}
+                                onChange={handleChange}
+                                value={inputText}
                               />
                             </div>
                           </div>
@@ -115,7 +147,8 @@ const CatatanPasien = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {data.map((item) => (
+                          {statusSearch == true
+                              ? searchData.map((item) => (
                               <tr key={item.radiographics_id}>
                                 <td className="ps-0">
                                   <p className="text-xs text-secondary mb-0 text-center">
@@ -141,7 +174,43 @@ const CatatanPasien = () => {
                                       : "-"}
                                   </p>
                                 </td>
-
+                                <td className="align-middle text-sm">
+                                  <Link
+                                    to={`/dokter-detail-catatan-pasien/${item.radiographics_id}`}
+                                  >
+                                    <span className="btn mt-2 mb-2 shadow-none badge text-secondary badge-sm bg-gradient-white border border-gray">
+                                      Lihat Detail
+                                    </span>
+                                  </Link>
+                                </td>
+                              </tr>
+                            ))
+                            :data.map((item) => (
+                              <tr key={item.radiographics_id}>
+                                <td className="ps-0">
+                                  <p className="text-xs text-secondary mb-0 text-center">
+                                    {item.medic_number}
+                                  </p>
+                                </td>
+                                <td className="align-middle text-start text-sm ps-4">
+                                  <p className="text-xs text-secondary mb-0">
+                                    {item.fullname}
+                                  </p>
+                                </td>
+                                <td className="align-middle text-start text-sm ps-2">
+                                  <p className="text-xs text-secondary mb-0">
+                                    {item.doctor_name ?? "-"}
+                                  </p>
+                                </td>
+                                <td className="align-middle text-start text-sm ps-2">
+                                  <p className="text-xs text-secondary mb-0">
+                                    {item.panoramik_check_date !== null
+                                      ? moment(
+                                          item.panoramik_check_date
+                                        ).format("DD/MM/YYYY")
+                                      : "-"}
+                                  </p>
+                                </td>
                                 <td className="align-middle text-sm">
                                   <Link
                                     to={`/dokter-detail-catatan-pasien/${item.radiographics_id}`}

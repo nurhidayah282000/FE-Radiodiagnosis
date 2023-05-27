@@ -7,8 +7,7 @@ const LoginAdmin = () => {
 
   if(!auth) {
     return (
-      <div>
-    
+      <div>    
         <LoginCardAdmin/>
       </div>
     );

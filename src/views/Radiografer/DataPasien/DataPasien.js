@@ -13,33 +13,65 @@ const DataPasien = () => {
   const auth = WithAuthorization(["radiographer"]);
 
   const [data, setData] = useState([]);
+  const [searchData, setSearchData] = useState([]);
   const [pagination, setPagination] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
+  const [inputText, setInputText] = useState("");
+  const [statusSearch, setStatusSearch] = useState(false);
+
+  const handleChange = (event) => {
+    setInputText(event.target.value);
+    setStatusSearch(true);
+  };
 
   const token = sessionStorage.getItem("token");
+  // get data user use axios
   useEffect(() => {
-    axios
-      .get(`${baseURL}/patients/all?page=${currentPage}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
-        if (response.data.data) {
-          setData(response.data.data);
-          setPagination(response.data.meta);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [currentPage]);
+    if (inputText.length > 0) {
+      axios
+        .get(
+          `${baseURL}/patients/all?page=${currentPage}&search=${inputText}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
+        .then((response) => {
+          if (response.data.data) {
+            // setData(response.data.data)
+            setSearchData(response.data.data);
+            setPagination(response.data.meta);
+          }
+        })
+        .catch((error) => {
+          console.log(error.response.data);
+        });
+    } else {
+      axios
+        .get(`${baseURL}/patients/all?page=${currentPage}`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          if (response.data.data) {
+            setData(response.data.data);
+            setPagination(response.data.meta);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [currentPage, inputText]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-  if(auth) {
+  if (auth) {
     return (
       <div>
         <body className="g-sidenav-show bg-gray-100">
@@ -52,9 +84,9 @@ const DataPasien = () => {
           </aside>
           <main className="main-content position-relative border-radius-lg">
             {/* <HeaderUser /> */}
-            <HeaderDataUser/>
+            <HeaderDataUser />
             <div className="container-fluid py-2">
-            <div class="row">
+              <div class="row">
                 <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 ">
                   <div class="card">
                     <div class="card-body p-3">
@@ -178,7 +210,9 @@ const DataPasien = () => {
                     <div className="card-header pb-2 p-4">
                       <div className="row">
                         <div className="col-7 d-flex align-items-center">
-                          <h5 className="mb-0 font-weight-bolder">Data Pasien</h5>
+                          <h5 className="mb-0 font-weight-bolder">
+                            Data Pasien
+                          </h5>
                         </div>
                         <div class="col-3 text-end pe-0">
                           <div class="ms-md-auto pe-md-3 d-flex align-items-center">
@@ -191,17 +225,21 @@ const DataPasien = () => {
                                 class="form-control border-radius-xl"
                                 size="50"
                                 placeholder="Nama Pasien, Kode Pasien..."
-                                style={{height:"80%"}}
+                                style={{ height: "80%" }}
+                                onChange={handleChange}
+                                value={inputText}
                               />
                             </div>
                           </div>
                         </div>
                         <div className="col-2 text-end ps-0">
                           <a
-                            className="btn bg-gradient-primary btn-sm mb-0 border-radius-xl" style={{height:"95%"}}
+                            className="btn bg-gradient-primary btn-sm mb-0 border-radius-xl"
+                            style={{ height: "95%" }}
                             href="/radiografer-add-data-pasien"
                           >
-                            <i className="fas fa-plus"></i>&nbsp;&nbsp;Tambah Data
+                            <i className="fas fa-plus"></i>&nbsp;&nbsp;Tambah
+                            Data
                           </a>
                         </div>
                       </div>
@@ -233,50 +271,95 @@ const DataPasien = () => {
                             </tr>
                           </thead>
                           <tbody>
-                            {data.map((item) => (
-                              <tr key={item.id}>
-                                <td className="ps-0">
-                                  <p className="text-xs text-secondary mb-0 text-center">
-                                    {item.medic_number}
-                                  </p>
-                                </td>
-                                <td className="align-middle text-start text-sm ps-2">
-                                  <p className="text-xs text-secondary mb-0">
-                                    {item.fullname}
-                                  </p>
-                                </td>
-                                <td className="align-middle text-start text-sm ps-2">
-                                  <p className="text-xs text-secondary mb-0">
-                                    {item.radiographer}
-                                  </p>
-                                </td>
-                                <td className="align-middle text-start ps-0">
-                                  <span className="text-secondary text-xs font-weight-bold">
-                                    {moment(
-                                      item.updated_at ?? item.created_at
-                                    ).format("D-MM-YYYY")}
-                                  </span>
-                                </td>
-                                <td className="align-middle text-start text-sm">
-                                  <span
-                                    className={`badge border-radius-xl badge-sm bg-gradient-${
-                                      item.status ? "warning" : "success"
-                                    }`}
-                                  >
-                                    {item.status ? "Proses" : "Selesai"}
-                                  </span>
-                                </td>
-                                <td className="align-middle text-start text-sm pe-0 text-center">
-                                  <Link
-                                    to={`/radiografer-view-data-pasien/${item.id}`}
-                                  >
-                                    <span className="badge text-secondary badge-sm bg-gradient-white border border-gray">
-                                      Lihat Detail
-                                    </span>
-                                  </Link>
-                                </td>
-                              </tr>
-                            ))}
+                            {statusSearch == true
+                              ? searchData.map((item) => (
+                                  <tr key={item.id}>
+                                    <td className="ps-0">
+                                      <p className="text-xs text-secondary mb-0 text-center">
+                                        {item.medic_number}
+                                      </p>
+                                    </td>
+                                    <td className="align-middle text-start text-sm ps-2">
+                                      <p className="text-xs text-secondary mb-0">
+                                        {item.fullname}
+                                      </p>
+                                    </td>
+                                    <td className="align-middle text-start text-sm ps-2">
+                                      <p className="text-xs text-secondary mb-0">
+                                        {item.radiographer}
+                                      </p>
+                                    </td>
+                                    <td className="align-middle text-start ps-0">
+                                      <span className="text-secondary text-xs font-weight-bold">
+                                        {moment(
+                                          item.updated_at ?? item.created_at
+                                        ).format("D-MM-YYYY")}
+                                      </span>
+                                    </td>
+                                    <td className="align-middle text-start text-sm">
+                                      <span
+                                        className={`badge border-radius-xl badge-sm bg-gradient-${
+                                          item.status ? "warning" : "success"
+                                        }`}
+                                      >
+                                        {item.status ? "Proses" : "Selesai"}
+                                      </span>
+                                    </td>
+                                    <td className="align-middle text-start text-sm pe-0 text-center">
+                                      <Link
+                                        to={`/radiografer-view-data-pasien/${item.id}`}
+                                      >
+                                        <span className="badge text-secondary badge-sm bg-gradient-white border border-gray">
+                                          Lihat Detail
+                                        </span>
+                                      </Link>
+                                    </td>
+                                  </tr>
+                                ))
+                              : data.map((item) => (
+                                  <tr key={item.id}>
+                                    <td className="ps-0">
+                                      <p className="text-xs text-secondary mb-0 text-center">
+                                        {item.medic_number}
+                                      </p>
+                                    </td>
+                                    <td className="align-middle text-start text-sm ps-2">
+                                      <p className="text-xs text-secondary mb-0">
+                                        {item.fullname}
+                                      </p>
+                                    </td>
+                                    <td className="align-middle text-start text-sm ps-2">
+                                      <p className="text-xs text-secondary mb-0">
+                                        {item.radiographer}
+                                      </p>
+                                    </td>
+                                    <td className="align-middle text-start ps-0">
+                                      <span className="text-secondary text-xs font-weight-bold">
+                                        {moment(
+                                          item.updated_at ?? item.created_at
+                                        ).format("D-MM-YYYY")}
+                                      </span>
+                                    </td>
+                                    <td className="align-middle text-start text-sm">
+                                      <span
+                                        className={`badge border-radius-xl badge-sm bg-gradient-${
+                                          item.status ? "warning" : "success"
+                                        }`}
+                                      >
+                                        {item.status ? "Proses" : "Selesai"}
+                                      </span>
+                                    </td>
+                                    <td className="align-middle text-start text-sm pe-0 text-center">
+                                      <Link
+                                        to={`/radiografer-view-data-pasien/${item.id}`}
+                                      >
+                                        <span className="badge text-secondary badge-sm bg-gradient-white border border-gray">
+                                          Lihat Detail
+                                        </span>
+                                      </Link>
+                                    </td>
+                                  </tr>
+                                ))}
                           </tbody>
                         </table>
                       </div>
@@ -294,9 +377,8 @@ const DataPasien = () => {
         </body>
       </div>
     );
-  }
-  else {
-    return <div></div>
+  } else {
+    return <div></div>;
   }
 };
 

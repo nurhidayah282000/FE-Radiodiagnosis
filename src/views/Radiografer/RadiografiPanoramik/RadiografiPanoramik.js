@@ -1,5 +1,4 @@
 import { React, useState, useEffect } from "react";
-import HeaderUser from "../../../component/Header/HeaderUser";
 import SidebarRadiografer from "../../../component/Sidebar/SidebarRadiografer";
 import RadiografiPanoramikCard from "../../../component/Card/RadiografiPanoramikCard";
 import UploadGambarSuccess from "../../../component/Alerts/UploadGambarSuccess";
@@ -13,9 +12,17 @@ const RadiografiPanoramik = () => {
   const auth = WithAuthorization(["radiographer"]);
 
   const [data, setData] = useState([]);
+  const [searchData, setSearchData] = useState([]);
   const [month, setMonth] = useState(undefined);
   const [pagination, setPagination] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
+  const [inputText, setInputText] = useState("");
+  const [statusSearch, setStatusSearch] = useState(false);
+
+  const handleChange = (event) => {
+    setInputText(event.target.value);
+    setStatusSearch(true);
+  };
 
   const token = sessionStorage.getItem("token");
 
@@ -23,6 +30,10 @@ const RadiografiPanoramik = () => {
     let url = `${baseURL}/radiographics/all?page=${currentPage}`;
     if (month !== undefined) {
       url = `${baseURL}/radiographics/all?month=${month}&page=${currentPage}`;
+    }
+
+    if(inputText !== undefined) {
+      url += `&search=${inputText}`
     }
 
     axios
@@ -42,7 +53,7 @@ const RadiografiPanoramik = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [month, currentPage]);
+  }, [month, currentPage, inputText]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -60,7 +71,7 @@ const RadiografiPanoramik = () => {
             <SidebarRadiografer />
           </aside>
           <main className="main-content position-relative border-radius-lg">
-            <HeaderDataUser/>
+            <HeaderDataUser />
             <div className="container-fluid py-2">
               <div className="row mb-4">
                 <div className="col-12">
@@ -87,17 +98,19 @@ const RadiografiPanoramik = () => {
                               <input
                                 type="text"
                                 class="form-control border-radius-xl"
-                                style={{height:"80%"}}
+                                style={{ height: "80%" }}
                                 size="50"
                                 placeholder="Nama Pasien, Kode Pasien..."
+                                onChange={handleChange}
+                                value={inputText}
                               />
                             </div>
                           </div>
                         </div>
                         <div className="col-2 card-header pt-3 text-end">
                           <a
-                            className="btn bg-gradient-primary btn-sm mb-0 pe-0 ps-0  border-radius-xl" 
-                            style={{height:"55%", width:"100%"}}
+                            className="btn bg-gradient-primary btn-sm mb-0 pe-0 ps-0  border-radius-xl"
+                            style={{ height: "55%", width: "100%" }}
                             href="/radiografer-upload-gambar-panoramik"
                           >
                             <i className="fas fa-plus"></i>&nbsp;&nbsp;Upload
