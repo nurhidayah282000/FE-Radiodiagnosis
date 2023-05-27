@@ -29,7 +29,7 @@ const CatatanPasien = () => {
     if (inputText.length > 0) {
       axios
         .get(
-          `${baseURL}/radiographics/all?page=${currentPage}&search=${inputText}`,
+          `${baseURL}/radiographics/histories/all?page=${currentPage}&search=${inputText}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const CatatanPasien = () => {
         });
     } else {
       axios
-        .get(`${baseURL}/radiographics/all?page=${currentPage}`, {
+        .get(`${baseURL}/radiographics/histories/all?page=${currentPage}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -149,7 +149,7 @@ const CatatanPasien = () => {
                           <tbody>
                           {statusSearch == true
                               ? searchData.map((item) => (
-                              <tr key={item.radiographics_id}>
+                              <tr key={item.id}>
                                 <td className="ps-0">
                                   <p className="text-xs text-secondary mb-0 text-center">
                                     {item.medic_number}
@@ -176,7 +176,7 @@ const CatatanPasien = () => {
                                 </td>
                                 <td className="align-middle text-sm">
                                   <Link
-                                    to={`/dokter-detail-catatan-pasien/${item.radiographics_id}`}
+                                    to={`/dokter-detail-catatan-pasien/${item.id}`}
                                   >
                                     <span className="btn mt-2 mb-2 shadow-none badge text-secondary badge-sm bg-gradient-white border border-gray">
                                       Lihat Detail
@@ -186,7 +186,7 @@ const CatatanPasien = () => {
                               </tr>
                             ))
                             :data.map((item) => (
-                              <tr key={item.radiographics_id}>
+                              <tr key={item.id}>
                                 <td className="ps-0">
                                   <p className="text-xs text-secondary mb-0 text-center">
                                     {item.medic_number}
@@ -213,7 +213,7 @@ const CatatanPasien = () => {
                                 </td>
                                 <td className="align-middle text-sm">
                                   <Link
-                                    to={`/dokter-detail-catatan-pasien/${item.radiographics_id}`}
+                                    to={`/dokter-detail-catatan-pasien/${item.id}`}
                                   >
                                     <span className="btn mt-2 mb-2 shadow-none badge text-secondary badge-sm bg-gradient-white border border-gray">
                                       Lihat Detail

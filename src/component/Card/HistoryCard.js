@@ -44,7 +44,7 @@ const HistoryCard = ({ data }) => {
                   </div>
                   <div class="col-4">
                     <p class="text-xs text-primary font-weight-bold">
-                      {data.doctor_name ?? "-"}
+                      {data.radiographer_name ?? "-"}
                     </p>
                   </div>
                 </div>

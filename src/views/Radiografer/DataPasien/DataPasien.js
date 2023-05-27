@@ -86,28 +86,28 @@ const DataPasien = () => {
             {/* <HeaderUser /> */}
             <HeaderDataUser />
             <div className="container-fluid py-2">
-              <div class="row">
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4 ">
-                  <div class="card">
-                    <div class="card-body p-3">
-                      <div class="row ">
-                        <div class="col-8 ">
-                          <div class="numbers ">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold d-flex justify-content-left">
+              <div className="row">
+                <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4 ">
+                  <div className="card">
+                    <div className="card-body p-3">
+                      <div className="row ">
+                        <div className="col-8 ">
+                          <div className="numbers ">
+                            <p className="text-sm mb-0 text-uppercase font-weight-bold d-flex justify-content-left">
                               Pasien
                             </p>
-                            <h2 class="font-weight-bolder d-flex justify-content-left">
-                              {/* {doctor} */}180
+                            <h2 className="font-weight-bolder d-flex justify-content-left">
+                              {pagination.total}
                             </h2>
-                            <p class="text-sm mb-0  font-weight-bold d-flex justify-content-left">
+                            <p className="text-sm mb-0  font-weight-bold d-flex justify-content-left">
                               Keseluruhan Pasien
                             </p>
                           </div>
                         </div>
-                        <div class="col-4 text-end">
-                          <div class="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
+                        <div className="col-4 text-end">
+                          <div className="icon icon-shape bg-gradient-danger shadow-danger text-center rounded-circle">
                             <i
-                              class="ni ni-badge text-lg opacity-10"
+                              className="ni ni-badge text-lg opacity-10"
                               aria-hidden="true"
                             ></i>
                           </div>
@@ -116,27 +116,27 @@ const DataPasien = () => {
                     </div>
                   </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                  <div class="card">
-                    <div class="card-body p-3">
-                      <div class="row">
-                        <div class="col-8 ">
-                          <div class="numbers ">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold d-flex justify-content-left">
+                <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                  <div className="card">
+                    <div className="card-body p-3">
+                      <div className="row">
+                        <div className="col-8 ">
+                          <div className="numbers ">
+                            <p className="text-sm mb-0 text-uppercase font-weight-bold d-flex justify-content-left">
                               Pasien
                             </p>
-                            <h2 class="font-weight-bolder d-flex justify-content-left">
-                              {/* {radiographer} */}5
+                            <h2 className="font-weight-bolder d-flex justify-content-left">
+                              {pagination.verified}
                             </h2>
-                            <p class="text-sm mb-0  font-weight-bold d-flex justify-content-left">
+                            <p className="text-sm mb-0  font-weight-bold d-flex justify-content-left">
                               Telah Diverifikasi
                             </p>
                           </div>
                         </div>
-                        <div class="col-4 text-end">
-                          <div class="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
+                        <div className="col-4 text-end">
+                          <div className="icon icon-shape bg-gradient-success shadow-success text-center rounded-circle">
                             <i
-                              class="ni ni-sound-wave text-lg opacity-10"
+                              className="ni ni-sound-wave text-lg opacity-10"
                               aria-hidden="true"
                             ></i>
                           </div>
@@ -145,27 +145,27 @@ const DataPasien = () => {
                     </div>
                   </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                  <div class="card">
-                    <div class="card-body p-3">
-                      <div class="row">
-                        <div class="col-8 ">
-                          <div class="numbers ">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold d-flex justify-content-left">
+                <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                  <div className="card">
+                    <div className="card-body p-3">
+                      <div className="row">
+                        <div className="col-8 ">
+                          <div className="numbers ">
+                            <p className="text-sm mb-0 text-uppercase font-weight-bold d-flex justify-content-left">
                               Pasien
                             </p>
-                            <h2 class="font-weight-bolder d-flex justify-content-left">
-                              {/* {radiographer} */}12
+                            <h2 className="font-weight-bolder d-flex justify-content-left">
+                              {pagination.thisDay}
                             </h2>
-                            <p class="text-sm mb-0  font-weight-bold d-flex justify-content-left">
+                            <p className="text-sm mb-0  font-weight-bold d-flex justify-content-left">
                               Panoramik Hari Ini
                             </p>
                           </div>
                         </div>
-                        <div class="col-4 text-end">
-                          <div class="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
+                        <div className="col-4 text-end">
+                          <div className="icon icon-shape bg-gradient-primary shadow-primary text-center rounded-circle">
                             <i
-                              class="ni ni-chart-pie-35 text-lg opacity-10"
+                              className="ni ni-chart-pie-35 text-lg opacity-10"
                               aria-hidden="true"
                             ></i>
                           </div>
@@ -174,27 +174,27 @@ const DataPasien = () => {
                     </div>
                   </div>
                 </div>
-                <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
-                  <div class="card">
-                    <div class="card-body p-3">
-                      <div class="row">
-                        <div class="col-8 ">
-                          <div class="numbers ">
-                            <p class="text-sm mb-0 text-uppercase font-weight-bold d-flex justify-content-left">
+                <div className="col-xl-3 col-sm-6 mb-xl-0 mb-4">
+                  <div className="card">
+                    <div className="card-body p-3">
+                      <div className="row">
+                        <div className="col-8 ">
+                          <div className="numbers ">
+                            <p className="text-sm mb-0 text-uppercase font-weight-bold d-flex justify-content-left">
                               Pasien
                             </p>
-                            <h2 class="font-weight-bolder d-flex justify-content-left">
-                              {/* {radiographer} */}20
+                            <h2 className="font-weight-bolder d-flex justify-content-left">
+                              {pagination.thisMonth}
                             </h2>
-                            <p class="text-sm mb-0  font-weight-bold d-flex justify-content-left">
+                            <p className="text-sm mb-0  font-weight-bold d-flex justify-content-left">
                               Panoramik Bulan Ini
                             </p>
                           </div>
                         </div>
-                        <div class="col-4 text-end">
-                          <div class="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
+                        <div className="col-4 text-end">
+                          <div className="icon icon-shape bg-gradient-warning shadow-warning text-center rounded-circle">
                             <i
-                              class="ni ni-chart-bar-32 text-lg opacity-10"
+                              className="ni ni-chart-bar-32 text-lg opacity-10"
                               aria-hidden="true"
                             ></i>
                           </div>
@@ -214,15 +214,15 @@ const DataPasien = () => {
                             Data Pasien
                           </h5>
                         </div>
-                        <div class="col-3 text-end pe-0">
-                          <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                            <div class="input-group">
-                              <span class="input-group-text text-body border-radius-xl">
-                                <i class="fas fa-search" aria-hidden="true"></i>
+                        <div className="col-3 text-end pe-0">
+                          <div className="ms-md-auto pe-md-3 d-flex align-items-center">
+                            <div className="input-group">
+                              <span className="input-group-text text-body border-radius-xl">
+                                <i className="fas fa-search" aria-hidden="true"></i>
                               </span>
                               <input
                                 type="text"
-                                class="form-control border-radius-xl"
+                                className="form-control border-radius-xl"
                                 size="50"
                                 placeholder="Nama Pasien, Kode Pasien..."
                                 style={{ height: "80%" }}
@@ -299,10 +299,14 @@ const DataPasien = () => {
                                     <td className="align-middle text-start text-sm">
                                       <span
                                         className={`badge border-radius-xl badge-sm bg-gradient-${
-                                          item.status ? "warning" : "success"
+                                          item.panoramik_check_date == null
+                                            ? "warning"
+                                            : "success"
                                         }`}
                                       >
-                                        {item.status ? "Proses" : "Selesai"}
+                                        {item.panoramik_check_date == null
+                                          ? "Proses"
+                                          : "Selesai"}
                                       </span>
                                     </td>
                                     <td className="align-middle text-start text-sm pe-0 text-center">
@@ -343,10 +347,10 @@ const DataPasien = () => {
                                     <td className="align-middle text-start text-sm">
                                       <span
                                         className={`badge border-radius-xl badge-sm bg-gradient-${
-                                          item.status ? "warning" : "success"
+                                          item.panoramik_check_date === null ? "warning" : "success"
                                         }`}
                                       >
-                                        {item.status ? "Proses" : "Selesai"}
+                                        {item.panoramik_check_date === null ? "Proses" : "Selesai"}
                                       </span>
                                     </td>
                                     <td className="align-middle text-start text-sm pe-0 text-center">

@@ -94,7 +94,7 @@ const DataPasienDokter = () => {
                               Pasien
                             </p>
                             <h2 class="font-weight-bolder d-flex justify-content-left">
-                              {/* {doctor} */}180
+                              {pagination.total}
                             </h2>
                             <p class="text-sm mb-0  font-weight-bold d-flex justify-content-left">
                               Keseluruhan Pasien
@@ -123,7 +123,7 @@ const DataPasienDokter = () => {
                               Pasien
                             </p>
                             <h2 class="font-weight-bolder d-flex justify-content-left">
-                              {/* {radiographer} */}5
+                              {pagination.verified}
                             </h2>
                             <p class="text-sm mb-0  font-weight-bold d-flex justify-content-left">
                               Telah Diverifikasi
@@ -152,7 +152,7 @@ const DataPasienDokter = () => {
                               Pasien
                             </p>
                             <h2 class="font-weight-bolder d-flex justify-content-left">
-                              {/* {radiographer} */}12
+                              {pagination.unverified}
                             </h2>
                             <p class="text-sm mb-0  font-weight-bold d-flex justify-content-left">
                               Belum Diverifikasi
@@ -181,7 +181,7 @@ const DataPasienDokter = () => {
                               Pasien
                             </p>
                             <h2 class="font-weight-bolder d-flex justify-content-left">
-                              {/* {radiographer} */}20
+                              {pagination.thisMonth}
                             </h2>
                             <p class="text-sm mb-0  font-weight-bold d-flex justify-content-left">
                               Verifikasi Bulan Ini
@@ -330,10 +330,10 @@ const DataPasienDokter = () => {
                                     <td className="align-middle text-start text-sm">
                                       <span
                                         class={`badge border-radius-xl badge-sm bg-gradient-${
-                                          item.status ? "success" : "warning"
+                                          item.panoramik_check_date !== null ? "success" : "warning"
                                         }`}
                                       >
-                                        {item.status ? "Selesai" : "Proses"}
+                                        {item.panoramik_check_date !== null ? "Selesai" : "Proses"}
                                       </span>
                                     </td>
                                     <td className="align-middle text-start text-sm pe-0 text-center">

@@ -21,7 +21,7 @@ const DetailCatatanPasien = () => {
 
   useEffect(() => {
     axios
-      .get(`${baseURL}/radiographics/detail/${id}`, {
+      .get(`${baseURL}/radiographics/history/detail/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -29,7 +29,7 @@ const History = () => {
     if (inputText.length > 0) {
       axios
         .get(
-          `${baseURL}/radiographics/all?page=${currentPage}&search=${inputText}`,
+          `${baseURL}/radiographics/histories/all?page=${currentPage}&search=${inputText}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -49,7 +49,7 @@ const History = () => {
         });
     } else {
       axios
-        .get(`${baseURL}/radiographics/all?page=${currentPage}`, {
+        .get(`${baseURL}/radiographics/histories/all?page=${currentPage}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -149,7 +149,7 @@ const History = () => {
 
                                       <td className="align-middle text-sm">
                                         <Link
-                                          to={`/radiografer-view-history/${item.radiographics_id}`}
+                                          to={`/radiografer-view-history/${item.id}`}
                                         >
                                           <span className="btn mt-2 mb-2 shadow-none badge text-secondary badge-sm bg-gradient-white border border-gray">
                                             Lihat History Pasien
@@ -173,7 +173,7 @@ const History = () => {
 
                                       <td className="align-middle text-sm">
                                         <Link
-                                          to={`/radiografer-view-history/${item.radiographics_id}`}
+                                          to={`/radiografer-view-history/${item.id}`}
                                         >
                                           <span className="btn mt-2 mb-2 shadow-none badge text-secondary badge-sm bg-gradient-white border border-gray">
                                             Lihat History Pasien

@@ -20,7 +20,7 @@ const UploadGambarPanoramik = () => {
 
   useEffect(() => {
     axios
-      .get(`${baseURL}/patients/all`, {
+      .get(`${baseURL}/patient/all`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -28,6 +28,21 @@ const UploadGambarPanoramik = () => {
       .then((response) => {
         if (response.data.data) {
           setPatients(response.data.data);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axios
+      .get(`${baseURL}/radiographics/users/all`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        if (response.data.data) {
+          setRadiographics(response.data.data);
         }
       })
       .catch((error) => {
@@ -61,6 +76,7 @@ const UploadGambarPanoramik = () => {
     e.preventDefault();
     const formData = new FormData();
     formData.append("panoramikPicture", selectedFile);
+    formData.append("radiographerId", data.radiographic_id);
 
     axios
       .post(`${baseURL}/radiographics/patients/${patientId}`, formData, {
