@@ -7,6 +7,7 @@ import DeleteModal from "../../../component/Modal/DeleteModal";
 import SidebarRadiografer from "../../../component/Sidebar/SidebarRadiografer";
 import { baseURL } from "../../../routes/Config";
 import WithAuthorization from "../../../utils/auth";
+import StatusUnverified from "../../../component/Alerts/StatusUnverified";
 
 const ViewGambarPanoramik = () => {
   const auth = WithAuthorization(["radiographer"]);
@@ -158,8 +159,8 @@ const ViewGambarPanoramik = () => {
                                 </p>
                                 <p className="text-xs font-weight-bolder mb-0 text-warning">
                                   {data.panoramik_check_date === null ? (
-                                    <p className="text-xs font-weight-bolder mb-0 text-warning">
-                                      Belum Diverifikasi oleh Dokter
+                                    <p className="text-xs font-weight-bolder mb-0">
+                                      <StatusUnverified/>
                                     </p>
                                   ) : (
                                     <p className="text-xs font-weight-bolder mb-0 text-success">
