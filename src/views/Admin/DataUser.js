@@ -17,6 +17,8 @@ const DataUser = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [inputText, setInputText] = useState("");
   const [statusSearch, setStatusSearch] = useState(false);
+  const [doctor, setDoctor] = useState(0);
+  const [radiographer, setRadiographer] = useState(0);
 
   const handleChange = event => {
     setInputText(event.target.value);
@@ -24,9 +26,6 @@ const DataUser = () => {
   };
   
   let startIndex = (currentPage - 1) * 10;
-
-  let doctor = 0;
-  let radiographer = 0;
   const token = sessionStorage.getItem("token");
   // get data user use axios
   useEffect(() => {
@@ -42,6 +41,9 @@ const DataUser = () => {
           // setData(response.data.data)
           setSearchData(response.data.data)
           setPagination(response.data.meta)
+          setDoctor(response.data.meta.doctor)
+          setRadiographer(response.data.meta.radiographer);
+          console.log(response.data.meta)
         }
       })
       .catch((error) => {
@@ -62,6 +64,9 @@ const DataUser = () => {
         if (response.data.data) {
           setData(response.data.data);
           setPagination(response.data.meta);
+          setDoctor(response.data.meta.doctor)
+          setRadiographer(response.data.meta.radiographer);
+          console.log(response.data.meta)
         }
       })
       .catch((error) => {
@@ -93,14 +98,6 @@ const DataUser = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
-  data.map((profession) => {
-    if (profession.role === "doctor") {
-      doctor += 1;
-    } else if (profession.role === "radiographer") {
-      radiographer += 1;
-    }
-  });
 
   // END COUNT
 
