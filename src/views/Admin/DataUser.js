@@ -14,7 +14,7 @@ const DataUser = () => {
   const [data, setData] = useState([]);
   const [pagination, setPagination] = useState({});
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   let startIndex = (currentPage - 1) * 10;
 
   let doctor = 0;
@@ -43,9 +43,6 @@ const DataUser = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
-
-  // COUNT DOCTOR AND RADIOGRAPHER
-  console.log(startIndex)
 
   data.map((profession) => {
     if (profession.role === "doctor") {
@@ -153,7 +150,7 @@ const DataUser = () => {
                   <div className="card">
                     <div className="card-header pb-0 p-4">
                       <div className="row">
-                      <div className="col-7 d-flex align-items-center">
+                        <div className="col-7 d-flex align-items-center">
                           <h5 className="mb-0 font-weight-bolder">Data User</h5>
                         </div>
                         <div class="col-3 text-end pe-0">
@@ -167,7 +164,7 @@ const DataUser = () => {
                                 class="form-control border-radius-xl"
                                 size="50"
                                 placeholder="Nama User, NIP..."
-                                style={{height:"80%"}}
+                                style={{ height: "80%" }}
                               />
                             </div>
                           </div>
@@ -175,10 +172,12 @@ const DataUser = () => {
 
                         <div className="col-2 text-end">
                           <a
-                            className="btn bg-gradient-primary btn-sm mb-0 border-radius-xl" style={{height:"95%"}}
+                            className="btn bg-gradient-primary btn-sm mb-0 border-radius-xl"
+                            style={{ height: "95%" }}
                             href="/add-data-user"
                           >
-                            <i className="fas fa-plus"></i>&nbsp;&nbsp;Tambah Data
+                            <i className="fas fa-plus"></i>&nbsp;&nbsp;Tambah
+                            Data
                           </a>
                         </div>
                       </div>
@@ -250,7 +249,7 @@ const DataUser = () => {
                                         type="button"
                                         className="btn btn-outline-danger btn-sm mb-0 me-2 pt-1 pb-1 ps-2 pe-2 text-danger"
                                         data-bs-toggle="modal"
-                                        data-bs-target="#exampleModal"
+                                        data-bs-target={`#exampleModal${item.id}`}
                                       >
                                         <i className="fa fa-trash text-danger"></i>
                                       </button>

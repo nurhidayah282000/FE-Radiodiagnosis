@@ -27,7 +27,6 @@ const WithAuthorization = (allowedRoles) => {
 
   if (!loading) {
     if (allowedRoles.includes(data.role)) {
-      console.log(data.role);
       return true;
     } else {
       console.log(allowedRoles.includes(data.role));

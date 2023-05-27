@@ -6,7 +6,7 @@ const DeleteModal = ({ userId, handleDelete }) => {
       {/* <!-- Modal --> */}
       <div
         className="modal fade"
-        id="exampleModal"
+        id={`exampleModal${userId}`}
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
