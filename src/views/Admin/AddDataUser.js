@@ -4,6 +4,7 @@ import HeaderAdmin from "../../component/Header/HeaderAdmin";
 import SidebarAdmin from "../../component/Sidebar/SidebarAdmin";
 import { baseURL } from "../../routes/Config";
 import WithAuthorization from "../../utils/auth";
+import RegistrasiConfirm from "../../component/Modal/RegistrasiConfirm";
 
 const AddDataUser = () => {
   const auth = WithAuthorization(["admin"]);
@@ -332,10 +333,13 @@ const AddDataUser = () => {
                                   type="button"
                                   className="btn btn-primary btn-sm ms-auto"
                                   onClick={handleSubmit}
+                                  data-bs-toggle="modal"
+                                  data-bs-target="#exampleModal2"
                                 >
                                   Daftar Akun
-                                </button>
+                                </button>                             
                               </div>
+                              <RegistrasiConfirm/>
                             </div>
                           </div>
                         </div>
