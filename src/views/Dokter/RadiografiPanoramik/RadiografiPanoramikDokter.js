@@ -130,14 +130,14 @@ const RadiografiPanoramikDokter = () => {
                           </p>
                         </di>
                         <di className="col-md-2">
-                          <p className="ps-0 btn btn-link m-0 text-secondary text-xs font-weight-bold">
+                          <button className="ps-0 btn btn-link m-0 text-secondary text-xs font-weight-bold">
                             Telah Diverifikasi
-                          </p>
+                          </button>
                         </di>
                         <di className="col-md-2">
-                          <p className="btn btn-link m-0 ps-0  text-secondary text-xs font-weight-bold">
+                          <button className="btn btn-link m-0 ps-0  text-secondary text-xs font-weight-bold">
                             Belum Diverifikasi
-                          </p>
+                          </button>
                         </di>
                         <hr
                           style={{

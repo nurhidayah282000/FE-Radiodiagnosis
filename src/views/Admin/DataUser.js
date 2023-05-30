@@ -192,7 +192,7 @@ const DataUser = () => {
                   </div>
                 </div>
               </div>
-              <div className="row mt-4">
+              <div className="row mt-4 mb-2">
                 <div className="col-12">
                   <div className="card">
                     <div className="card-header pb-0 p-4">

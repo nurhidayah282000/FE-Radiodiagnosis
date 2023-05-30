@@ -4,6 +4,8 @@ import VerifiedNo from "./VerifiedNo";
 const VerifiedYes = () => {
   return (
     <div>
+      <VerifiedNo />
+
       <div
         className="modal fade"
         id="exampleModal"
@@ -84,7 +86,6 @@ const VerifiedYes = () => {
                     >
                       Tidak
                     </label>
-                    {/* <VerifiedNo /> */}
                   </div>
                 </div>
                 <hr
@@ -105,7 +106,8 @@ const VerifiedYes = () => {
                   data-bs-dismiss="modal"
                 >
                   Batalkan
-                </button>&nbsp;
+                </button>
+                &nbsp;
                 <button className="btn btn-primary btn-sm mb-0 pe-2 ps-2 pt-1 pb-1">
                   Selesai
                 </button>

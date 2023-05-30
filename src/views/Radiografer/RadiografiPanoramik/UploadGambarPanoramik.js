@@ -130,43 +130,28 @@ const UploadGambarPanoramik = () => {
                         <div className="row mt-3">
                           <div className="col-2">
                             <p class="text-xs text-secondary mb-2">Kode RM</p>
-                            <select
-                              className="form-select form-select-sm"
-                              aria-label=".form-select-sm example"
-                              style={{ width: "70%", height: "50%" }}
-                              name="patientId"
+                            <input
+                              type="text"
+                              class="form-control"
+                              placeholder="Kode RM"
+                              list="list-timezone"
+                              id="input-datalist"
                               onChange={(e) => setPatientId(e.target.value)}
-                              required
-                            >
-                              <option selected disabled value="">
-                                Koed RM
-                              </option>
+                            />
+                            <datalist id="list-timezone">
                               {patients.map((p) => (
                                 <option key={p.id} value={p.id}>
                                   {p.medic_number}
                                 </option>
                               ))}
-                            </select>
-                            {/* UI YANG BENAR */}
-                            {/* <p className="text-xs text-secondary mb-2">
-                              Kode RM
-                            </p>
-                            <form class="d-flex">
-                              <input
-                                style={{ height: "0%", width: "100%" }}
-                                class="form-control me-2 text-sm"
-                                type="search"
-                                placeholder="Search"
-                                aria-label="Search"
-                              />
-                              <button
-                                class="btn btn-outline-secondary btn-sm pe-3 ps-3"
-                                type="submit"
-                              >
-                                <i class="fas fa-search" aria-hidden="true"></i>
-                              </button>
-                            </form> */}
+                            </datalist>
                           </div>
+
+                          {/* <script>
+                            document.addEventListener('DOMContentLoaded', e => {" "}
+                            {$("#input-datalist").autocomplete()}, false);
+                          </script> */}
+
                           <div class="col-3">
                             <p class="text-xs text-secondary mb-2">
                               Nama Pasien
@@ -180,27 +165,17 @@ const UploadGambarPanoramik = () => {
                             </p>
                           </div>
                           <div className="col-3">
-                            <p className="text-xs text-secondary mb-1">
+                            <p className="text-xs text-secondary mb-2">
                               Radiografer
                             </p>
-
                             <select
                               className="form-select form-select-sm"
                               aria-label=".form-select-sm example"
-                              style={{ width: "70%" }}
+                              style={{ height: "50%", width: "100%" }}
                               id="radiographic_id"
                               name="radiographic_id"
                               defaultValue={data.radiographic_id}
                               onChange={handleChange}
-                              // onChange={(e) =>
-                              //   handleSubmit(e, e.target.value)
-                              // }
-                              // required
-                              // value={data.doctor_id}
-                              // onChange={(e) =>
-                              //   handleSubmit(e, e.target.value)
-                              // }
-                              // required
                             >
                               <option>Pilih Radiografer</option>
                               {radiographics.map((radiographic) => {
@@ -215,36 +190,6 @@ const UploadGambarPanoramik = () => {
                               })}
                             </select>
                           </div>
-                          {/* <div class="col-3 me-0">
-                            <p class="text-xs text-secondary mb-2">
-                              Radiografer
-                            </p>
-                            <select
-                              className="form-select form-select-sm"
-                              aria-label=".form-select-sm example"
-                              style={{ width: "70%", height: "50%" }}
-                              name="patientId"
-                              onChange={(e) => setPatientId(e.target.value)}
-                              required
-                            >
-                              <option selected disabled value="">
-                                Kode RM
-                              </option>
-                              {patients.map((p) => (
-                                <option key={p.id} value={p.id}>
-                                  {p.medic_number}
-                                </option>
-                              ))}
-                            </select>
-                          </div> */}
-                          {/* <div className="col-3">
-                            <p className="text-xs text-secondary mb-2">
-                              Nama Pasien
-                            </p>
-                            <p className="text-xs font-weight-bolder mb-0">
-                              {patient?.fullname}
-                            </p>
-                          </div> */}
                         </div>
                       </div>
                       <hr

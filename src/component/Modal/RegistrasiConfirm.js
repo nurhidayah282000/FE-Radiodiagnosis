@@ -1,6 +1,6 @@
 import React from "react";
 
-const RegistrasiConfirm = () => {
+const RegistrasiConfirm = ({password}) => {
   return (
     <div>
       <div
@@ -14,13 +14,13 @@ const RegistrasiConfirm = () => {
           <div className="modal-content">
             <div className="modal-body text-center">
               <img
-                src="../assets/img/App/verification.png"
-                className="w-10 h-1"
+                src="../assets/img/App/check.png"
+                className="w-10 h-2 text-success"
               ></img>
-              <p className="pt-0 mt-4 mb-0 font-weight-bold text center">
+              <p className="pt-0 mt-2 mb-0 font-weight-bold text center">
                 Registrasi Akun Berhasil
               </p>
-              <p className="text-secondary text-sm ">password: vagbsiuxgaiui</p>
+              <p className="text-secondary text-sm ">password: {password}</p>
             </div>
           </div>
         </div>

@@ -5,7 +5,7 @@ const VerifiedResult = () => {
     <div>
       <div
         className="modal fade"
-        id="exampleModal2"
+        id="exampleModal3"
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"

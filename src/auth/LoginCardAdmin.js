@@ -1,8 +1,10 @@
 import axios from "axios";
 import { React, useState } from "react";
 import { baseURL } from "../routes/Config";
+import EditDataSucces from "../component/Alerts/EditDataSucces";
 
 const LoginCardAdmin = () => {
+  const [error, setError] = useState("")
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -21,16 +23,16 @@ const LoginCardAdmin = () => {
       .post(`${baseURL}/authentications`, data)
       .then((response) => {
         const { data } = response.data;
-        if (data.role === "admin") {
+        if (data?.role === "admin") {
           sessionStorage.setItem("token", data.accessToken);
           window.location.href = "/data-user";
         } else {
           sessionStorage.removeItem("token");
         }
+        setError('Login Gagal')
       })
-      .catch((error) => {
-        console.log(error.response.data);
-        console.log('login gagal');
+      .catch((err) => {
+        setError("Login Gagal")
       });
   };
 
@@ -104,6 +106,9 @@ const LoginCardAdmin = () => {
                           Sign up
                         </a>
                       </p>
+                      {/* { error === "" ? "" : <EditDataSucces
+                      message={error}
+                      /> } */}
                     </div>
                   </div>
                 </div>

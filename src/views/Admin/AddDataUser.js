@@ -9,6 +9,7 @@ import RegistrasiConfirm from "../../component/Modal/RegistrasiConfirm";
 const AddDataUser = () => {
   const auth = WithAuthorization(["admin"]);
 
+  const [password, setPassword] = useState("0")
   const [data, setData] = useState({
     fullname: "",
     nip: "",
@@ -42,7 +43,7 @@ const AddDataUser = () => {
       })
       .then((response) => {
         // window.location.href = "/data-user";
-        console.log(response.data)
+        setPassword(response.data.newPassword)
       })
       .catch((error) => {
         console.log(error.response.data);
@@ -339,7 +340,9 @@ const AddDataUser = () => {
                                   Daftar Akun
                                 </button>                             
                               </div>
-                              <RegistrasiConfirm/>
+                              <RegistrasiConfirm
+                              password={password}
+                              />
                             </div>
                           </div>
                         </div>
