@@ -80,7 +80,7 @@ const UploadGambarPanoramik = () => {
   patients.forEach((element) => {
     let optionData = {
       id: element.id,
-      label: element.medic_number + " - " + element.fullname,
+      label: element.medic_number ,
     };
     option.push(optionData);
   });
