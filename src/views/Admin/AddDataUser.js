@@ -22,6 +22,8 @@ const AddDataUser = () => {
     city: "",
     post_code: "",
   });
+  const [province, setProvince] = useState([]);
+  const [city, setCity] = useState([]);
 
   const token = sessionStorage.getItem("token");
 
@@ -30,6 +32,50 @@ const AddDataUser = () => {
       ...data,
       [e.target.name]: e.target.value,
     });
+  };
+
+  axios
+    .get("https://muh-arga.github.io/api-wilayah-indonesia/api/provinces.json")
+    .then((response) => {
+      setProvince(response.data);
+    });
+
+  const handleProvinceChange = (e) => {
+    e.preventDefault();
+
+    axios
+      .get(
+        `https://muh-arga.github.io/api-wilayah-indonesia/api/province/${e.target.value}.json`
+      )
+      .then((response) => {
+        setData({
+          ...data,
+          province: response.data.name,
+        });
+      });
+
+    axios
+      .get(
+        `https://muh-arga.github.io/api-wilayah-indonesia/api/regencies/${e.target.value}.json`
+      )
+      .then((response) => {
+        setCity(response.data);
+      });
+  };
+
+  const handleCityChange = (e) => {
+    e.preventDefault();
+
+    axios
+      .get(
+        `https://muh-arga.github.io/api-wilayah-indonesia/api/regency/${e.target.value}.json`
+      )
+      .then((response) => {
+        setData({
+          ...data,
+          city: response.data.name,
+        });
+      });
   };
 
   const handleSubmit = async (e) => {
@@ -281,24 +327,14 @@ const AddDataUser = () => {
                                       className="form-select"
                                       id="province"
                                       defaultValue={data.province}
-                                      onChange={handleChange}
+                                      onChange={handleProvinceChange}
                                     >
                                       <option>Provinsi</option>
-                                      <option value="Sulawesi Selatan">
-                                        Sulawesi Selatan
-                                      </option>
-                                      <option value="Jawa Timur">
-                                        Jawa Timur
-                                      </option>
-                                      <option value="Jawa Tengah">
-                                        Jawa Tengah
-                                      </option>
-                                      <option value="DKI Jakarta">
-                                        DKI Jakarta
-                                      </option>
-                                      <option value="Jawa Barat">
-                                        Jawa Barat
-                                      </option>
+                                      {province.map((province) => (
+                                        <option value={province.id}>
+                                          {province.name}
+                                        </option>
+                                      ))}
                                     </select>
                                   </div>
                                 </div>
@@ -316,14 +352,14 @@ const AddDataUser = () => {
                                       className="form-select"
                                       id="city"
                                       defaultValue={data.city}
-                                      onChange={handleChange}
+                                      onChange={handleCityChange}
                                     >
                                       <option>Kota</option>
-                                      <option value="Makassar">Makassar</option>
-                                      <option value="Surabaya">Surabaya</option>
-                                      <option value="Semarang">Semarang</option>
-                                      <option value="Jakarta">Jakarta</option>
-                                      <option value="Banten">Banten</option>
+                                      {city.map((city) => (
+                                        <option value={city.id}>
+                                          {city.name}
+                                        </option>
+                                      ))}
                                     </select>
                                   </div>
                                 </div>
