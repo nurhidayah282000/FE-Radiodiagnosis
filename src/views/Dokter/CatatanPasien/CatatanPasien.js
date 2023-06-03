@@ -26,21 +26,22 @@ const CatatanPasien = () => {
   const token = sessionStorage.getItem("token");
 
   useEffect(() => {
+    let url = `${baseURL}/radiographics/histories/all?page=${currentPage}`;
+    if (inputText !== undefined) {
+      url += `&search=${inputText}`;
+    }
     if (inputText.length > 0) {
       axios
-        .get(
-          `${baseURL}/radiographics/histories/all?page=${currentPage}&search=${inputText}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
+        .get(`${url}`, {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        })
         .then((response) => {
           if (response.data.data) {
             // setData(response.data.data)
-            setSearchData(response.data.data);
+            setData(response.data.data);
             setPagination(response.data.meta);
           }
         })
@@ -125,105 +126,71 @@ const CatatanPasien = () => {
                     </div>
                     <div className="card-body px-0 pt-0 pb-2 mt-2">
                       <div className="table-responsive p-0">
-                        <table className="table align-items-center mb-0">
-                          <thead>
-                            <tr>
-                              <th className="w-4 col-1 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0 pe-0">
-                                Kode RM
-                              </th>
-                              <th className="col-3 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
-                                Nama Pasien
-                              </th>
-                              <th className="col-4 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                Dokter Verfikator
-                              </th>
-                              <th className="col-2 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                Tanggal Verifikasi
-                              </th>
+                        {data.length > 0 ? (
+                          <table className="table align-items-center mb-0">
+                            <thead>
+                              <tr>
+                                <th className="w-4 col-1 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-0 pe-0">
+                                  Kode RM
+                                </th>
+                                <th className="col-3 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-4">
+                                  Nama Pasien
+                                </th>
+                                <th className="col-4 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                  Dokter Verfikator
+                                </th>
+                                <th className="col-2 text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
+                                  Tanggal Verifikasi
+                                </th>
 
-                              <th className="col-2 text-uppercase text-secondary text-start text-xxs font-weight-bolder opacity-7 ps-2 pe-0">
-                                Aksi
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                          {statusSearch == true
-                              ? searchData.map((item) => (
-                              <tr key={item.id}>
-                                <td className="ps-0">
-                                  <p className="text-xs text-secondary mb-0 text-center">
-                                    {item.medic_number}
-                                  </p>
-                                </td>
-                                <td className="align-middle text-start text-sm ps-4">
-                                  <p className="text-xs text-secondary mb-0">
-                                    {item.fullname}
-                                  </p>
-                                </td>
-                                <td className="align-middle text-start text-sm ps-2">
-                                  <p className="text-xs text-secondary mb-0">
-                                    {item.doctor_name ?? "-"}
-                                  </p>
-                                </td>
-                                <td className="align-middle text-start text-sm ps-2">
-                                  <p className="text-xs text-secondary mb-0">
-                                    {item.panoramik_check_date !== null
-                                      ? moment(
-                                          item.panoramik_check_date
-                                        ).format("DD/MM/YYYY")
-                                      : "-"}
-                                  </p>
-                                </td>
-                                <td className="align-middle text-sm">
-                                  <Link
-                                    to={`/dokter-detail-catatan-pasien/${item.id}`}
-                                  >
-                                    <span className="btn mt-2 mb-2 shadow-none badge text-secondary badge-sm bg-gradient-white border border-gray">
-                                      Lihat Detail
-                                    </span>
-                                  </Link>
-                                </td>
+                                <th className="col-2 text-uppercase text-secondary text-start text-xxs font-weight-bolder opacity-7 ps-2 pe-0">
+                                  Aksi
+                                </th>
                               </tr>
-                            ))
-                            :data.map((item) => (
-                              <tr key={item.id}>
-                                <td className="ps-0">
-                                  <p className="text-xs text-secondary mb-0 text-center">
-                                    {item.medic_number}
-                                  </p>
-                                </td>
-                                <td className="align-middle text-start text-sm ps-4">
-                                  <p className="text-xs text-secondary mb-0">
-                                    {item.fullname}
-                                  </p>
-                                </td>
-                                <td className="align-middle text-start text-sm ps-2">
-                                  <p className="text-xs text-secondary mb-0">
-                                    {item.doctor_name ?? "-"}
-                                  </p>
-                                </td>
-                                <td className="align-middle text-start text-sm ps-2">
-                                  <p className="text-xs text-secondary mb-0">
-                                    {item.panoramik_check_date !== null
-                                      ? moment(
-                                          item.panoramik_check_date
-                                        ).format("DD/MM/YYYY")
-                                      : "-"}
-                                  </p>
-                                </td>
-                                <td className="align-middle text-sm">
-                                  <Link
-                                    to={`/dokter-detail-catatan-pasien/${item.id}`}
-                                  >
-                                    <span className="btn mt-2 mb-2 shadow-none badge text-secondary badge-sm bg-gradient-white border border-gray">
-                                      Lihat Detail
-                                    </span>
-                                  </Link>
-                                </td>
-                              </tr>
-                            ))}
-                          </tbody>
-                        </table>
+                            </thead>
+                            <tbody>
+                              {data.map((item) => (
+                                <tr key={item.id}>
+                                  <td className="ps-0">
+                                    <p className="text-xs text-secondary mb-0 text-center">
+                                      {item.medic_number}
+                                    </p>
+                                  </td>
+                                  <td className="align-middle text-start text-sm ps-4">
+                                    <p className="text-xs text-secondary mb-0">
+                                      {item.fullname}
+                                    </p>
+                                  </td>
+                                  <td className="align-middle text-start text-sm ps-2">
+                                    <p className="text-xs text-secondary mb-0">
+                                      {item.doctor_name ?? "-"}
+                                    </p>
+                                  </td>
+                                  <td className="align-middle text-start text-sm ps-2">
+                                    <p className="text-xs text-secondary mb-0">
+                                      {item.panoramik_check_date !== null
+                                        ? moment(
+                                            item.panoramik_check_date
+                                          ).format("DD/MM/YYYY")
+                                        : "-"}
+                                    </p>
+                                  </td>
+                                  <td className="align-middle text-sm">
+                                    <Link
+                                      to={`/dokter-detail-catatan-pasien/${item.id}`}
+                                    >
+                                      <span className="btn mt-2 mb-2 shadow-none badge text-secondary badge-sm bg-gradient-white border border-gray">
+                                        Lihat Detail
+                                      </span>
+                                    </Link>
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        ) : (
+                          <center>Belum ada data</center>
+                        )}
                       </div>
                     </div>
                   </div>
