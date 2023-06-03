@@ -105,7 +105,7 @@ const UploadUlangGambarPanoramik = () => {
                         <div class="col-3">
                           <p class="text-xs text-secondary mb-0">Radiografer</p>
                           <p class="text-xs font-weight-bolder mb-0">
-                            Drg. Ramadhan
+                            {data.radiographer_name}
                           </p>
                         </div>
                       </div>
