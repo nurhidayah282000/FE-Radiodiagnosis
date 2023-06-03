@@ -32,8 +32,8 @@ const RadiografiPanoramik = () => {
       url = `${baseURL}/radiographics/all?month=${month}&page=${currentPage}`;
     }
 
-    if(inputText !== undefined) {
-      url += `&search=${inputText}`
+    if (inputText !== undefined) {
+      url += `&search=${inputText}`;
     }
 
     axios
@@ -57,6 +57,28 @@ const RadiografiPanoramik = () => {
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
+  };
+
+  const handleDownload = (e) => {
+    e.preventDefault();
+
+    let url = `${baseURL}/radiographics/recaps`;
+    if (month !== undefined) {
+      url = `${baseURL}/radiographics/recaps?month=${month}`;
+    }
+    axios
+      .get(`${url}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data.data);
+        window.open(`${baseURL}${response.data.data.excelUrl}`, "_blank");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   if (auth) {
@@ -160,15 +182,19 @@ const RadiografiPanoramik = () => {
                             {data.length} <span>Gambar</span>
                           </p>
                         </di>
-                        <di className="col-md-2">
-                          <p className="btn btn-link mb-0 btn-sm mt-0 pt-0 ps-4 text-uppercase text-primary text-xxs font-weight-bolder">
+                        <div className="col-md-2">
+                          <button
+                            type="button"
+                            className="btn btn-link mb-0 btn-sm mt-0 pt-0 ps-4 text-uppercase text-primary text-xxs font-weight-bolder"
+                            onClick={handleDownload}
+                          >
                             <i
                               className="fa fa-cloud-download"
                               aria-hidden="true"
                             ></i>{" "}
                             &nbsp; Download
-                          </p>
-                        </di>
+                          </button>
+                        </div>
                         <hr
                           style={{
                             height: "1px",
