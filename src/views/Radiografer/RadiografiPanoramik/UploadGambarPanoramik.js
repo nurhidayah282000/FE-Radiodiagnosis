@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import { React, useState, useEffect } from "react";
 import UploadGambarError from "../../../component/Alerts/UploadGambarError";
 import HeaderDataUser from "../../../component/Header/HeaderDataUser";
@@ -16,6 +17,9 @@ const UploadGambarPanoramik = () => {
   const [patientId, setPatientId] = useState("patient-");
   const [patient, setPatient] = useState({});
   const [selectedFile, setSelectedFile] = useState(null);
+  const [error, setError] = useState(null);
+
+  const history = useNavigate();
 
   const token = sessionStorage.getItem("token");
 
@@ -80,7 +84,7 @@ const UploadGambarPanoramik = () => {
   patients.forEach((element) => {
     let optionData = {
       id: element.id,
-      label: element.medic_number ,
+      label: element.medic_number,
     };
     option.push(optionData);
   });
@@ -100,10 +104,15 @@ const UploadGambarPanoramik = () => {
       })
       .then((response) => {
         setSelectedFile(null);
-        window.location.href = "/radiografer-radiografi-panoramik";
+        // redirect and send props
+        history("/radiografer-radiografi-panoramik", {
+          state: {
+            message: "success",
+          },
+        });
       })
       .catch((error) => {
-        console.log(error);
+        setError(true)
       });
   };
 
@@ -179,12 +188,12 @@ const UploadGambarPanoramik = () => {
                               disablePortal
                               id="combo-box"
                               options={option}
-                              onChange={(event, newValue) =>{
-                                setPatientId(newValue.id)
+                              onChange={(event, newValue) => {
+                                setPatientId(newValue.id);
                               }}
                               sx={{
-                                display: 'inline-block',
-                                '& input': {
+                                display: "inline-block",
+                                "& input": {
                                   width: "100%",
                                   height: "50%",
                                   padding: "0.2rem 0.75rem",
@@ -198,10 +207,7 @@ const UploadGambarPanoramik = () => {
                               }}
                               renderInput={(params) => (
                                 <div ref={params.InputProps.ref}>
-                                  <input
-                                    type="text"
-                                    {...params.inputProps}
-                                  />
+                                  <input type="text" {...params.inputProps} />
                                 </div>
                               )}
                             />
@@ -313,7 +319,7 @@ const UploadGambarPanoramik = () => {
                                 </button>
                                 {/* </a> */}
                               </div>
-                              <UploadGambarError />
+                              {error ? <UploadGambarError /> : ""} 
                             </div>
                           </div>
                         </div>

@@ -1,4 +1,5 @@
 import { React, useState, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import SidebarRadiografer from "../../../component/Sidebar/SidebarRadiografer";
 import RadiografiPanoramikCard from "../../../component/Card/RadiografiPanoramikCard";
 import UploadGambarSuccess from "../../../component/Alerts/UploadGambarSuccess";
@@ -8,7 +9,7 @@ import WithAuthorization from "../../../utils/auth";
 import Paginations from "../../../component/Pagination/Paginations";
 import HeaderDataUser from "../../../component/Header/HeaderDataUser";
 
-const RadiografiPanoramik = () => {
+const RadiografiPanoramik = ({ route }) => {
   const auth = WithAuthorization(["radiographer"]);
 
   const [data, setData] = useState([]);
@@ -18,6 +19,7 @@ const RadiografiPanoramik = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [inputText, setInputText] = useState("");
   const [statusSearch, setStatusSearch] = useState(false);
+  const location = useLocation();
 
   const handleChange = (event) => {
     setInputText(event.target.value);
@@ -207,6 +209,8 @@ const RadiografiPanoramik = () => {
                         />
                       </div>
                     </div>
+                    {location.state?.message === "success" ? <UploadGambarSuccess /> : ""}
+
                     {/* <!-- </card> --> */}
                     <div className="row p-3 ">
                       {data.length > 0 ? (
@@ -218,7 +222,6 @@ const RadiografiPanoramik = () => {
                       ) : (
                         <center>Belum ada Data</center>
                       )}
-                      <UploadGambarSuccess />
                     </div>
                   </div>
                   <Paginations

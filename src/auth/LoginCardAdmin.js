@@ -2,9 +2,11 @@ import axios from "axios";
 import { React, useState } from "react";
 import { baseURL } from "../routes/Config";
 import EditDataSucces from "../component/Alerts/EditDataSucces";
+import UploadGambarError from "../component/Alerts/UploadGambarError";
+import LoginError from "../component/Alerts/LoginError";
 
 const LoginCardAdmin = () => {
-  const [error, setError] = useState("")
+  const [error, setError] = useState(false)
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -31,8 +33,8 @@ const LoginCardAdmin = () => {
         }
         setError('Login Gagal')
       })
-      .catch((err) => {
-        setError("Login Gagal")
+      .catch((error) => {
+        setError(true)
       });
   };
 
@@ -51,7 +53,13 @@ const LoginCardAdmin = () => {
                         Enter your email and password to sign in
                       </p>
                     </div>
+                    
                     <div className="card-body">
+                      <div className="mb-3">
+                      {error ? <LoginError /> : ""} 
+
+                      </div>
+                
                       <form role="form">
                         <div className="mb-3">
                           <input
