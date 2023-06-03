@@ -112,7 +112,7 @@ const UploadGambarPanoramik = () => {
         });
       })
       .catch((error) => {
-        console.log(error);
+        setError(true)
       });
   };
 
@@ -319,7 +319,7 @@ const UploadGambarPanoramik = () => {
                                 </button>
                                 {/* </a> */}
                               </div>
-                              <UploadGambarError />
+                              {error ? <UploadGambarError /> : ""} 
                             </div>
                           </div>
                         </div>

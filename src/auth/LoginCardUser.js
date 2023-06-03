@@ -1,8 +1,10 @@
 import axios from "axios";
 import { React, useState } from "react";
 import { baseURL } from "../routes/Config";
+import LoginError from "../component/Alerts/LoginError";
 
 const LoginCardUser = () => {
+  const [error, setError] = useState(false);
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -29,7 +31,7 @@ const LoginCardUser = () => {
         }
       })
       .catch((error) => {
-        console.log(error.response.data);
+        setError(true);
       });
   };
 
@@ -49,6 +51,7 @@ const LoginCardUser = () => {
                       </p>
                     </div>
                     <div className="card-body">
+                    <div className="mb-3">{error ? <LoginError /> : ""}</div>
                       <form role="form">
                         <div className="mb-3">
                           <input
