@@ -5,6 +5,7 @@ import HeaderDataUser from "../../../component/Header/HeaderDataUser";
 import SidebarRadiografer from "../../../component/Sidebar/SidebarRadiografer";
 import { baseURL } from "../../../routes/Config";
 import WithAuthorization from "../../../utils/auth";
+import { Autocomplete, TextField } from "@mui/material";
 
 const UploadGambarPanoramik = () => {
   const auth = WithAuthorization(["radiographer"]);
@@ -17,6 +18,8 @@ const UploadGambarPanoramik = () => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const token = sessionStorage.getItem("token");
+
+  let option = [];
 
   useEffect(() => {
     axios
@@ -73,6 +76,14 @@ const UploadGambarPanoramik = () => {
 
     console.log(data);
   };
+
+  patients.forEach((element) => {
+    let optionData = {
+      id: element.id,
+      label: element.medic_number + " - " + element.fullname,
+    };
+    option.push(optionData);
+  });
 
   const handleUploadImage = (e) => {
     e.preventDefault();
@@ -148,7 +159,7 @@ const UploadGambarPanoramik = () => {
                             <p className="text-xs text-secondary mb-2">
                               Kode RM
                             </p>
-                            <input
+                            {/* <input
                               type="text"
                               className="form-control"
                               placeholder="Kode RM"
@@ -163,13 +174,38 @@ const UploadGambarPanoramik = () => {
                                   {p.medic_number} - {p.fullname}
                                 </option>
                               ))}
-                            </datalist>
+                            </datalist> */}
+                            <Autocomplete
+                              disablePortal
+                              id="combo-box"
+                              options={option}
+                              onChange={(event, newValue) =>{
+                                setPatientId(newValue.id)
+                              }}
+                              sx={{
+                                display: 'inline-block',
+                                '& input': {
+                                  width: "100%",
+                                  height: "50%",
+                                  padding: "0.2rem 0.75rem",
+                                  fontWeight: 400,
+                                  color: "#495057",
+                                  bgcolor: "#fff",
+                                  border: "1px solid #d2d6da",
+                                  appearance: "none",
+                                  borderRadius: "0.5rem",
+                                },
+                              }}
+                              renderInput={(params) => (
+                                <div ref={params.InputProps.ref}>
+                                  <input
+                                    type="text"
+                                    {...params.inputProps}
+                                  />
+                                </div>
+                              )}
+                            />
                           </div>
-
-                          <script>
-                            
-                          </script>
-
                           <div className="col-3">
                             <p className="text-xs text-secondary mb-2">
                               Nama Pasien
