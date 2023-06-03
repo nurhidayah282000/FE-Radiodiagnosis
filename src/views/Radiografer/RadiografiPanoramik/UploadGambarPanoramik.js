@@ -70,6 +70,8 @@ const UploadGambarPanoramik = () => {
       ...data,
       [e.target.name]: e.target.value,
     });
+
+    console.log(data);
   };
 
   const handleUploadImage = (e) => {
@@ -92,6 +94,20 @@ const UploadGambarPanoramik = () => {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const onInput = () => {
+    var val = document.getElementById("input-datalist").value;
+    var opts = document.getElementById("list-patients").childNodes;
+    for (var i = 0; i < opts.length; i++) {
+      if (opts[i].value === val) {
+        // An item was selected from the list!
+        // yourCallbackHere()
+        setPatientId(opts[i].value);
+        console.log(patientId);
+        break;
+      }
+    }
   };
 
   if (auth) {
@@ -129,37 +145,39 @@ const UploadGambarPanoramik = () => {
                         </div>
                         <div className="row mt-3">
                           <div className="col-2">
-                            <p class="text-xs text-secondary mb-2">Kode RM</p>
+                            <p className="text-xs text-secondary mb-2">
+                              Kode RM
+                            </p>
                             <input
                               type="text"
-                              class="form-control"
+                              className="form-control"
                               placeholder="Kode RM"
-                              list="list-timezone"
+                              list="list-patients"
                               id="input-datalist"
                               onChange={(e) => setPatientId(e.target.value)}
+                              onInput={onInput}
                             />
-                            <datalist id="list-timezone">
+                            <datalist id="list-patients">
                               {patients.map((p) => (
                                 <option key={p.id} value={p.id}>
-                                  {p.medic_number}
+                                  {p.medic_number} - {p.fullname}
                                 </option>
                               ))}
                             </datalist>
                           </div>
 
-                          {/* <script>
-                            document.addEventListener('DOMContentLoaded', e => {" "}
-                            {$("#input-datalist").autocomplete()}, false);
-                          </script> */}
+                          <script>
+                            
+                          </script>
 
-                          <div class="col-3">
-                            <p class="text-xs text-secondary mb-2">
+                          <div className="col-3">
+                            <p className="text-xs text-secondary mb-2">
                               Nama Pasien
                             </p>
 
                             <p
                               style={{ width: "100%", height: "50%" }}
-                              class="form-control me-2 text-sm"
+                              className="form-control me-2 text-sm"
                             >
                               {patient?.fullname}
                             </p>
@@ -238,7 +256,7 @@ const UploadGambarPanoramik = () => {
                                     </p>
                                   </div> */}
                                     <input
-                                      class="form-control"
+                                      className="form-control"
                                       type="file"
                                       name="image"
                                       onChange={(e) =>
