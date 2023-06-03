@@ -9,7 +9,7 @@ import RegistrasiConfirm from "../../component/Modal/RegistrasiConfirm";
 const AddDataUser = () => {
   const auth = WithAuthorization(["admin"]);
 
-  const [password, setPassword] = useState("0")
+  const [password, setPassword] = useState("0");
   const [data, setData] = useState({
     fullname: "",
     nip: "",
@@ -43,14 +43,32 @@ const AddDataUser = () => {
       })
       .then((response) => {
         // window.location.href = "/data-user";
-        setPassword(response.data.newPassword)
+        setPassword(response.data.newPassword);
+        setPassword(response.data.newPassword);
+        var phone_new_format = "";
+        if (response.data.data.phone_number.startsWith("08")) {
+          phone_new_format =
+            "628" + response.data.data.phone_number.substring(2);
+        } else {
+          phone_new_format = response.data.data.phone_number;
+        }
+
+        const message =
+          "Halo untuk user " +
+          response.data.data.email +
+          " passwordnya = " +
+          response.data.newPassword;
+        const waLink = `https://wa.me/${phone_new_format}?text=${encodeURIComponent(
+          message
+        )}`;
+        window.open(waLink);
       })
       .catch((error) => {
         console.log(error.response.data);
       });
   };
 
-  if(auth) {
+  if (auth) {
     return (
       <div>
         <body className="g-sidenav-show bg-gray-100">
@@ -83,7 +101,7 @@ const AddDataUser = () => {
                         </div>
                       </div>
                     </div>
-  
+
                     <div className="card-body px-0 pb-2 pt-0">
                       <div className="row justify-content-center">
                         <div className="col-md-6">
@@ -95,7 +113,7 @@ const AddDataUser = () => {
                                 </h6>
                               </div>
                             </div>
-  
+
                             <div className="card-body pt-3">
                               <div className="row mt-2">
                                 <div className="col">
@@ -115,7 +133,7 @@ const AddDataUser = () => {
                                       onChange={handleChange}
                                     />
                                   </div>
-  
+
                                   <div className="form-group">
                                     <label
                                       htmlFor="nip"
@@ -132,7 +150,7 @@ const AddDataUser = () => {
                                       onChange={handleChange}
                                     />
                                   </div>
-  
+
                                   <div className="form-group">
                                     <label
                                       htmlFor="email"
@@ -165,7 +183,7 @@ const AddDataUser = () => {
                                       onChange={handleChange}
                                     />
                                   </div>
-  
+
                                   <div className="row">
                                     <label
                                       htmlFor="gender"
@@ -174,7 +192,7 @@ const AddDataUser = () => {
                                       Jenis Kelamin
                                     </label>
                                   </div>
-  
+
                                   <input
                                     type="radio"
                                     className="btn-check"
@@ -191,7 +209,7 @@ const AddDataUser = () => {
                                   >
                                     Laki-Laki
                                   </label>
-  
+
                                   <input
                                     type="radio"
                                     className="btn-check"
@@ -284,7 +302,7 @@ const AddDataUser = () => {
                                     </select>
                                   </div>
                                 </div>
-  
+
                                 <div className="col-md-4">
                                   <div className="form-group">
                                     <label
@@ -309,7 +327,7 @@ const AddDataUser = () => {
                                     </select>
                                   </div>
                                 </div>
-  
+
                                 <div className="col-md-4">
                                   <div className="form-group">
                                     <label
@@ -338,11 +356,9 @@ const AddDataUser = () => {
                                   data-bs-target="#exampleModal2"
                                 >
                                   Daftar Akun
-                                </button>                             
+                                </button>
                               </div>
-                              <RegistrasiConfirm
-                              password={password}
-                              />
+                              <RegistrasiConfirm password={password} />
                             </div>
                           </div>
                         </div>
@@ -357,7 +373,7 @@ const AddDataUser = () => {
       </div>
     );
   } else {
-    return <div></div>
+    return <div></div>;
   }
 };
 
