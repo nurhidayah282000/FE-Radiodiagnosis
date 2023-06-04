@@ -19,6 +19,8 @@ const ViewGambarPanoramikDokter = () => {
 
   const [data, setData] = useState({});
   const [doctors, setDoctors] = useState([]);
+  const [teethNumber, setTeethNumber] = useState([]);
+  const [notVerified, setNotVerified] = useState(0);
 
   const { id } = useParams();
   const token = sessionStorage.getItem("token");
@@ -53,12 +55,43 @@ const ViewGambarPanoramikDokter = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    let numbers = [];
+    data.diagnoses?.map((diagnose) => {
+      numbers.push(diagnose.tooth_number);
+    });
+    setTeethNumber(numbers);
+
+    data.diagnoses?.map((diagnose) => {
+      if (diagnose.is_correct === null) {
+        setNotVerified(notVerified + 1);
+      }
+    });
+  }, [data]);
+
+  useEffect(() => {
+    if (notVerified === 0) {
+      axios
+        .get(`${baseURL}/radiographics/update/${id}/status`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [notVerified]);
+
   const handleSubmit = (e, doctorId) => {
     e.preventDefault();
     axios
       .put(
         `${baseURL}/radiographics/edit/${id}/doctor`,
-        { doctorId },
+        { doctorId, historyId: data.history_id },
         {
           headers: {
             "Content-Type": "application/json",
@@ -73,8 +106,6 @@ const ViewGambarPanoramikDokter = () => {
         console.log(error);
       });
   };
-
-  console.log(data);
 
   if (auth) {
     return (
@@ -201,7 +232,9 @@ const ViewGambarPanoramikDokter = () => {
 
                                       <img
                                         className="img-fluid border-radius-xl p-2"
-                                        src="../assets/img/App/panoramik.jpg"
+                                        src={`${
+                                          baseURL + data.panoramik_picture
+                                        }`}
                                       />
 
                                       <p className="text-xs p-2 mb-0 mt-4">
@@ -214,16 +247,19 @@ const ViewGambarPanoramikDokter = () => {
                                             <div className="d-flex justify-content-center img-fluid mb-2">
                                               <img src="../assets/img/App/line.png" />
                                             </div>
-                                            <div className="col d-flex justify-content-center">
+                                            <div className="col d-flex justify-content-center mt-1">
                                               <input
                                                 type="checkbox"
                                                 className="btn-check"
                                                 id="btncheck1"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  55
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck1"
+                                                for="btncheck1"
                                               >
                                                 55
                                               </label>
@@ -233,10 +269,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck2"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  54
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck2"
+                                                for="btncheck2"
                                               >
                                                 54
                                               </label>
@@ -246,10 +285,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck3"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  53
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck3"
+                                                for="btncheck3"
                                               >
                                                 53
                                               </label>
@@ -259,10 +301,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck4"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  52
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck4"
+                                                for="btncheck4"
                                               >
                                                 52
                                               </label>
@@ -272,10 +317,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck5"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  51
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck5"
+                                                for="btncheck5"
                                               >
                                                 51
                                               </label>
@@ -285,10 +333,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck6"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  61
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck6"
+                                                for="btncheck6"
                                               >
                                                 61
                                               </label>
@@ -298,10 +349,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck7"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  62
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck7"
+                                                for="btncheck7"
                                               >
                                                 62
                                               </label>
@@ -311,10 +365,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck8"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  63
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck8"
+                                                for="btncheck8"
                                               >
                                                 63
                                               </label>
@@ -324,10 +381,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck9"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  64
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck9"
+                                                for="btncheck9"
                                               >
                                                 64
                                               </label>
@@ -337,10 +397,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck10"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  65
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck10"
+                                                for="btncheck10"
                                               >
                                                 65
                                               </label>
@@ -351,10 +414,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck11"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  18
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck11"
+                                                for="btncheck11"
                                               >
                                                 18
                                               </label>
@@ -364,10 +430,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck12"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  17
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck12"
+                                                for="btncheck12"
                                               >
                                                 17
                                               </label>
@@ -377,10 +446,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck13"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  16
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck13"
+                                                for="btncheck13"
                                               >
                                                 16
                                               </label>
@@ -390,10 +462,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck14"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  15
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck14"
+                                                for="btncheck14"
                                               >
                                                 15
                                               </label>
@@ -403,10 +478,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck15"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  14
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck15"
+                                                for="btncheck15"
                                               >
                                                 14
                                               </label>
@@ -416,10 +494,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck16"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  13
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck16"
+                                                for="btncheck16"
                                               >
                                                 13
                                               </label>
@@ -429,10 +510,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck17"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  12
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck17"
+                                                for="btncheck17"
                                               >
                                                 12
                                               </label>
@@ -442,10 +526,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck18"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  11
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck18"
+                                                for="btncheck18"
                                               >
                                                 11
                                               </label>
@@ -455,10 +542,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck19"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  21
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck19"
+                                                for="btncheck19"
                                               >
                                                 21
                                               </label>
@@ -468,10 +558,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck20"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  22
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck20"
+                                                for="btncheck20"
                                               >
                                                 22
                                               </label>
@@ -481,10 +574,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck21"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  23
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck21"
+                                                for="btncheck21"
                                               >
                                                 23
                                               </label>
@@ -494,10 +590,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck22"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  24
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck22"
+                                                for="btncheck22"
                                               >
                                                 24
                                               </label>
@@ -507,10 +606,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck23"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  25
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck23"
+                                                for="btncheck23"
                                               >
                                                 25
                                               </label>
@@ -520,10 +622,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck24"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  26
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck24"
+                                                for="btncheck24"
                                               >
                                                 26
                                               </label>
@@ -533,10 +638,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck25"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  27
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck25"
+                                                for="btncheck25"
                                               >
                                                 27
                                               </label>
@@ -546,10 +654,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck26"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  28
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck26"
+                                                for="btncheck26"
                                               >
                                                 28
                                               </label>
@@ -567,10 +678,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck27"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  48
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck27"
+                                                for="btncheck27"
                                               >
                                                 48
                                               </label>
@@ -580,10 +694,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck28"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  47
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck28"
+                                                for="btncheck28"
                                               >
                                                 47
                                               </label>
@@ -593,10 +710,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck29"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  46
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck29"
+                                                for="btncheck29"
                                               >
                                                 46
                                               </label>
@@ -606,10 +726,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck30"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  45
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck30"
+                                                for="btncheck30"
                                               >
                                                 45
                                               </label>
@@ -619,10 +742,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck31"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  44
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck31"
+                                                for="btncheck31"
                                               >
                                                 44
                                               </label>
@@ -632,10 +758,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck32"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  43
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck32"
+                                                for="btncheck32"
                                               >
                                                 43
                                               </label>
@@ -645,10 +774,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck33"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  42
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck33"
+                                                for="btncheck33"
                                               >
                                                 42
                                               </label>
@@ -658,10 +790,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck34"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  41
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck34"
+                                                for="btncheck34"
                                               >
                                                 41
                                               </label>
@@ -671,10 +806,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck35"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  31
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck35"
+                                                for="btncheck35"
                                               >
                                                 31
                                               </label>
@@ -684,10 +822,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck36"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  32
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck36"
+                                                for="btncheck36"
                                               >
                                                 32
                                               </label>
@@ -697,10 +838,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck37"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  33
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck37"
+                                                for="btncheck37"
                                               >
                                                 33
                                               </label>
@@ -710,10 +854,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck38"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  34
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck38"
+                                                for="btncheck38"
                                               >
                                                 34
                                               </label>
@@ -723,10 +870,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck39"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  35
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck39"
+                                                for="btncheck39"
                                               >
                                                 35
                                               </label>
@@ -736,10 +886,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck40"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  36
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck40"
+                                                for="btncheck40"
                                               >
                                                 36
                                               </label>
@@ -749,10 +902,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck41"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  37
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck41"
+                                                for="btncheck41"
                                               >
                                                 37
                                               </label>
@@ -762,10 +918,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck42"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  38
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
-                                                htmlFor="btncheck42"
+                                                for="btncheck42"
                                               >
                                                 38
                                               </label>
@@ -777,10 +936,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck43"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  85
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck43"
+                                                for="btncheck43"
                                               >
                                                 85
                                               </label>
@@ -790,10 +952,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck44"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  84
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck44"
+                                                for="btncheck44"
                                               >
                                                 84
                                               </label>
@@ -803,10 +968,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck45"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  83
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck45"
+                                                for="btncheck45"
                                               >
                                                 83
                                               </label>
@@ -816,10 +984,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck46"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  82
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck46"
+                                                for="btncheck46"
                                               >
                                                 82
                                               </label>
@@ -829,10 +1000,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck47"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  81
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck47"
+                                                for="btncheck47"
                                               >
                                                 81
                                               </label>
@@ -842,10 +1016,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck48"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  71
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck48"
+                                                for="btncheck48"
                                               >
                                                 71
                                               </label>
@@ -855,10 +1032,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck49"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  72
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck49"
+                                                for="btncheck49"
                                               >
                                                 72
                                               </label>
@@ -868,10 +1048,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck50"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  73
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck50"
+                                                for="btncheck50"
                                               >
                                                 73
                                               </label>
@@ -881,10 +1064,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck51"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  74
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck51"
+                                                for="btncheck51"
                                               >
                                                 74
                                               </label>
@@ -894,10 +1080,13 @@ const ViewGambarPanoramikDokter = () => {
                                                 className="btn-check"
                                                 id="btncheck52"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  75
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
-                                                htmlFor="btncheck52"
+                                                for="btncheck52"
                                               >
                                                 75
                                               </label>
@@ -913,62 +1102,50 @@ const ViewGambarPanoramikDokter = () => {
                                           <p className="text-xs">
                                             Radiodiagnosis Sistem
                                           </p>
-                                          <div className="row">
-                                            <div className="col-2">
-                                              <ul className="ps-3">
-                                                <li className="text-xs">
-                                                  Gigi #11
-                                                </li>
-                                              </ul>
-                                            </div>
-                                            <div className="col-4 ps-0">
-                                              <p className="text-xs text-dark font-weight-bold">
-                                                Karies Gigi
-                                              </p>
-                                            </div>
+                                          {data.diagnoses?.map((diagnose) => {
+                                            if (diagnose.system_diagnosis) {
+                                              return (
+                                                <div className="row">
+                                                  <div className="col-2">
+                                                    <ul className="ps-3">
+                                                      <li className="text-xs">
+                                                        Gigi #
+                                                        {diagnose.tooth_number}
+                                                      </li>
+                                                    </ul>
+                                                  </div>
+                                                  <div className="col-4 ps-0">
+                                                    <p className="text-xs text-dark font-weight-bold">
+                                                      {
+                                                        diagnose.system_diagnosis
+                                                      }
+                                                    </p>
+                                                  </div>
 
-                                            <div className="col-6 text-end">
-                                              <ButtonVerifiedResult />
-                                            </div>
-                                            {/* <VerifiedNo /> */}
-                                            <VerifiedResult />
-                                          </div>
-                                          <div className="row">
-                                            <div className="col-2">
-                                              <ul className="ps-3">
-                                                <li className="text-xs">
-                                                  Gigi #22
-                                                </li>
-                                              </ul>
-                                            </div>
-                                            <div className="col-4 ps-0">
-                                              <p className="text-xs text-dark font-weight-bold">
-                                                Lesi Periapikal
-                                              </p>
-                                            </div>
-                                            <div className="col-6 text-end">
-                                              <ButtonVerified />
-                                              <VerifiedYes />
-                                            </div>
-                                          </div>
-                                          <div className="row">
-                                            <div className="col-2">
-                                              <ul className="ps-3">
-                                                <li className="text-xs">
-                                                  Gigi #48
-                                                </li>
-                                              </ul>
-                                            </div>
-                                            <div className="col-4 ps-0">
-                                              <p className="text-xs text-dark font-weight-bold">
-                                                Impaksi
-                                              </p>
-                                            </div>
-                                            <div className="col-6 text-end">
-                                              <ButtonVerified />
-                                              <VerifiedYes />
-                                            </div>
-                                          </div>
+                                                  <div className="col-6 text-end">
+                                                    {diagnose.is_corerct ===
+                                                    null ? (
+                                                      <ButtonVerified
+                                                        index={diagnose.id}
+                                                      />
+                                                    ) : (
+                                                      <ButtonVerifiedResult
+                                                        index={diagnose.id}
+                                                      />
+                                                    )}
+                                                  </div>
+                                                  <VerifiedYes
+                                                    index={diagnose.id}
+                                                    diagnose={diagnose}
+                                                  />
+                                                  <VerifiedResult
+                                                    index={diagnose.id}
+                                                    diagnose={diagnose}
+                                                  />
+                                                </div>
+                                              );
+                                            }
+                                          })}
                                           <hr
                                             style={{
                                               height: "1px",
@@ -990,7 +1167,7 @@ const ViewGambarPanoramikDokter = () => {
                                               Interpretasi Manual
                                             </button>
                                             <InterpretasiManual
-                                              radiographicId={id}
+                                              radiographicId={data.id}
                                             />
                                           </div>
                                         </div>

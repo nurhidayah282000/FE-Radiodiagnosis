@@ -41,18 +41,26 @@ const RadiografiPanoramikCardDokter = ({ data, baseURL }) => {
             </div>
             <p className="text-xs text-secondary mt-4">Radiodiagnosis Sistem</p>
             <div className="d-flex flex-column">
-              <div className="row">
-                <div className="col-4">
-                  <ul className="ps-3">
-                    <li className="text-sm">Gigi #11</li>
-                  </ul>
-                </div>
-                <div className="col-8 ps-0">
-                  <p className="text-sm text-dark font-weight-bolder">
-                    Karies Gigi
-                  </p>
-                </div>
-              </div>
+              {data.diagnoses?.map((diagnose) => {
+                if (diagnose.system_diagnosis) {
+                  return (
+                    <div className="row">
+                      <div className="col-4">
+                        <ul className="ps-3">
+                          <li className="text-sm">
+                            Gigi #{diagnose.tooth_number}
+                          </li>
+                        </ul>
+                      </div>
+                      <div className="col-8 ps-0">
+                        <p className="text-sm text-dark font-weight-bolder">
+                          {diagnose.system_diagnosis}
+                        </p>
+                      </div>
+                    </div>
+                  );
+                }
+              })}
             </div>
 
             <div className="row mt-4">

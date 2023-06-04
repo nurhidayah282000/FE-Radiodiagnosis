@@ -1,14 +1,68 @@
 import React from "react";
 import VerifiedNo from "./VerifiedNo";
+import axios from "axios";
+import { baseURL } from "../../routes/Config";
 
-const VerifiedYes = () => {
+const VerifiedYes = ({ index, diagnose }) => {
+  const token = sessionStorage.getItem("token");
+
+  const [show, setShow] = React.useState(false);
+  const [data, setData] = React.useState({
+    verificatorDiagnosis: "",
+    verificatorNote: "",
+    isCorrect: show ? 1 : 0,
+  });
+
+  const handleShow = (e) => {
+    e.preventDefault();
+    setShow(true);
+    setData({
+      ...data,
+      isCorrect: 0,
+    });
+  };
+
+  const handleYes = (e) => {
+    e.preventDefault();
+    setShow(false);
+    setData({
+      verificatorDiagnosis: "",
+      verificatorNote: "",
+      isCorrect: 1,
+    });
+  };
+
+  const handleChange = (e) => {
+    e.preventDefault();
+    setData({ ...data, [e.target.name]: e.target.value });
+  };
+
+  console.log(data);
+
+  const handleSubmit = (e) => {
+    axios
+      .post(`${baseURL}/diagnoses/${diagnose.id}/verificator`, data, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div>
       <VerifiedNo />
 
       <div
         className="modal fade"
-        id="exampleModal"
+        id={`exampleModal${index}`}
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -28,12 +82,14 @@ const VerifiedYes = () => {
               </p>
               <div className="row">
                 <div className="col-3 text-start">
-                  <p className="text-xs text-dark ps-2">Gigi #11</p>
+                  <p className="text-xs text-dark ps-2">
+                    Gigi #{diagnose.tooth_number}
+                  </p>
                 </div>
                 <div className="col-4 text-start ps-0">
                   <ul>
                     <li className="text-xs text-warning font-weight-bold">
-                      Karies Gigi
+                      {diagnose.system_diagnosis}
                     </li>
                   </ul>
                 </div>
@@ -62,11 +118,12 @@ const VerifiedYes = () => {
                       name="btnradio"
                       id="btnradio1"
                       autoComplete="off"
-                      defaultChecked
+                      checked={show ? false : true}
                     />
                     <label
                       className="btn btn-sm btn-outline-primary mt-0 mb-0 p-2 ps-3 pe-3 border-radius-xl"
                       htmlFor="btnradio1"
+                      onClick={handleYes}
                     >
                       Ya
                     </label>
@@ -77,17 +134,55 @@ const VerifiedYes = () => {
                       name="btnradio"
                       id="btnradio2"
                       autoComplete="off"
+                      checked={show ? true : false}
                     />
                     <label
                       className="btn btn-sm btn-outline-primary mt-0 mb-0 p-2 border-radius-xl"
                       htmlFor="btnradio2"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal2"
+                      onClick={handleShow}
                     >
                       Tidak
                     </label>
                   </div>
                 </div>
+                {show ? (
+                  <div>
+                    <p className="text-secondary text-xs ms-2 mt-0 mb-2">
+                      Radiodiagnosis Verifikator
+                    </p>
+                    <select
+                      className="form-select ms-3 mb-3 text-xs"
+                      style={{ width: "92%" }}
+                      id="exampleFormControlSelect1"
+                      aria-placeholder="xsaas"
+                      name="verificatorDiagnosis"
+                      onChange={(e) => handleChange(e)}
+                      value={"karises"}
+                    >
+                      <option value="karises">Karies</option>
+                      <option value="lesi periapikal">Lesi Periapikal</option>
+                      <option value="impaksi">Impaksi</option>
+                      <option value="resorbsi">Resorbsi</option>
+                      <option value="lain-lain">dll</option>
+                    </select>
+
+                    <p className="text-secondary text-xs ms-2 mt-0 mb-2">
+                      Catatan
+                    </p>
+                    <textarea
+                      className="form-control ms-3 text-xs"
+                      style={{ width: "92%" }}
+                      type="text"
+                      placeholder="Masukkan catatan pasien"
+                      name="verificatorNote"
+                      onChange={(e) => handleChange(e)}
+                    >
+                      {diagnose.verificator_note}
+                    </textarea>
+                  </div>
+                ) : (
+                  ""
+                )}
                 <hr
                   style={{
                     height: "1px",
@@ -108,7 +203,10 @@ const VerifiedYes = () => {
                   Batalkan
                 </button>
                 &nbsp;
-                <button className="btn btn-primary btn-sm mb-0 pe-2 ps-2 pt-1 pb-1">
+                <button
+                  className="btn btn-primary btn-sm mb-0 pe-2 ps-2 pt-1 pb-1"
+                  onClick={(e) => handleSubmit(e)}
+                >
                   Selesai
                 </button>
               </div>

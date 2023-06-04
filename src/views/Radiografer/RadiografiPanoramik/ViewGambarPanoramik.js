@@ -13,6 +13,7 @@ const ViewGambarPanoramik = () => {
   const auth = WithAuthorization(["radiographer"]);
 
   const [data, setData] = useState({});
+  const [teethNumber, setTeethNumber] = useState([]);
 
   const { id } = useParams();
   const token = sessionStorage.getItem("token");
@@ -34,10 +35,18 @@ const ViewGambarPanoramik = () => {
       });
   }, [id]);
 
+  useEffect(() => {
+    let numbers = [];
+    data.diagnoses?.map((diagnose) => {
+      numbers.push(diagnose.tooth_number);
+    });
+    setTeethNumber(numbers);
+  }, [data]);
+
   const handleDelete = (e) => {
     e.preventDefault();
     axios
-      .delete(`${baseURL}/radiographics/delete/${data.radiographics_id}`, {
+      .delete(`${baseURL}/radiographics/delete/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -47,6 +56,27 @@ const ViewGambarPanoramik = () => {
       })
       .catch((error) => {
         console.log(error);
+      });
+  };
+
+  const handleSystemDetection = (e) => {
+    e.preventDefault();
+    axios
+      .post(
+        `${baseURL}/diagnoses/dummy/${id}`,
+        {
+          patientId: data.patient_id,
+          radiographerId: data.radiographer_id,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
       });
   };
 
@@ -160,7 +190,7 @@ const ViewGambarPanoramik = () => {
                                 <p className="text-xs font-weight-bolder mb-0 text-warning">
                                   {data.panoramik_check_date === null ? (
                                     <p className="text-xs font-weight-bolder mb-0">
-                                      <StatusUnverified/>
+                                      <StatusUnverified />
                                     </p>
                                   ) : (
                                     <p className="text-xs font-weight-bolder mb-0 text-success">
@@ -217,6 +247,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck1"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  55
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -230,6 +263,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck2"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  54
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -243,6 +279,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck3"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  53
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -256,6 +295,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck4"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  52
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -269,6 +311,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck5"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  51
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -282,6 +327,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck6"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  61
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -295,6 +343,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck7"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  62
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -308,6 +359,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck8"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  63
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -321,6 +375,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck9"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  64
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -334,6 +391,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck10"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  65
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -348,6 +408,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck11"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  18
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -361,6 +424,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck12"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  17
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -374,6 +440,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck13"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  16
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -387,6 +456,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck14"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  15
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -400,6 +472,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck15"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  14
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -413,6 +488,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck16"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  13
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -426,6 +504,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck17"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  12
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -439,6 +520,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck18"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  11
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -452,6 +536,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck19"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  21
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -465,6 +552,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck20"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  22
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -478,6 +568,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck21"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  23
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -491,6 +584,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck22"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  24
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -504,6 +600,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck23"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  25
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -517,6 +616,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck24"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  26
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -530,6 +632,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck25"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  27
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -543,6 +648,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck26"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  28
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -564,6 +672,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck27"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  48
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -577,6 +688,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck28"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  47
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -590,6 +704,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck29"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  46
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -603,6 +720,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck30"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  45
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -616,6 +736,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck31"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  44
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -629,6 +752,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck32"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  43
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -642,6 +768,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck33"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  42
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -655,6 +784,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck34"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  41
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -668,6 +800,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck35"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  31
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -681,6 +816,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck36"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  32
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -694,6 +832,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck37"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  33
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -707,6 +848,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck38"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  34
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -720,6 +864,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck39"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  35
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -733,6 +880,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck40"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  36
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -746,6 +896,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck41"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  37
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -759,6 +912,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck42"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  38
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2"
@@ -774,6 +930,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck43"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  85
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -787,6 +946,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck44"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  84
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -800,6 +962,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck45"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  83
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -813,6 +978,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck46"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  82
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -826,6 +994,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck47"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  81
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -839,6 +1010,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck48"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  71
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -852,6 +1026,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck49"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  72
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -865,6 +1042,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck50"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  73
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -878,6 +1058,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck51"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  74
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -891,6 +1074,9 @@ const ViewGambarPanoramik = () => {
                                                 className="btn-check"
                                                 id="btncheck52"
                                                 autoComplete="off"
+                                                checked={teethNumber.includes(
+                                                  75
+                                                )}
                                               />
                                               <label
                                                 className="btn btn-outline-secondary text-xs p-2 mb-0"
@@ -906,6 +1092,8 @@ const ViewGambarPanoramik = () => {
                                               <button
                                                 className="btn btn-sm btn-primary mt-2 mb-2"
                                                 type="button"
+                                                onClick={handleSystemDetection}
+                                                disabled = {data.history_id == null ? false : true}
                                               >
                                                 Deteksi Sistem
                                               </button>
@@ -918,48 +1106,29 @@ const ViewGambarPanoramik = () => {
                                           <p className="text-xs">
                                             Radiodiagnosis Sistem
                                           </p>
-                                          <div className="row">
-                                            <div className="col-2">
-                                              <ul className="ps-3">
-                                                <li className="text-xs">
-                                                  Gigi #11
-                                                </li>
-                                              </ul>
-                                            </div>
-                                            <div className="col-4 ps-0">
-                                              <p className="text-xs text-dark font-weight-bold">
-                                                Karies Gigi
-                                              </p>
-                                            </div>
-                                          </div>
-                                          <div className="row">
-                                            <div className="col-2">
-                                              <ul className="ps-3">
-                                                <li className="text-xs">
-                                                  Gigi #22
-                                                </li>
-                                              </ul>
-                                            </div>
-                                            <div className="col-4 ps-0">
-                                              <p className="text-xs text-dark font-weight-bold">
-                                                Lesi Periapikal
-                                              </p>
-                                            </div>
-                                          </div>
-                                          <div className="row">
-                                            <div className="col-2">
-                                              <ul className="ps-3">
-                                                <li className="text-xs">
-                                                  Gigi #48
-                                                </li>
-                                              </ul>
-                                            </div>
-                                            <div className="col-4 ps-0">
-                                              <p className="text-xs text-dark font-weight-bold">
-                                                Impaksi
-                                              </p>
-                                            </div>
-                                          </div>
+                                          {data.diagnoses?.map((diagnose) => {
+                                            if (diagnose.system_diagnosis) {
+                                              return (
+                                                <div className="row">
+                                                  <div className="col-2">
+                                                    <ul className="ps-3">
+                                                      <li className="text-xs">
+                                                        Gigi #
+                                                        {diagnose.tooth_number}
+                                                      </li>
+                                                    </ul>
+                                                  </div>
+                                                  <div className="col-4 ps-0">
+                                                    <p className="text-xs text-dark font-weight-bold">
+                                                      {
+                                                        diagnose.system_diagnosis
+                                                      }
+                                                    </p>
+                                                  </div>
+                                                </div>
+                                              );
+                                            }
+                                          })}
                                         </div>
                                       </div>
                                     </div>

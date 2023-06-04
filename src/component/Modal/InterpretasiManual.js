@@ -6,7 +6,6 @@ const InterpretasiManual = ({ radiographicId }) => {
   const [data, setData] = useState({
     toothNumber: "",
     manualDiagnosis: "",
-    radiographicId: radiographicId,
   });
 
   const token = sessionStorage.getItem("token");
