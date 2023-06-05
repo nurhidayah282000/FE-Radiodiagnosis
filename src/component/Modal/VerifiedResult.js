@@ -1,11 +1,11 @@
 import React from "react";
 
-const VerifiedResult = () => {
+const VerifiedResult = ({index, diagnose}) => {
   return (
     <div>
       <div
         className="modal fade"
-        id="exampleModal3"
+        id={`exampleModalResult${index}`}
         tabIndex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
@@ -28,12 +28,12 @@ const VerifiedResult = () => {
               </p>
               <div className="row">
                 <div className="col-3">
-                  <p className="text-xs text-dark ps-2">Gigi #11</p>
+                  <p className="text-xs text-dark ps-2">Gigi #{diagnose.tooth_number}</p>
                 </div>
                 <div className="col-4 ps-0">
                   <ul>
                     <li className="text-xs text-warning font-weight-bold">
-                      Karies Gigi
+                      {diagnose.system_diagnosis}
                     </li>
                   </ul>
                 </div>
@@ -52,12 +52,12 @@ const VerifiedResult = () => {
                   Radiodiagnosis Verifikator
                 </p>
                 <div className="col-3">
-                  <p className="text-xs text-dark ps-2">Gigi #11</p>
+                  <p className="text-xs text-dark ps-2">Gigi #{diagnose.tooth_number}</p>
                 </div>
                 <div className="col-4 ps-0">
                   <ul>
                     <li className="text-xs text-warning font-weight-bold">
-                      Karies Gigi
+                      {diagnose.verificator_diagnosis}
                     </li>
                   </ul>
                 </div>
@@ -72,7 +72,7 @@ const VerifiedResult = () => {
                 />
                 <p className="text-secondary text-xs ms-2 mt-2 mb-2">Catatan</p>
                 <p className="text-xs text-dark ms-2">
-                  pada gigi nomor 11 merupakan karies gigi
+                  {diagnose.verificator_note}
                 </p>
               </div>
             </div>

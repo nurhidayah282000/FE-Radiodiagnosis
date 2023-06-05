@@ -17,56 +17,45 @@ const RadiografiPanoramikDokter = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [inputText, setInputText] = useState("");
   const [statusSearch, setStatusSearch] = useState(false);
+  const [verified, setVerified] = useState("");
 
   const handleChange = (event) => {
     setInputText(event.target.value);
     setStatusSearch(true);
   };
 
+  const handleVerified = (val) => {
+    setVerified(val);
+  };
+
   const token = sessionStorage.getItem("token");
 
   useEffect(() => {
-    if (inputText.length > 0) {
-      axios
-        .get(
-          `${baseURL}/radiographics/all?page=${currentPage}&search=${inputText}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        )
-        .then((response) => {
-          if (response.data.data) {
-            // setData(response.data.data)
-            setSearchData(response.data.data);
-            setPagination(response.data.meta);
-          }
-        })
-        .catch((error) => {
-          console.log(error.response.data);
-        });
-    } else {
-      axios
-        .get(`${baseURL}/radiographics/all?page=${currentPage}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          if (response.data.status === "fail") {
-            setData([]);
-          } else {
-            setData(response.data.data);
-            setPagination(response.data.meta);
-          }
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+    let url = `${baseURL}/radiographics/all?page=${currentPage}`;
+    if (verified !== undefined && verified !== "") {
+      url += `&verified=${verified}`;
     }
-  }, [currentPage, inputText]);
+    if (inputText !== undefined && inputText !== "") {
+      url += `&search=${inputText}`;
+    }
+    axios
+      .get(`${url}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((response) => {
+        if (response.data.status === "fail") {
+          setData([]);
+        } else {
+          setData(response.data.data);
+          setPagination(response.data.meta);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [currentPage, inputText, verified]);
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -125,17 +114,17 @@ const RadiografiPanoramikDokter = () => {
                     <div className="card-body px-0 pt-0 pb-2">
                       <div className="row">
                         <di className="col-md-2">
-                          <p className="btn btn-link m-0 ps-0  text-secondary text-xs font-weight-bold">
+                          <p className="btn btn-link m-0 ps-0  text-secondary text-xs font-weight-bold" onClick={() => handleVerified("")}>
                             Semua Hasil
                           </p>
                         </di>
                         <di className="col-md-2">
-                          <button className="ps-0 btn btn-link m-0 text-secondary text-xs font-weight-bold">
+                          <button className="ps-0 btn btn-link m-0 text-secondary text-xs font-weight-bold" onClick={() => handleVerified("true")}>
                             Telah Diverifikasi
                           </button>
                         </di>
                         <di className="col-md-2">
-                          <button className="btn btn-link m-0 ps-0  text-secondary text-xs font-weight-bold">
+                          <button className="btn btn-link m-0 ps-0  text-secondary text-xs font-weight-bold" onClick={() => handleVerified("false")}>
                             Belum Diverifikasi
                           </button>
                         </di>
@@ -153,29 +142,17 @@ const RadiografiPanoramikDokter = () => {
                     </div>
                     {/* <!-- </card> --> */}
                     <div className="row p-3 ">
-                      {statusSearch == true
-                        ? searchData.map((item) => (
-                            <div
-                              key={item.radiographics_id}
-                              className="col-xl-4 col-sm-6 mb-xl-0 mb-4"
-                            >
-                              <RadiografiPanoramikCardDokter
-                                data={item}
-                                baseURL={baseURL}
-                              />
-                            </div>
-                          ))
-                        : data.map((item) => (
-                            <div
-                              key={item.radiographics_id}
-                              className="col-xl-4 col-sm-6 mb-xl-0 mb-4"
-                            >
-                              <RadiografiPanoramikCardDokter
-                                data={item}
-                                baseURL={baseURL}
-                              />
-                            </div>
-                          ))}
+                      {data.map((item) => (
+                        <div
+                          key={item.radiographics_id}
+                          className="col-xl-4 col-sm-6 mb-xl-0 mb-4"
+                        >
+                          <RadiografiPanoramikCardDokter
+                            data={item}
+                            baseURL={baseURL}
+                          />
+                        </div>
+                      ))}
                     </div>
                   </div>
                   <Paginations

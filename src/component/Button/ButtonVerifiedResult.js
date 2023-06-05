@@ -1,12 +1,12 @@
 import React from "react";
 
-const ButtonVerifiedResult = () => {
+const ButtonVerifiedResult = ({index}) => {
   return (
     <div>
       <a
         className="btn btn-sm btn pe-0 ps-0 btn-warning w-50 shadow-none"
         data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
+        data-bs-target={`#exampleModalResult${index}`}
       >
         <img
           src="../assets/img/App/verification.png"

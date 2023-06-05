@@ -27,7 +27,7 @@ const HistoryCard = ({ data }) => {
                 <div class="row">
                   <div class="col-3">
                     <p class="text-xs text-secondary font-weight-bold">
-                      Tanggal Upload 
+                      Tanggal Upload
                     </p>
                   </div>
                   <div class="col-4">
@@ -39,7 +39,7 @@ const HistoryCard = ({ data }) => {
                 <div class="row">
                   <div class="col-3">
                     <p class="text-xs text-secondary font-weight-bold">
-                      Radiografer 
+                      Radiografer
                     </p>
                   </div>
                   <div class="col-4">
@@ -60,89 +60,116 @@ const HistoryCard = ({ data }) => {
                     </p>
                   </div>
                 </div>
-                <div class="row mt-4">
-                  <div class="col-12">
-                    <p class="text-xxs text-secondary font-weight-bold">
+                <div className="row mt-4">
+                  <div className="col-12">
+                    <p className="text-xxs text-secondary font-weight-bold">
                       Radiodiagnosis Sistem
                     </p>
-                    <div class="row">
-                      <div class="col-2">
-                        <ul class="ps-3">
-                          <li class="text-xs">Gigi #11</li>
-                        </ul>
-                      </div>
-                      <div class="col-10 ps-0">
-                        <p class="text-xs text-dark font-weight-bold mb-0 pb-2">
-                          Karies Gigi
-                        </p>
-                        <hr
-                          style={{
-                            height: "1px",
-                            borderWidth: "0px",
-                            color: "gray",
-                            backgroundColor: "gray",
-                            marginBottom: "0px",
-                            marginTop: "0px",
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-2">
-                        <ul class="ps-3">
-                          <li class="text-xs">Gigi #22</li>
-                        </ul>
-                      </div>
-                      <div class="col-4 ps-0">
-                        <p class="text-xs text-dark font-weight-bold">
-                          Lesi Periapikal
-                        </p>
-                      </div>
-                    </div>
+                    {data.diagnoses?.map((diagnose) => {
+                      if (diagnose.system_diagnosis) {
+                        return (
+                          <div className="row">
+                            <div className="col-2">
+                              <ul className="ps-3">
+                                <li className="text-xs">
+                                  Gigi #{diagnose.tooth_number}
+                                </li>
+                              </ul>
+                            </div>
+                            <div className="col-10 ps-0">
+                              <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
+                                {diagnose.system_diagnosis}
+                              </p>
+                              <hr
+                                style={{
+                                  height: "1px",
+                                  borderWidth: "0 px",
+                                  color: "gray",
+                                  backgroundColor: "gray",
+                                  marginBottom: "0 px",
+                                  marginTop: "0 px",
+                                }}
+                              />
+                            </div>
+                          </div>
+                        );
+                      }
+                    })}
                   </div>
                 </div>
-                <div class="row">
-                  <div class="col-12">
-                    <p class="text-xxs text-secondary font-weight-bold">
+                <div className="row">
+                  <div className="col-12">
+                    <p className="text-xxs text-secondary font-weight-bold">
                       Radiodiagnosis Verifikator
                     </p>
-                    <div class="row">
-                      <div class="col-2">
-                        <ul class="ps-3">
-                          <li class="text-xs">Gigi #11</li>
-                        </ul>
-                      </div>
-                      <div class="col-10 ps-0">
-                        <p class="text-xs text-dark font-weight-bold mb-0 pb-2">
-                          Resorbsi
-                        </p>
-                        <hr
-                          style={{
-                            height: "1px",
-                            borderWidth: "0px",
-                            color: "gray",
-                            backgroundColor: "gray",
-                            marginBottom: "0px",
-                            marginTop: "0px",
-                          }}
-                        />
-                      </div>
-                    </div>
-                    <div class="row">
-                      <div class="col-2">
-                        <ul class="ps-3">
-                          <li class="text-xs">Gigi #22</li>
-                        </ul>
-                      </div>
-                      <div class="col-4 ps-0">
-                        <p class="text-xs text-dark font-weight-bold">
-                          Karies Gigi
-                        </p>
-                      </div>
-                    </div>
-                    <p class="text-xxs text-secondary font-weight-bold">
+                    {data.diagnoses?.map((diagnose) => {
+                      if (diagnose.system_diagnosis) {
+                        return (
+                          <div className="row">
+                            <div className="col-2">
+                              <ul className="ps-3">
+                                <li className="text-xs">
+                                  Gigi #{diagnose.tooth_number}
+                                </li>
+                              </ul>
+                            </div>
+                            <div className="col-10 ps-0">
+                              <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
+                                {diagnose.verificator_diagnosis}
+                              </p>
+                              <hr
+                                style={{
+                                  height: "1px",
+                                  borderWidth: "0 px",
+                                  color: "gray",
+                                  backgroundColor: "gray",
+                                  marginBottom: "0 px",
+                                  marginTop: "0 px",
+                                }}
+                              />
+                            </div>
+                          </div>
+                        );
+                      }
+                    })}
+                  </div>
+                </div>
+
+                <div className="row">
+                  <div className="col-12">
+                    <p className="text-xxs text-secondary font-weight-bold">
                       Interpretasi Manual
                     </p>
+                    {data.diagnoses?.map((diagnose) => {
+                      if (diagnose.manual_diagnosis) {
+                        return (
+                          <div className="row">
+                            <div className="col-2">
+                              <ul className="ps-3">
+                                <li className="text-xs">
+                                  Gigi #{diagnose.tooth_number}
+                                </li>
+                              </ul>
+                            </div>
+                            <div className="col-10 ps-0">
+                              <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
+                                {diagnose.manual_diagnosis}
+                              </p>
+                              <hr
+                                style={{
+                                  height: "1px",
+                                  borderWidth: "0 px",
+                                  color: "gray",
+                                  backgroundColor: "gray",
+                                  marginBottom: "0 px",
+                                  marginTop: "0 px",
+                                }}
+                              />
+                            </div>
+                          </div>
+                        );
+                      }
+                    })}
                   </div>
                 </div>
               </div>
