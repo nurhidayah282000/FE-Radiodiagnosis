@@ -83,13 +83,13 @@ const VerifiedYes = ({ index, diagnose }) => {
               <div className="row">
                 <div className="col-3 text-start">
                   <p className="text-xs text-dark ps-2">
-                    Gigi #{diagnose.tooth_number}
+                    Gigi #{diagnose?.tooth_number}
                   </p>
                 </div>
                 <div className="col-4 text-start ps-0">
                   <ul>
                     <li className="text-xs text-warning font-weight-bold">
-                      {diagnose.system_diagnosis}
+                      {diagnose?.system_diagnosis}
                     </li>
                   </ul>
                 </div>

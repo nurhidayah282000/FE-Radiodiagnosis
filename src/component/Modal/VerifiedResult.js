@@ -28,12 +28,12 @@ const VerifiedResult = ({index, diagnose}) => {
               </p>
               <div className="row">
                 <div className="col-3">
-                  <p className="text-xs text-dark ps-2">Gigi #{diagnose.tooth_number}</p>
+                  <p className="text-xs text-dark ps-2">Gigi #{diagnose?.tooth_number}</p>
                 </div>
                 <div className="col-4 ps-0">
                   <ul>
                     <li className="text-xs text-warning font-weight-bold">
-                      {diagnose.system_diagnosis}
+                      {diagnose?.system_diagnosis}
                     </li>
                   </ul>
                 </div>
@@ -52,7 +52,7 @@ const VerifiedResult = ({index, diagnose}) => {
                   Radiodiagnosis Verifikator
                 </p>
                 <div className="col-3">
-                  <p className="text-xs text-dark ps-2">Gigi #{diagnose.tooth_number}</p>
+                  <p className="text-xs text-dark ps-2">Gigi #{diagnose?.tooth_number}</p>
                 </div>
                 <div className="col-4 ps-0">
                   <ul>

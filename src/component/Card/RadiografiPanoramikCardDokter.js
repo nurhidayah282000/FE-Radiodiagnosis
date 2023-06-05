@@ -42,19 +42,19 @@ const RadiografiPanoramikCardDokter = ({ data, baseURL }) => {
             <p className="text-xs text-secondary mt-4">Radiodiagnosis Sistem</p>
             <div className="d-flex flex-column">
               {data.diagnoses?.map((diagnose) => {
-                if (diagnose.system_diagnosis) {
+                if (diagnose?.system_diagnosis) {
                   return (
                     <div className="row">
                       <div className="col-4">
                         <ul className="ps-3">
                           <li className="text-sm">
-                            Gigi #{diagnose.tooth_number}
+                            Gigi #{diagnose?.tooth_number}
                           </li>
                         </ul>
                       </div>
                       <div className="col-8 ps-0">
                         <p className="text-sm text-dark font-weight-bolder">
-                          {diagnose.system_diagnosis}
+                          {diagnose?.system_diagnosis}
                         </p>
                       </div>
                     </div>

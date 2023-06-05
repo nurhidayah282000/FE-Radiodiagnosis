@@ -241,7 +241,7 @@ const DetailCatatanPasien = () => {
                                               {data.diagnoses?.map(
                                                 (diagnose) => {
                                                   if (
-                                                    diagnose.system_diagnosis
+                                                    diagnose?.system_diagnosis
                                                   ) {
                                                     return (
                                                       <div className="row">
@@ -250,7 +250,7 @@ const DetailCatatanPasien = () => {
                                                             <li className="text-xs">
                                                               Gigi #
                                                               {
-                                                                diagnose.tooth_number
+                                                                diagnose?.tooth_number
                                                               }
                                                             </li>
                                                           </ul>
@@ -258,7 +258,7 @@ const DetailCatatanPasien = () => {
                                                         <div className="col-10 ps-0">
                                                           <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
                                                             {
-                                                              diagnose.system_diagnosis
+                                                              diagnose?.system_diagnosis
                                                             }
                                                           </p>
                                                           <hr
@@ -290,7 +290,7 @@ const DetailCatatanPasien = () => {
                                               {data.diagnoses?.map(
                                                 (diagnose) => {
                                                   if (
-                                                    diagnose.system_diagnosis
+                                                    diagnose?.system_diagnosis
                                                   ) {
                                                     return (
                                                       <div className="row">
@@ -299,7 +299,7 @@ const DetailCatatanPasien = () => {
                                                             <li className="text-xs">
                                                               Gigi #
                                                               {
-                                                                diagnose.tooth_number
+                                                                diagnose?.tooth_number
                                                               }
                                                             </li>
                                                           </ul>
@@ -340,7 +340,7 @@ const DetailCatatanPasien = () => {
                                               {data.diagnoses?.map(
                                                 (diagnose) => {
                                                   if (
-                                                    diagnose.manual_diagnosis
+                                                    diagnose?.manual_diagnosis
                                                   ) {
                                                     return (
                                                       <div className="row">
@@ -349,7 +349,7 @@ const DetailCatatanPasien = () => {
                                                             <li className="text-xs">
                                                               Gigi #
                                                               {
-                                                                diagnose.tooth_number
+                                                                diagnose?.tooth_number
                                                               }
                                                             </li>
                                                           </ul>
@@ -357,7 +357,7 @@ const DetailCatatanPasien = () => {
                                                         <div className="col-10 ps-0">
                                                           <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
                                                             {
-                                                              diagnose.manual_diagnosis
+                                                              diagnose?.manual_diagnosis
                                                             }
                                                           </p>
                                                           <hr

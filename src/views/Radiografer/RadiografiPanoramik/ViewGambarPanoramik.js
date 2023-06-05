@@ -38,7 +38,7 @@ const ViewGambarPanoramik = () => {
   useEffect(() => {
     let numbers = [];
     data.diagnoses?.map((diagnose) => {
-      numbers.push(diagnose.tooth_number);
+      numbers.push(diagnose?.tooth_number);
     });
     setTeethNumber(numbers);
   }, [data]);
@@ -60,7 +60,6 @@ const ViewGambarPanoramik = () => {
   };
 
   const handleSystemDetection = (e) => {
-    e.preventDefault();
     axios
       .post(
         `${baseURL}/diagnoses/dummy/${id}`,
@@ -76,7 +75,7 @@ const ViewGambarPanoramik = () => {
         }
       )
       .then((response) => {
-        console.log(response.data);
+        window.location.reload();
       });
   };
 
@@ -1107,21 +1106,21 @@ const ViewGambarPanoramik = () => {
                                             Radiodiagnosis Sistem
                                           </p>
                                           {data.diagnoses?.map((diagnose) => {
-                                            if (diagnose.system_diagnosis) {
+                                            if (diagnose?.system_diagnosis) {
                                               return (
                                                 <div className="row">
                                                   <div className="col-2">
                                                     <ul className="ps-3">
                                                       <li className="text-xs">
                                                         Gigi #
-                                                        {diagnose.tooth_number}
+                                                        {diagnose?.tooth_number}
                                                       </li>
                                                     </ul>
                                                   </div>
                                                   <div className="col-4 ps-0">
                                                     <p className="text-xs text-dark font-weight-bold">
                                                       {
-                                                        diagnose.system_diagnosis
+                                                        diagnose?.system_diagnosis
                                                       }
                                                     </p>
                                                   </div>
