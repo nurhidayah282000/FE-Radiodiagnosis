@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { baseURL } from "../../routes/Config";
 
 const RadiografiPanoramikCard = ({ data }) => {
-  console.log(data)
   return (
     <div>
       <div className="row p-3 ">
@@ -74,7 +73,7 @@ const RadiografiPanoramikCard = ({ data }) => {
 
               <div className="col-6 pe-2 text-end">
                 <Link
-                  to={`/radiografer-view-gambar-panoramik/${data.radiographics_id}`}
+                  to={`/radiografer-view-gambar-panoramik/${data.history_id}`}
                 >
                   <button
                     type="button"

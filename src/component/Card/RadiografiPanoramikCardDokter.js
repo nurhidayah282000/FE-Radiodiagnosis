@@ -74,7 +74,7 @@ const RadiografiPanoramikCardDokter = ({ data, baseURL }) => {
 
               <div className="col-6 pe-2 text-end">
                 <Link
-                  to={`/dokter-view-gambar-panoramik/${data.radiographics_id}`}
+                  to={`/dokter-view-gambar-panoramik/${data.history_id}`}
                 >
                   <button
                     type="button"
