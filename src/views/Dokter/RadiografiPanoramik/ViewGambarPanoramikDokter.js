@@ -20,7 +20,7 @@ const ViewGambarPanoramikDokter = () => {
   const [data, setData] = useState({});
   const [doctors, setDoctors] = useState([]);
   const [teethNumber, setTeethNumber] = useState([]);
-  const [notVerified, setNotVerified] = useState(0);
+  const [verified, setverified] = useState(0);
 
   const { id } = useParams();
   const token = sessionStorage.getItem("token");
@@ -53,24 +53,23 @@ const ViewGambarPanoramikDokter = () => {
       .catch((error) => {
         console.log(error);
       });
-  }, [id]);
+  }, []);
 
   useEffect(() => {
     let numbers = [];
+
     data.diagnoses?.map((diagnose) => {
       numbers.push(diagnose?.tooth_number);
+      if (diagnose?.is_corerct) {
+        setverified(verified + 1);
+      }
     });
     setTeethNumber(numbers);
 
-    data.diagnoses?.map((diagnose) => {
-      if (diagnose.is_correct === null) {
-        setNotVerified(notVerified + 1);
-      }
-    });
   }, [data]);
 
   useEffect(() => {
-    if (notVerified === 0) {
+    if ((data.diagnoses?.length > 0 && data.diagnoses[0] !== null) && verified === data.diagnoses?.length) {
       axios
         .get(`${baseURL}/radiographics/update/${id}/status`, {
           headers: {
@@ -79,12 +78,13 @@ const ViewGambarPanoramikDokter = () => {
         })
         .then((response) => {
           console.log(response);
+          window.location.reload();
         })
         .catch((error) => {
           console.log(error);
         });
     }
-  }, [notVerified]);
+  }, [verified]);
 
   const handleSubmit = (e, doctorId) => {
     e.preventDefault();
@@ -1163,6 +1163,9 @@ const ViewGambarPanoramikDokter = () => {
                                               type="button"
                                               data-bs-toggle="modal"
                                               data-bs-target="#exampleModal3"
+                                              disabled={
+                                                data.history_id ? false : true
+                                              }
                                             >
                                               Interpretasi Manual
                                             </button>

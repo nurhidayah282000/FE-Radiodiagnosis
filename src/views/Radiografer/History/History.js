@@ -131,7 +131,7 @@ const History = () => {
 
                                     <td className="align-middle text-sm">
                                       <Link
-                                        to={`/radiografer-view-history/${item.id}`}
+                                        to={`/radiografer-view-history/${item.history_id}`}
                                       >
                                         <span className="btn mt-2 mb-2 shadow-none badge text-secondary badge-sm bg-gradient-white border border-gray">
                                           Lihat History Pasien

@@ -1092,7 +1092,7 @@ const ViewGambarPanoramik = () => {
                                                 className="btn btn-sm btn-primary mt-2 mb-2"
                                                 type="button"
                                                 onClick={handleSystemDetection}
-                                                disabled = {data.history_id == null ? false : true}
+                                                disabled = {data.system_check_date == null ? false : true}
                                               >
                                                 Deteksi Sistem
                                               </button>

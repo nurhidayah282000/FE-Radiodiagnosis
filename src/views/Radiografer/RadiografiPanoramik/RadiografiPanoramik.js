@@ -50,6 +50,7 @@ const RadiografiPanoramik = ({ route }) => {
         } else {
           setData(response.data.data);
           setPagination(response.data.meta);
+          console.log(pagination)
         }
       })
       .catch((error) => {
