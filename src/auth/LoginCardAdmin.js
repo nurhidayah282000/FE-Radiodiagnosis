@@ -6,7 +6,7 @@ import UploadGambarError from "../component/Alerts/UploadGambarError";
 import LoginError from "../component/Alerts/LoginError";
 
 const LoginCardAdmin = () => {
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(false);
   const [data, setData] = useState({
     email: "",
     password: "",
@@ -31,10 +31,10 @@ const LoginCardAdmin = () => {
         } else {
           sessionStorage.removeItem("token");
         }
-        setError('Login Gagal')
+        setError("Login Gagal");
       })
       .catch((error) => {
-        setError(true)
+        setError(true);
       });
   };
 
@@ -53,13 +53,10 @@ const LoginCardAdmin = () => {
                         Enter your email and password to sign in
                       </p>
                     </div>
-                    
-                    <div className="card-body">
-                      <div className="mb-3">
-                      {error ? <LoginError /> : ""} 
 
-                      </div>
-                
+                    <div className="card-body">
+                      <div className="mb-3">{error ? <LoginError /> : ""}</div>
+
                       <form role="form">
                         <div className="mb-3">
                           <input
@@ -130,7 +127,7 @@ const LoginCardAdmin = () => {
                       backgroundPosition: "center",
                     }}
                   >
-                     <span className="mask bg-gradient-primary opacity-5"></span>
+                    <span className="mask bg-gradient-primary opacity-5"></span>
                     <div>
                       <img
                         src="./assets/img/App/Logo_PENS.png"
@@ -141,7 +138,6 @@ const LoginCardAdmin = () => {
                         className="w-20 h-1"
                       ></img>
                     </div>
-                   
 
                     <h4 className="mt-0 text-white font-weight-bolder position-relative">
                       "PENS - UA Radiodiagnostic Report"
