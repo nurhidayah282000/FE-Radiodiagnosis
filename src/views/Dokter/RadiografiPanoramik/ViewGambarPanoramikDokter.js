@@ -58,7 +58,7 @@ const ViewGambarPanoramikDokter = () => {
   useEffect(() => {
     let numbers = [];
     data.diagnoses?.map((diagnose) => {
-      numbers.push(diagnose.tooth_number);
+      numbers.push(diagnose?.tooth_number);
     });
     setTeethNumber(numbers);
 
@@ -1103,43 +1103,43 @@ const ViewGambarPanoramikDokter = () => {
                                             Radiodiagnosis Sistem
                                           </p>
                                           {data.diagnoses?.map((diagnose) => {
-                                            if (diagnose.system_diagnosis) {
+                                            if (diagnose?.system_diagnosis) {
                                               return (
                                                 <div className="row">
                                                   <div className="col-2">
                                                     <ul className="ps-3">
                                                       <li className="text-xs">
                                                         Gigi #
-                                                        {diagnose.tooth_number}
+                                                        {diagnose?.tooth_number}
                                                       </li>
                                                     </ul>
                                                   </div>
                                                   <div className="col-4 ps-0">
                                                     <p className="text-xs text-dark font-weight-bold">
                                                       {
-                                                        diagnose.system_diagnosis
+                                                        diagnose?.system_diagnosis
                                                       }
                                                     </p>
                                                   </div>
 
                                                   <div className="col-6 text-end">
-                                                    {diagnose.is_corerct ===
+                                                    {diagnose?.is_corerct ===
                                                     null ? (
                                                       <ButtonVerified
-                                                        index={diagnose.id}
+                                                        index={diagnose?.id}
                                                       />
                                                     ) : (
                                                       <ButtonVerifiedResult
-                                                        index={diagnose.id}
+                                                        index={diagnose?.id}
                                                       />
                                                     )}
                                                   </div>
                                                   <VerifiedYes
-                                                    index={diagnose.id}
+                                                    index={diagnose?.id}
                                                     diagnose={diagnose}
                                                   />
                                                   <VerifiedResult
-                                                    index={diagnose.id}
+                                                    index={diagnose?.id}
                                                     diagnose={diagnose}
                                                   />
                                                 </div>

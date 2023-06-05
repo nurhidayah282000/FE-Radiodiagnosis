@@ -66,19 +66,19 @@ const HistoryCard = ({ data }) => {
                       Radiodiagnosis Sistem
                     </p>
                     {data.diagnoses?.map((diagnose) => {
-                      if (diagnose.system_diagnosis) {
+                      if (diagnose?.system_diagnosis) {
                         return (
                           <div className="row">
                             <div className="col-2">
                               <ul className="ps-3">
                                 <li className="text-xs">
-                                  Gigi #{diagnose.tooth_number}
+                                  Gigi #{diagnose?.tooth_number}
                                 </li>
                               </ul>
                             </div>
                             <div className="col-10 ps-0">
                               <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
-                                {diagnose.system_diagnosis}
+                                {diagnose?.system_diagnosis}
                               </p>
                               <hr
                                 style={{
@@ -103,13 +103,13 @@ const HistoryCard = ({ data }) => {
                       Radiodiagnosis Verifikator
                     </p>
                     {data.diagnoses?.map((diagnose) => {
-                      if (diagnose.system_diagnosis) {
+                      if (diagnose?.system_diagnosis) {
                         return (
                           <div className="row">
                             <div className="col-2">
                               <ul className="ps-3">
                                 <li className="text-xs">
-                                  Gigi #{diagnose.tooth_number}
+                                  Gigi #{diagnose?.tooth_number}
                                 </li>
                               </ul>
                             </div>
@@ -141,19 +141,19 @@ const HistoryCard = ({ data }) => {
                       Interpretasi Manual
                     </p>
                     {data.diagnoses?.map((diagnose) => {
-                      if (diagnose.manual_diagnosis) {
+                      if (diagnose?.manual_diagnosis) {
                         return (
                           <div className="row">
                             <div className="col-2">
                               <ul className="ps-3">
                                 <li className="text-xs">
-                                  Gigi #{diagnose.tooth_number}
+                                  Gigi #{diagnose?.tooth_number}
                                 </li>
                               </ul>
                             </div>
                             <div className="col-10 ps-0">
                               <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
-                                {diagnose.manual_diagnosis}
+                                {diagnose?.manual_diagnosis}
                               </p>
                               <hr
                                 style={{
