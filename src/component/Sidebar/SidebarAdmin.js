@@ -1,5 +1,6 @@
 import React from "react";
 import SidebarFooterAdmin from "./SidebarFooterAdmin";
+import { NavLink } from "react-router-dom";
 
 const SidebarAdmin = () => {
   return (
@@ -32,13 +33,12 @@ const SidebarAdmin = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" href="/data-user">
+                <NavLink activeClassName="active" className="nav-link" to="/data-user">
                   <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <img src="../assets/img/App/data_pasien_active.png" />
+                    <img src="../assets/img/App/data_pasien.png" />
                   </div>
-
                   <span className="nav-link-text ms-1">Data User</span>
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>

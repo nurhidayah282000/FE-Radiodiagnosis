@@ -56,22 +56,16 @@ const InterpretasiManual = ({ radiographicId }) => {
                     <p className="text-secondary text-xs ms-2 mt-0 mb-2">
                       No.Gigi
                     </p>
-                    <select
-                      className="form-select ms-2 mb-3 text-xs"
+                    <input
+                      className="form-control ms-2 mb-3 text-xs"
                       style={{ width: "92%" }}
                       id="toothNumber"
                       name="toothNumber"
+                      placeholder="no.gigi"
                       value={data.toothNumber}
-                      onChange={handleChange}
+                      onChange={(e) => handleChange(e)}
                       required
-                    >
-                      <option disabled>no. Gigi</option>
-                      <option value="55">55</option>
-                      <option value="54">54</option>
-                      <option value="53">53</option>
-                      <option value="52">52</option>
-                      <option value="51">51</option>
-                    </select>
+                    />
                   </div>
                   <div className="col-9">
                     <p className="text-secondary text-xs ms-2 mt-0 mb-2">
@@ -79,11 +73,11 @@ const InterpretasiManual = ({ radiographicId }) => {
                     </p>
                     <input
                       className="ms-2 mb-3 text-xs form-control"
-                      style={{ width: "92%" }}
+                      style={{ width: "95%" }}
                       placeholder="tulis nama penyakit"
                       name="manualDiagnosis"
                       value={data.manualDiagnosis}
-                      onChange={handleChange}
+                      onChange={(e) => handleChange(e)}
                       required
                     />
                   </div>

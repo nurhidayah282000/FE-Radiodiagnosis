@@ -177,7 +177,7 @@ const CatatanPasien = () => {
                                   </td>
                                   <td className="align-middle text-sm">
                                     <Link
-                                      to={`/dokter-detail-catatan-pasien/${item.id}`}
+                                      to={`/dokter-detail-catatan-pasien/${item.history_id}`}
                                     >
                                       <span className="btn mt-2 mb-2 shadow-none badge text-secondary badge-sm bg-gradient-white border border-gray">
                                         Lihat Detail

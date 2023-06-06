@@ -1,6 +1,6 @@
 import React from "react";
 
-const VerifiedResult = ({index, diagnose}) => {
+const VerifiedResult = ({ index, diagnose }) => {
   return (
     <div>
       <div
@@ -16,19 +16,40 @@ const VerifiedResult = ({index, diagnose}) => {
         >
           <div className="modal-content">
             <div className="modal-body">
-              <p className="ms-2 pt-0 mt-0 mb-0 font-weight-bold text-dark ">
-                Verifikasi Diagnosa
-              </p>
+              <div className="row">
+                <div className="col-6">
+                  <p className="ms-2 pt-0 mt-0 mb-0 font-weight-bold text-dark ">
+                    Verifikasi Diagnosa
+                  </p>
+                </div>
+                <div className="col-6 pe-0 text-end">
+                  {/* <button
+                    type="button"
+                    className="btn btn-link text-xs text-end pt-2 mb-0 pe-3 text-"
+                  >
+                    Edit
+                  </button> */}
+                  <button
+                    type="button"
+                    className="btn btn-link text-xs text-end pt-2 mb-0 ps-0 text-primary"
+                  >
+                    Simpan Data
+                  </button>
+                </div>
+              </div>
+
               <p className="mt-2 ms-2 mb-0 badge border-radius-xl text-xs  badge-sm bg-gradient-faded-success-vertical">
-              <i className="fa fa-check"></i>&nbsp; Telah Diverifikasi
-                </p>
+                <i className="fa fa-check"></i>&nbsp; Telah Diverifikasi
+              </p>
 
               <p className="text-secondary text-xs ms-2 mt-2">
                 Radiodiagnosis Sistem
               </p>
               <div className="row">
                 <div className="col-3">
-                  <p className="text-xs text-dark ps-2">Gigi #{diagnose?.tooth_number}</p>
+                  <p className="text-xs text-dark ps-2">
+                    Gigi #{diagnose?.tooth_number}
+                  </p>
                 </div>
                 <div className="col-4 ps-0">
                   <ul>
@@ -52,13 +73,25 @@ const VerifiedResult = ({index, diagnose}) => {
                   Radiodiagnosis Verifikator
                 </p>
                 <div className="col-3">
-                  <p className="text-xs text-dark ps-2">Gigi #{diagnose?.tooth_number}</p>
+                  <p className="text-xs text-dark ps-2">
+                    Gigi #{diagnose?.tooth_number}
+                  </p>
                 </div>
                 <div className="col-4 ps-0">
                   <ul>
-                    <li className="text-xs text-warning font-weight-bold">
-                      {diagnose.verificator_diagnosis}
+                    <li
+                      className="text-xs text-warning font-weight-bold"
+                      type="input"
+                    >
+                      {diagnose.verificator_diagnosis != ""
+                        ? diagnose.verificator_diagnosis
+                        : diagnose.system_diagnosis}
                     </li>
+                    {/* <li className="text-xs text-warning font-weight-bold">
+                    <p className="text-xs text-warning font-weight-bold border-none" value={diagnose.verificator_diagnosis != ""
+                        ? diagnose.verificator_diagnosis
+                        : diagnose.system_diagnosis}/>
+                    </li> */}
                   </ul>
                 </div>
                 <hr

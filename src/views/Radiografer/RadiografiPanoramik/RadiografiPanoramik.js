@@ -145,7 +145,7 @@ const RadiografiPanoramik = ({ route }) => {
                       </div>
                     </div>
                     <div className="card-body px-0 pt-0 pb-2">
-                      <div className="row">
+                      <div className="row align-items-baseline">
                         <div className="col-md-2">
                           <p className="ps-0 text-uppercase text-secondary text-xxs font-weight-bolder">
                             Rekapitulasi
@@ -188,7 +188,7 @@ const RadiografiPanoramik = ({ route }) => {
                         <div className="col-md-2">
                           <button
                             type="button"
-                            className="btn btn-link mb-0 btn-sm mt-0 pt-0 ps-4 text-uppercase text-primary text-xxs font-weight-bolder"
+                            className="btn btn-link mb-0 btn-sm mt-0 pt-2 ps-4 text-uppercase text-primary text-xxs font-weight-bolder"
                             onClick={handleDownload}
                           >
                             <i

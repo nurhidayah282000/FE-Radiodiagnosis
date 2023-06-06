@@ -1170,7 +1170,7 @@ const ViewGambarPanoramikDokter = () => {
                                               Interpretasi Manual
                                             </button>
                                             <InterpretasiManual
-                                              radiographicId={data.id}
+                                              radiographicId={data.history_id}
                                             />
                                           </div>
                                         </div>

@@ -1,5 +1,6 @@
 import axios from "axios";
 import moment from "moment";
+import JsPDF from "jspdf";
 import { React, useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import HeaderDataUser from "../../../component/Header/HeaderDataUser";
@@ -21,7 +22,7 @@ const DetailCatatanPasien = () => {
 
   useEffect(() => {
     axios
-      .get(`${baseURL}/radiographics/history/detail/${id}`, {
+      .get(`${baseURL}/radiographics/detail/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -36,6 +37,13 @@ const DetailCatatanPasien = () => {
         console.log(error);
       });
   }, [id]);
+
+  const generatePDF = () => {
+    const report = new JsPDF("portrait", "pt", "a4");
+    report.html(document.querySelector("#report")).then(() => {
+      report.save("report.pdf");
+    });
+  };
 
   const mappingDiagnoses = (diagnoses) => {
     let systemDiagnosis = [];
@@ -138,33 +146,15 @@ const DetailCatatanPasien = () => {
                                     : "-"}
                                 </p>
                               </div>
-                              <div className="col-2 text-end pe-0">
-                                <div className="d-flex justify-content-end mb-0">
-                                  <Link
-                                  // to={``}
+
+                              <div className="col-4 ps-3 text-end">
+                                <div className="d-flex justify-content-end mb-0 text-end">
+                                  <button
+                                    className="btn btn-primary btn-sm mb-0"
+                                    onClick={generatePDF}
                                   >
-                                    <button
-                                      className="btn text-white btn-sm mb-0"
-                                      style={{ backgroundColor: "#FF5347" }}
-                                    >
-                                      <i
-                                        className="fa fa-print"
-                                        aria-hidden="true"
-                                      ></i>
-                                      &nbsp;&nbsp; Cetak Catatan
-                                    </button>
-                                  </Link>
-                                </div>
-                              </div>
-                              <div className="col-2 ps-3">
-                                <div className="d-flex justify-content-start mb-0">
-                                  <Link
-                                    to={`/dokter-view-catatan-pasien/${id}`}
-                                  >
-                                    <button className="btn btn-primary btn-sm mb-0">
-                                      Lihat Catatan
-                                    </button>
-                                  </Link>
+                                    Export PDF
+                                  </button>
                                 </div>
                               </div>
                             </div>
@@ -180,7 +170,7 @@ const DetailCatatanPasien = () => {
                             }}
                           />
 
-                          <div className="card-body pb-2 pt-0">
+                          <div id = "report" className="card-body pb-2 pt-0">
                             <div className="row justify-content-center">
                               <div className="col-md-12">
                                 <div
@@ -290,56 +280,7 @@ const DetailCatatanPasien = () => {
                                               {data.diagnoses?.map(
                                                 (diagnose) => {
                                                   if (
-                                                    diagnose?.system_diagnosis
-                                                  ) {
-                                                    return (
-                                                      <div className="row">
-                                                        <div className="col-2">
-                                                          <ul className="ps-3">
-                                                            <li className="text-xs">
-                                                              Gigi #
-                                                              {
-                                                                diagnose?.tooth_number
-                                                              }
-                                                            </li>
-                                                          </ul>
-                                                        </div>
-                                                        <div className="col-10 ps-0">
-                                                          <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
-                                                            {
-                                                              diagnose.verificator_diagnosis
-                                                            }
-                                                          </p>
-                                                          <hr
-                                                            style={{
-                                                              height: "1px",
-                                                              borderWidth:
-                                                                "0 px",
-                                                              color: "gray",
-                                                              backgroundColor:
-                                                                "gray",
-                                                              marginBottom:
-                                                                "0 px",
-                                                              marginTop: "0 px",
-                                                            }}
-                                                          />
-                                                        </div>
-                                                      </div>
-                                                    );
-                                                  }
-                                                }
-                                              )}
-                                            </div>
-                                          </div>
-
-                                          <div className="row">
-                                            <div className="col-12">
-                                              <p className="text-xxs text-secondary font-weight-bold">
-                                                Interpretasi Manual
-                                              </p>
-                                              {data.diagnoses?.map(
-                                                (diagnose) => {
-                                                  if (
+                                                    diagnose?.system_diagnosis ||
                                                     diagnose?.manual_diagnosis
                                                   ) {
                                                     return (
@@ -355,11 +296,34 @@ const DetailCatatanPasien = () => {
                                                           </ul>
                                                         </div>
                                                         <div className="col-10 ps-0">
-                                                          <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
-                                                            {
-                                                              diagnose?.manual_diagnosis
-                                                            }
-                                                          </p>
+                                                          {diagnose.verificator_diagnosis ? (
+                                                            <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
+                                                              {diagnose.verificator_diagnosis ===
+                                                              "dan lain-lain"
+                                                                ? diagnose.verificator_note +
+                                                                  (diagnose.manual_diagnosis
+                                                                    ? ", " +
+                                                                      diagnose.manual_diagnosis
+                                                                    : "")
+                                                                : diagnose.verificator_diagnosis
+                                                                ? diagnose.verificator_diagnosis +
+                                                                  (diagnose.manual_diagnosis
+                                                                    ? ", " +
+                                                                      diagnose.manual_diagnosis
+                                                                    : "")
+                                                                : diagnose.manual_diagnosis}
+                                                            </p>
+                                                          ) : (
+                                                            <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
+                                                              {diagnose.system_diagnosis
+                                                                ? diagnose.system_diagnosis +
+                                                                  (diagnose.manual_diagnosis
+                                                                    ? ", " +
+                                                                      diagnose.manual_diagnosis
+                                                                    : "")
+                                                                : diagnose.manual_diagnosis}
+                                                            </p>
+                                                          )}
                                                           <hr
                                                             style={{
                                                               height: "1px",
@@ -393,7 +357,6 @@ const DetailCatatanPasien = () => {
                       </div>
                     </div>
                   </div>
-                  <PaginationsHistory />
                 </div>
               </div>
             </div>

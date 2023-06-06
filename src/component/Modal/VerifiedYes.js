@@ -157,13 +157,13 @@ const VerifiedYes = ({ index, diagnose }) => {
                       aria-placeholder="xsaas"
                       name="verificatorDiagnosis"
                       onChange={(e) => handleChange(e)}
-                      value={"karises"}
+                      value={data.verificatorDiagnosis}
                     >
-                      <option value="karises">Karies</option>
-                      <option value="lesi periapikal">Lesi Periapikal</option>
-                      <option value="impaksi">Impaksi</option>
-                      <option value="resorbsi">Resorbsi</option>
-                      <option value="lain-lain">dll</option>
+                      <option value="Karises">Karies</option>
+                      <option value="Lesi Periapikal">Lesi Periapikal</option>
+                      <option value="Impaksi">Impaksi</option>
+                      <option value="Resorbsi">Resorbsi</option>
+                      <option value="dan lain-lain">dan lain-lain</option>
                     </select>
 
                     <p className="text-secondary text-xs ms-2 mt-0 mb-2">

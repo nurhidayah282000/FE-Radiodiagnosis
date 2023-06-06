@@ -178,7 +178,7 @@ const ViewGambarPanoramik = () => {
                                 </p>
                                 <p className="text-xs font-weight-bolder mb-0">
                                   {moment(data.panoramik_upload_date).format(
-                                    "DD/MM/YYY"
+                                    "DD/MM/YYYY"
                                   )}
                                 </p>
                               </div>

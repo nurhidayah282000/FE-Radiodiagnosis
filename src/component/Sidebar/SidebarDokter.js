@@ -1,5 +1,6 @@
 import React from "react";
 import SidebarFooterUser from "./SidebarFooterUser";
+import { NavLink } from "react-router-dom";
 
 const SidebarDokter = () => {
   return (
@@ -32,37 +33,36 @@ const SidebarDokter = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" href="/dokter-data-pasien">
+                <NavLink activeClassName="active" className="nav-link" to="/dokter-data-pasien">
                   <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                    <img src="../assets/img/App/data_pasien_active.png" />
+                    <img src="../assets/img/App/data_pasien.png" />
                   </div>
-
                   <span className="nav-link-text ms-1">Data Pasien</span>
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/dokter-radiografi-panoramik">
+                <NavLink activeClassName="active" className="nav-link" to="/dokter-radiografi-panoramik">
                   <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <img src="../assets/img/App/radiografi_panoramik.png" />
                   </div>
                   <span className="nav-link-text ms-1">Radiografi Panoramik</span>
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/dokter-catatan-pasien">
+                <NavLink activeClassName="active" className="nav-link" to="/dokter-catatan-pasien">
                   <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <img src="../assets/img/App/catatan_pasien.png" />
                   </div>
                   <span className="nav-link-text ms-1">Catatan Pasien</span>
-                </a>
+                </NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="/dokter-profil">
+                <NavLink activeClassName="active" className="nav-link" to="/dokter-profil">
                   <div className="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                     <img src="../assets/img/App/profil.png" />
                   </div>
                   <span className="nav-link-text ms-1">Profile</span>
-                </a>
+                </NavLink>
               </li>
             </ul>
           </div>
