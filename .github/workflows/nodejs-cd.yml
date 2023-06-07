@@ -2,7 +2,7 @@ name: Node.js CD
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
         port: 22
         script: |
           cd /home/ubuntu/FE-Radiodiagnostic
-          sudo git pull origin master
+          sudo git pull origin main
           sudo npm install
           sudo pm2 reload frontend
           echo "done"
