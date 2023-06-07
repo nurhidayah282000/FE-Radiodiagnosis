@@ -67,6 +67,8 @@ const DataPasien = () => {
     }
   }, [currentPage, inputText]);
 
+  console.log(pagination)
+
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };

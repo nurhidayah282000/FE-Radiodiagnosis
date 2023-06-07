@@ -3,7 +3,8 @@ import VerifiedNo from "./VerifiedNo";
 import axios from "axios";
 import { baseURL } from "../../routes/Config";
 
-const VerifiedYes = ({ index, diagnose }) => {
+const VerifiedYes = ({ index, diagnose, diagnoses, historyId }) => {
+  console.log(diagnoses);
   const token = sessionStorage.getItem("token");
 
   const [show, setShow] = React.useState(false);
@@ -37,23 +38,51 @@ const VerifiedYes = ({ index, diagnose }) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  console.log(data);
+  const handleSubmit = async (e) => {
+    let count = 1;
 
-  const handleSubmit = (e) => {
-    axios
-      .post(`${baseURL}/diagnoses/${diagnose.id}/verificator`, data, {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
+    await Promise.all(
+      diagnoses.map((dg) => {
+        if (dg.verification_date) {
+          count++;
+        }
       })
-      .then((res) => {
-        console.log(res);
-        window.location.reload();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    );
+
+    console.log(count)
+    console.log(diagnoses.length)
+
+    if (count === diagnoses.length) {
+      console.log("masuk update")
+      try {
+        await axios.get(
+          `${baseURL}/radiographics/update/${historyId}/status`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    try {
+      await axios.post(
+        `${baseURL}/diagnoses/${diagnose.id}/verificator`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

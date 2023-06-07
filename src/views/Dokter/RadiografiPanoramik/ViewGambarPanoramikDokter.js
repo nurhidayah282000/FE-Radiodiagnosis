@@ -60,31 +60,9 @@ const ViewGambarPanoramikDokter = () => {
 
     data.diagnoses?.map((diagnose) => {
       numbers.push(diagnose?.tooth_number);
-      if (diagnose?.is_corerct) {
-        setverified(verified + 1);
-      }
     });
     setTeethNumber(numbers);
-
   }, [data]);
-
-  useEffect(() => {
-    if ((data.diagnoses?.length > 0 && data.diagnoses[0] !== null) && verified === data.diagnoses?.length) {
-      axios
-        .get(`${baseURL}/radiographics/update/${id}/status`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          console.log(response);
-          window.location.reload();
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [verified]);
 
   const handleSubmit = (e, doctorId) => {
     e.preventDefault();
@@ -1137,6 +1115,8 @@ const ViewGambarPanoramikDokter = () => {
                                                   <VerifiedYes
                                                     index={diagnose?.id}
                                                     diagnose={diagnose}
+                                                    diagnoses={data.diagnoses}
+                                                    historyId={data.history_id}
                                                   />
                                                   <VerifiedResult
                                                     index={diagnose?.id}
