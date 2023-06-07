@@ -7,7 +7,22 @@ import HeaderDataUser from "../../../component/Header/HeaderDataUser";
 import SidebarDokter from "../../../component/Sidebar/SidebarDokter";
 import { baseURL } from "../../../routes/Config";
 import WithAuthorization from "../../../utils/auth";
+import { Page, Text, View, Document, StyleSheet } from "@react-pdf/renderer";
 import PaginationsHistory from "../../../component/Pagination/PaginationsHistory";
+import Report from "./Report";
+import ReactPDF from "@react-pdf/renderer";
+import ReactDOM from "react-dom";
+import { PDFViewer } from "@react-pdf/renderer";
+
+// ReactPDF.renderToStream(<MyDocument />);
+
+// const App = () => (
+//   <PDFViewer>
+//     <MyDocument />
+//   </PDFViewer>
+// );
+
+// ReactDOM.render(<App />, document.getElementById('root'));
 
 const DetailCatatanPasien = () => {
   const auth = WithAuthorization(["doctor"]);
@@ -44,6 +59,33 @@ const DetailCatatanPasien = () => {
       report.save("report.pdf");
     });
   };
+
+  // Create styles
+  // const styles = StyleSheet.create({
+  //   page: {
+  //     flexDirection: "row",
+  //     backgroundColor: "#E4E4E4",
+  //   },
+  //   section: {
+  //     margin: 10,
+  //     padding: 10,
+  //     flexGrow: 1,
+  //   },
+  // });
+
+  // Create Document Component
+  // const MyDocument = () => (
+  //   <Document>
+  //     <Page size="A4" style={styles.page}>
+  //       <View style={styles.section}>
+  //         <Text>Section #1</Text>
+  //       </View>
+  //       <View style={styles.section}>
+  //         <Text>Section #2</Text>
+  //       </View>
+  //     </Page>
+  //   </Document>
+  // );
 
   const mappingDiagnoses = (diagnoses) => {
     let systemDiagnosis = [];
@@ -170,7 +212,7 @@ const DetailCatatanPasien = () => {
                             }}
                           />
 
-                          <div id = "report" className="card-body pb-2 pt-0">
+                          <div className="card-body pb-2 pt-0">
                             <div className="row justify-content-center">
                               <div className="col-md-12">
                                 <div
@@ -182,7 +224,7 @@ const DetailCatatanPasien = () => {
                                       <div className="card shadow-none mt-4 me-2 ms-2">
                                         <div className="card-body">
                                           <p className="text-sm font-weight-bolder text-dark">
-                                            Rekam Medik#1
+                                            Rekam Medik
                                           </p>
                                           <p class="text-xs text-secondary font-weight-bold">
                                             Gambar Panoramik Gigi
@@ -345,6 +387,9 @@ const DetailCatatanPasien = () => {
                                               )}
                                             </div>
                                           </div>
+                                        </div>
+                                        <div id="report">
+                                          <Report />
                                         </div>
                                       </div>
                                     </div>

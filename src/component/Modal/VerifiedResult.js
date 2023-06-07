@@ -1,6 +1,18 @@
-import React from "react";
+import axios from "axios";
+import { React, useState } from "react";
+
 
 const VerifiedResult = ({ index, diagnose }) => {
+ 
+  // const [data, setData] = useState();
+  
+  // const handleChange = (e) => {
+  //   setData({
+  //     ...data,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
   return (
     <div>
       <div
@@ -88,9 +100,9 @@ const VerifiedResult = ({ index, diagnose }) => {
                         : diagnose.system_diagnosis}
                     </li>
                     {/* <li className="text-xs text-warning font-weight-bold">
-                    <p className="text-xs text-warning font-weight-bold border-none" value={diagnose.verificator_diagnosis != ""
+                    <input className="text-xs text-warning font-weight-bold border-none" value={diagnose.verificator_diagnosis != ""
                         ? diagnose.verificator_diagnosis
-                        : diagnose.system_diagnosis}/>
+                        : diagnose.system_diagnosis} name="diagnose" type="text" onChange={handleChange}/>
                     </li> */}
                   </ul>
                 </div>

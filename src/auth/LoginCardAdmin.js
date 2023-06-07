@@ -80,16 +80,6 @@ const LoginCardAdmin = () => {
                             onChange={handleChange}
                           />
                         </div>
-                        <div className="form-check form-switch">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="rememberMe"
-                          />
-                          <label className="form-check-label" for="rememberMe">
-                            Remember me
-                          </label>
-                        </div>
                         <div className="text-center">
                           <button
                             type="button"
@@ -103,17 +93,8 @@ const LoginCardAdmin = () => {
                     </div>
                     <div className="card-footer text-center pt-0 px-lg-2 px-1">
                       <p className="mb-4 text-sm mx-auto">
-                        Don't have an account?
-                        <a
-                          href="\register-admin"
-                          className="text-primary text-gradient font-weight-bold"
-                        >
-                          Sign up
-                        </a>
+                        Login with user admin.
                       </p>
-                      {/* { error === "" ? "" : <EditDataSucces
-                      message={error}
-                      /> } */}
                     </div>
                   </div>
                 </div>

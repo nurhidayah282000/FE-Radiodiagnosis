@@ -33,12 +33,12 @@ const RoutesApp = () => {
     <div>
       <Router>
         <Routes>
-          <Route path="/" element={<LoginAdmin />} />
+          <Route path="/" element={<LoginUser />} />
           <Route path="/data-user" element={<DataUser />} />
           <Route path="/add-data-user" element={<AddDataUser />} />
           <Route path="/edit-data-user/:id" element={<EditDataUser />} />
           <Route path="/view-data-user/:id" element={<ViewDataUser />} />
-          <Route path="/login-user" element={<LoginUser />} />
+          <Route path="/login-admin" element={<LoginAdmin />} />
           <Route path="/radiografer-data-pasien" element={<DataPasien />} />
           <Route
             path="/radiografer-add-data-pasien"

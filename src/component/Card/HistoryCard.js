@@ -103,7 +103,10 @@ const HistoryCard = ({ data }) => {
                       Radiodiagnosis Verifikator
                     </p>
                     {data.diagnoses?.map((diagnose) => {
-                      if (diagnose?.system_diagnosis) {
+                      if (
+                        diagnose?.system_diagnosis ||
+                        diagnose?.manual_diagnosis
+                      ) {
                         return (
                           <div className="row">
                             <div className="col-2">
@@ -114,9 +117,31 @@ const HistoryCard = ({ data }) => {
                               </ul>
                             </div>
                             <div className="col-10 ps-0">
-                              <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
-                                {diagnose.verificator_diagnosis}
-                              </p>
+                              {diagnose.verificator_diagnosis ? (
+                                <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
+                                  {diagnose.verificator_diagnosis ===
+                                  "dan lain-lain"
+                                    ? diagnose.verificator_note +
+                                      (diagnose.manual_diagnosis
+                                        ? ", " + diagnose.manual_diagnosis
+                                        : "")
+                                    : diagnose.verificator_diagnosis
+                                    ? diagnose.verificator_diagnosis +
+                                      (diagnose.manual_diagnosis
+                                        ? ", " + diagnose.manual_diagnosis
+                                        : "")
+                                    : diagnose.manual_diagnosis}
+                                </p>
+                              ) : (
+                                <p className="text-xs text-dark font-weight-bold mb-0 pb-2">
+                                  {diagnose.system_diagnosis
+                                    ? diagnose.system_diagnosis +
+                                      (diagnose.manual_diagnosis
+                                        ? ", " + diagnose.manual_diagnosis
+                                        : "")
+                                    : diagnose.manual_diagnosis}
+                                </p>
+                              )}
                               <hr
                                 style={{
                                   height: "1px",
@@ -135,7 +160,7 @@ const HistoryCard = ({ data }) => {
                   </div>
                 </div>
 
-                <div className="row">
+                {/* <div className="row">
                   <div className="col-12">
                     <p className="text-xxs text-secondary font-weight-bold">
                       Interpretasi Manual
@@ -171,7 +196,7 @@ const HistoryCard = ({ data }) => {
                       }
                     })}
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

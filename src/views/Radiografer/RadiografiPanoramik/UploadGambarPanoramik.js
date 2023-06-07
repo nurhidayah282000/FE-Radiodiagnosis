@@ -112,7 +112,7 @@ const UploadGambarPanoramik = () => {
         });
       })
       .catch((error) => {
-        setError(true)
+        setError(true);
       });
   };
 
@@ -168,22 +168,6 @@ const UploadGambarPanoramik = () => {
                             <p className="text-xs text-secondary mb-2">
                               Kode RM
                             </p>
-                            {/* <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Kode RM"
-                              list="list-patients"
-                              id="input-datalist"
-                              onChange={(e) => setPatientId(e.target.value)}
-                              onInput={onInput}
-                            />
-                            <datalist id="list-patients">
-                              {patients.map((p) => (
-                                <option key={p.id} value={p.id}>
-                                  {p.medic_number} - {p.fullname}
-                                </option>
-                              ))}
-                            </datalist> */}
                             <Autocomplete
                               disablePortal
                               id="combo-box"
@@ -195,7 +179,7 @@ const UploadGambarPanoramik = () => {
                                 display: "inline-block",
                                 "& input": {
                                   width: "100%",
-                                  height: "50%",
+                                  height: "100%",
                                   padding: "0.2rem 0.75rem",
                                   fontWeight: 400,
                                   color: "#495057",
@@ -319,7 +303,7 @@ const UploadGambarPanoramik = () => {
                                 </button>
                                 {/* </a> */}
                               </div>
-                              {error ? <UploadGambarError /> : ""} 
+                              {error ? <UploadGambarError /> : ""}
                             </div>
                           </div>
                         </div>

@@ -3,7 +3,7 @@ import React from "react";
 const SidebarFooterAdmin = () => {
   const logoutHandler = () => {
     sessionStorage.removeItem("token");
-    window.location.href = "/";
+    window.location.href = "/login-admin";
   };
 
   return (

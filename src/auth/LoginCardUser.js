@@ -26,7 +26,7 @@ const LoginCardUser = () => {
         sessionStorage.setItem("token", data.accessToken);
         if (data.role === "radiographer") {
           window.location.href = "/radiografer-data-pasien";
-        } else if(data.role === "doctor") {
+        } else if (data.role === "doctor") {
           window.location.href = "/dokter-data-pasien";
         }
       })
@@ -51,7 +51,7 @@ const LoginCardUser = () => {
                       </p>
                     </div>
                     <div className="card-body">
-                    <div className="mb-3">{error ? <LoginError /> : ""}</div>
+                      <div className="mb-3">{error ? <LoginError /> : ""}</div>
                       <form role="form">
                         <div className="mb-3">
                           <input
@@ -77,16 +77,6 @@ const LoginCardUser = () => {
                             required
                           />
                         </div>
-                        <div className="form-check form-switch">
-                          <input
-                            className="form-check-input"
-                            type="checkbox"
-                            id="rememberMe"
-                          />
-                          <label className="form-check-label" for="rememberMe">
-                            Remember me
-                          </label>
-                        </div>
                         <div className="text-center">
                           <button
                             type="button"
@@ -101,12 +91,6 @@ const LoginCardUser = () => {
                     <div className="card-footer text-center pt-0 px-lg-2 px-1">
                       <p className="mb-4 text-sm mx-auto">
                         Account Registered by Admin.
-                        {/* <a
-                          href="\register-admin"
-                          className="text-primary text-gradient font-weight-bold"
-                        >
-                          Please contact admin.
-                        </a> */}
                       </p>
                     </div>
                   </div>
@@ -121,7 +105,7 @@ const LoginCardUser = () => {
                       backgroundPosition: "center",
                     }}
                   >
-                      <div>
+                    <div>
                       <img
                         src="./assets/img/App/Logo_PENS.png"
                         className="w-20 h-1"
