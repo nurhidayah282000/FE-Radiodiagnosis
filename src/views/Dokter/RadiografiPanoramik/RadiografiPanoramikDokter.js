@@ -60,6 +60,7 @@ const RadiografiPanoramikDokter = () => {
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
+  console.log(pagination)
 
   if (auth) {
     return (
