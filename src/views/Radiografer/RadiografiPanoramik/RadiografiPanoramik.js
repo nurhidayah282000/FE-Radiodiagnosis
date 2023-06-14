@@ -159,10 +159,12 @@ const RadiografiPanoramik = ({ route }) => {
                           <div className="row-cols-md-3 pt-0">
                             <div>
                               <select
-                                className=" ps-4 text-uppercase text-primary textr-start text-xxs font-weight-bolder border-0"
+                                className=" ps-4 text-uppercase text-primary textr-start text-xxs font-weight-bolder"
+                                style={{border: "none"}}
                                 name="month"
                                 onChange={(e) => setMonth(e.target.value)}
                               >
+                                <option hidden >Bulan</option>
                                 <option value="01">Januari</option>
                                 <option value="02">Februari</option>
                                 <option value="03">Maret</option>

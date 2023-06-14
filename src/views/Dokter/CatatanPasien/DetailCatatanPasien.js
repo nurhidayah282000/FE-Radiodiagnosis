@@ -388,7 +388,7 @@ const DetailCatatanPasien = () => {
                                             </div>
                                           </div>
                                         </div>
-                                        <div id="report">
+                                        <div id="report" style={{display: "none"}}>
                                           <Report />
                                         </div>
                                       </div>

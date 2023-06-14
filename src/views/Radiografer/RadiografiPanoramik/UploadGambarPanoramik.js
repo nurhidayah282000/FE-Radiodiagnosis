@@ -179,7 +179,7 @@ const UploadGambarPanoramik = () => {
                                 display: "inline-block",
                                 "& input": {
                                   width: "100%",
-                                  height: "100%",
+                                  height: 40,
                                   padding: "0.2rem 0.75rem",
                                   fontWeight: 400,
                                   color: "#495057",
@@ -202,7 +202,7 @@ const UploadGambarPanoramik = () => {
                             </p>
 
                             <p
-                              style={{ width: "100%", height: "50%" }}
+                              style={{ width: "100%", height: 40 }}
                               className="form-control me-2 text-sm"
                             >
                               {patient?.fullname}
@@ -215,7 +215,7 @@ const UploadGambarPanoramik = () => {
                             <select
                               className="form-select form-select-sm"
                               aria-label=".form-select-sm example"
-                              style={{ height: "50%", width: "100%" }}
+                              style={{ height: 40, width: "100%" }}
                               id="radiographic_id"
                               name="radiographic_id"
                               defaultValue={data.radiographic_id}

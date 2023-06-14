@@ -13,6 +13,11 @@
   }
 }
 
+.ant-select-open .ant-select-selector {
+  border-color: #d9d9d9 !important;
+  box-shadow: none !important;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
